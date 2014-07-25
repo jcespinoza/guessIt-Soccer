@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.ActivePresentation", "GuessItSoccer.Presentation\GuessItSoccer.ActivePresentation.csproj", "{0159C685-6535-46E6-9BB3-A60842633E49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.API", "GuessItSoccer.API\GuessItSoccer.API.csproj", "{2F976ADA-FF13-47B0-8CA9-C577D7F3ABE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.Data", "GuessItSoccer.Data\GuessItSoccer.Data.csproj", "{57FCFF9B-CA68-4CAE-B3F4-3C013FB15090}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.Domain", "GuessItSoccer.Domain\GuessItSoccer.Domain.csproj", "{7099503C-CA3B-4E94-AFF6-9A4875647CC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.DataBaseDeployer", "GuessItSoccer.DataBaseDeployer\GuessItSoccer.DataBaseDeployer.csproj", "{EB9D5EC4-BDD8-4208-90F9-5DC44A12EE38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0159C685-6535-46E6-9BB3-A60842633E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0159C685-6535-46E6-9BB3-A60842633E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0159C685-6535-46E6-9BB3-A60842633E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0159C685-6535-46E6-9BB3-A60842633E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F976ADA-FF13-47B0-8CA9-C577D7F3ABE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F976ADA-FF13-47B0-8CA9-C577D7F3ABE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F976ADA-FF13-47B0-8CA9-C577D7F3ABE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F976ADA-FF13-47B0-8CA9-C577D7F3ABE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FCFF9B-CA68-4CAE-B3F4-3C013FB15090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FCFF9B-CA68-4CAE-B3F4-3C013FB15090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FCFF9B-CA68-4CAE-B3F4-3C013FB15090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FCFF9B-CA68-4CAE-B3F4-3C013FB15090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7099503C-CA3B-4E94-AFF6-9A4875647CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7099503C-CA3B-4E94-AFF6-9A4875647CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7099503C-CA3B-4E94-AFF6-9A4875647CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7099503C-CA3B-4E94-AFF6-9A4875647CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9D5EC4-BDD8-4208-90F9-5DC44A12EE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9D5EC4-BDD8-4208-90F9-5DC44A12EE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9D5EC4-BDD8-4208-90F9-5DC44A12EE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9D5EC4-BDD8-4208-90F9-5DC44A12EE38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
