@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.MainPresentation", "GuessItSoccer.Presentation\GuessItSoccer.MainPresentation.csproj", "{0159C685-6535-46E6-9BB3-A60842633E49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.ActivePresentation", "GuessItSoccer.Presentation\GuessItSoccer.ActivePresentation.csproj", "{0159C685-6535-46E6-9BB3-A60842633E49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessItSoccer.API", "GuessItSoccer.API\GuessItSoccer.API.csproj", "{2F976ADA-FF13-47B0-8CA9-C577D7F3ABE0}"
 EndProject
