@@ -29,6 +29,23 @@ angular.module('app.controllers', [])
             $location.path('/');
             return false;
         };
+        $scope.goToSignup(){
+            $location.path('/signup');
+            return false;
+        };
+        $scope.$on('$viewContentLoaded', function () {
+            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+        });
+    }])
+
+    // Path: /signup
+    .controller('SignupCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+        $scope.$root.title = 'AngularJS SPA | Sign In';
+        // TODO: Create a new account
+        $scope.signup = function () {
+            $location.path('/signup');
+            return false;
+        };
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
