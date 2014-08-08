@@ -28,6 +28,12 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/login',
                 controller: 'LoginCtrl'
             })
+            .state('signup', {
+                url: '/signup',
+                layout: 'basic',
+                templateUrl: '/views/signup',
+                controller: 'SignUpCtrl'
+            })
             .state('otherwise', {
                 url: '*path',
                 templateUrl: '/views/404',
