@@ -42,8 +42,8 @@ angular.module('app.controllers', [])
     .controller('SignupCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
         $scope.$root.title = 'AngularJS SPA | Sign In';
         // TODO: Create a new account
-        $scope.signup = function () {
-            $location.path('/signup');
+        $scope.goToLogin = function () {
+            $location.path('/login');
             return false;
         };
         $scope.$on('$viewContentLoaded', function () {
