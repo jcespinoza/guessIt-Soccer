@@ -6,6 +6,9 @@
 *.user
 *.sln.docstates
 
+#Windows thumbnails
+*.Thumbs.db
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
