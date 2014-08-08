@@ -6,7 +6,7 @@
 *.user
 *.sln.docstates
 
-#Windows thumbnails
+#Windows thumbnails files
 *.Thumbs.db
 
 # Build results
