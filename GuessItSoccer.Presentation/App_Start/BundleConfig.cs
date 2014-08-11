@@ -21,6 +21,8 @@ namespace App.GuessItSoccer.Presentation
             bundles.Add(new ScriptBundle("~/js/app").Include(
                 "~/scripts/vendor/angular-ui-router.js",
                 "~/scripts/filters.js",
+                "~/scripts/angular.min.js"
+                "~/scripts/vendor/jquery.min.js",
                 "~/scripts/services.js",
                 "~/scripts/directives.js",
                 "~/scripts/controllers.js",

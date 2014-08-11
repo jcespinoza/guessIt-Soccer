@@ -15,7 +15,7 @@ angular.module('app.controllers', [])
 
     // Path: /about
     .controller('AboutCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-        $scope.$root.title = 'AngularJS SPA | About';
+        $scope.$root.title = 'GuessIt Soccer SPA | About';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
@@ -23,10 +23,10 @@ angular.module('app.controllers', [])
 
     // Path: /login
     .controller('LoginCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-        $scope.$root.title = 'AngularJS SPA | Sign In';
+        $scope.$root.title = 'GuessIt Soccer | Sign In';
         // TODO: Authorize a user
         $scope.login = function () {
-            $location.path('/ligas');
+            $location.path('/leagues');
             return false;
         };
         $scope.goToSignup(){

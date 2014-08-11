@@ -28,11 +28,11 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/login',
                 controller: 'LoginCtrl'
             })
-            .state('ligas',{
-                url: '/ligas',
+            .state('leagues',{
+                url: '/leagues',
                 layout: 'basic',
-                templateUrl: '/views/ligas',
-                controller: 'LigasCtrl'
+                templateUrl: '/views/leagues',
+                controller: 'LeaguesCtrl'
             })
             .state('signup', {
                 url: '/signup',
