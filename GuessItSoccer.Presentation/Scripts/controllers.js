@@ -46,9 +46,6 @@ angular.module('app.controllers', [])
             $location.path('/login');
             return false;
         };
-        $scope.$on('$viewContentLoaded', function () {
-            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-        });
     }])
 
     // Path: /error/404
