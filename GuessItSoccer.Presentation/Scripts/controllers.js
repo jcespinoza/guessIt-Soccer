@@ -26,7 +26,7 @@ angular.module('app.controllers', [])
         $scope.$root.title = 'AngularJS SPA | Sign In';
         // TODO: Authorize a user
         $scope.login = function () {
-            $location.path('/');
+            $location.path('/ligas');
             return false;
         };
         $scope.goToSignup(){
