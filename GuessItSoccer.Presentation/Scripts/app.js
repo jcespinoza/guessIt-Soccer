@@ -38,7 +38,7 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 url: '/signup',
                 layout: 'basic',
                 templateUrl: '/views/signup',
-                controller: 'SignUpCtrl'
+                controller: 'SignupCtrl'
             })
             .state('otherwise', {
                 url: '*path',
