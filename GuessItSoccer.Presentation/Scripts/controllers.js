@@ -29,7 +29,7 @@ angular.module('app.controllers', [])
             $location.path('/leagues');
             return false;
         };
-        $scope.goToSignup(){
+        $scope.goToSignup = function(){
             $location.path('/signup');
             return false;
         };
