@@ -28,6 +28,12 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/login',
                 controller: 'LoginCtrl'
             })
+            .state('passrecovery', {
+                url: '/password-recovery',
+                layout: 'basic',
+                templateUrl: '/views/password-recovery',
+                controller: 'PassRecoveryCtrl'
+            })
             .state('leagues',{
                 url: '/leagues',
                 layout: 'basic',
