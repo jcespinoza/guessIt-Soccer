@@ -38,9 +38,17 @@ angular.module('app.controllers', [])
         });
     }])
 
+    .controller('LeaguesCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+        $scope.$root.title = 'GuessIt Soccer | Leagues';
+        
+        $scope.$on('$viewContentLoaded', function () {
+            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+        });
+    }])
+
     // Path: /signup
     .controller('SignupCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-        $scope.$root.title = 'AngularJS SPA | Sign In';
+        $scope.$root.title = 'GuessIt Soccer | Sign Up';
         // TODO: Create a new account
         $scope.goToLogin = function () {
             $location.path('/login');
