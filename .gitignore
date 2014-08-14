@@ -8,6 +8,8 @@
 
 #Windows thumbnails files
 *.Thumbs.db
+*/Thumbs.db
+*Thumbs.db
 
 # Build results
 [Dd]ebug/
