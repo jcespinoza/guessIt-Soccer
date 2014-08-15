@@ -36,7 +36,6 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
             })
             .state('leagues', {
                 url: '/leagues',
-                layout: 'basic',
                 templateUrl: '/views/leagues',
                 controller: 'LeaguesCtrl'
             })
