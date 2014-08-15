@@ -2,14 +2,18 @@
     PageData["title"] = "GuessIt Soccer | Leagues";
 }
 <body ng-controller="LeaguesCtrl">
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>League Name</th>	
-		</tr>
-		<tr ng-repeat="league in leagues">
-			<td>{{league.id}}</td>
-			<td>{{league.name}}</td>
-		</tr>
+	<table class="table-striped table-hover">
+	    <thead>
+	        <tr>
+	            <th>ID</th>
+	            <th>League Name</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+            <tr ng-repeat="league in leagues">
+                <td>{{league.id}}</td>
+                <td><a href="/league/{{league.id}}">{{league.name}}</a></td>
+            </tr>
+	    </tbody>
 	</table>
 </body>

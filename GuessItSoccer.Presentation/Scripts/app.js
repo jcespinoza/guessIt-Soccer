@@ -39,6 +39,11 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/leagues',
                 controller: 'LeaguesCtrl'
             })
+            .state('league', {
+                url: '/league/:id',
+                templateUrl: '/views/league',
+                controller: 'SingleLeagueCtrl'
+            })
             .state('signup', {
                 url: '/signup',
                 layout: 'basic',

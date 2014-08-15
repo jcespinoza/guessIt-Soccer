@@ -498,6 +498,7 @@
     <Content Include="Views\signup.cshtml" />
     <Content Include="Views\password-recovery.cshtml" />
     <Content Include="Views\leagues.cshtml" />
+    <Content Include="Views\league.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
