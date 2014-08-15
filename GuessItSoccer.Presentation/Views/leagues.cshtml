@@ -1,17 +1,15 @@
 ﻿@{
-    Layout = null;
+    PageData["title"] = "GuessIt Soccer | Leagues";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
+<body ng-controller="LeaguesCtrl">
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>League Name</th>	
+		</tr>
+		<tr ng-reapeat="league in leagues">
+			<td>{{league.id}}</td>
+			<td>{{league.name}}</td>
+		</tr>
+	</table>
 </body>
-</html>
