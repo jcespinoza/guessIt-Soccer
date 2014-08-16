@@ -33,11 +33,28 @@ angular.module('app.controllers', [])
             $location.path('/signup');
             return false;
         };
+        $scope.goToPassRecovery = function () {
+            $location.path('/password-recovery');
+            return false;
+        };
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
     }])
 
+    // Path: /PassRecovery
+    .controller('PassRecoveryCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+        $scope.$root.title = 'GuessIt Soccer | Password Recovery';
+        // TODO: Authorize a user
+        $scope.submitRequest = function () {
+            $location.path('/login');
+            return false;
+        };
+        
+        $scope.$on('$viewContentLoaded', function () {
+            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+        });
+    }])
 
     .controller('LeaguesCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
         $scope.$root.title = 'GuessIt Soccer | Leagues';
