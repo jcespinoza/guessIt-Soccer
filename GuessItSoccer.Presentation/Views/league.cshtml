@@ -13,7 +13,7 @@
             <tr ng-repeat="team in teamsFilter">
                 <td>{{team.teamID}} </td>
                 <td>{{team.name}} <span class="disabled" ng-show="!team.isEnabled">(Disabled)</span></td>
-                <td><button class="btn btn-default">Edit</button></td>
+                <td><button ng-click="editTeam(team.name)" class="btn btn-default">Edit</button></td>
                 <td>
                     <button ng-class="(team.isEnabled)?'btn-warning':'btn-success'" class="btn" ng-click="setTeamEnabled(team, !team.isEnabled)">
                         <span ng-show="!team.isEnabled">Enable</span>
