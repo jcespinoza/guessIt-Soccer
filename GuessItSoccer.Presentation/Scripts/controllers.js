@@ -59,56 +59,24 @@ angular.module('app.controllers', [])
     .controller('LeaguesCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
         $scope.$root.title = 'GuessIt Soccer | Leagues';
         
-        $scope.leagues =[{id: 1, name: "Spanish La Liga"},
-                            {id: 2, name: "English Premier League"},
-                            {id: 3, name: "Italian Serie A"},
-                            {id: 4, name: "German Bundesliga"},
-                            {id: 5, name: "Honduran Liga Nacional"}
+        $scope.leagues =[{id: 1, name: "Spanish La Liga", isEnabled: true},
+                            {id: 2, name: "English Premier League", isEnabled: true},
+                            {id: 3, name: "Italian Serie A", isEnabled: true},
+                            {id: 4, name: "German Bundesliga", isEnabled: true},
+                            {id: 5, name: "Honduran Liga Nacional", isEnabled: true}
                         ];
 
-        $scope.teams = [
-                        {leagueID: 1, teamID: 1, name: "Real Madrid FC"},
-                        {leagueID: 1, teamID: 2, name: "FC Barcelona"},
-                        {leagueID: 1, teamID: 3, name: "Atletico Madrid"},
-                        {leagueID: 1, teamID: 4, name: "Valencia"},
-                        {leagueID: 1, teamID: 5, name: "Villareal"},
-                        {leagueID: 1, teamID: 6, name: "Sevilla FC"},
-                        {leagueID: 1, teamID: 7, name: "Real Sociedad"},
-                        {leagueID: 1, teamID: 8, name: "Malaga"},
-                        {leagueID: 2, teamID: 1, name: "Manchester United"},
-                        {leagueID: 2, teamID: 2, name: "Chealsea FC"},
-                        {leagueID: 2, teamID: 3, name: "Everton"},
-                        {leagueID: 2, teamID: 4, name: "Arsenal"},
-                        {leagueID: 2, teamID: 5, name: "Manchester City"},
-                        {leagueID: 2, teamID: 6, name: "Liverpool"},
-                        {leagueID: 2, teamID: 7, name: "Tottenham Hotspur"},
-                        {leagueID: 2, teamID: 8, name: "New Castle"},
-                        {leagueID: 3, teamID: 1, name: "Juventus"},
-                        {leagueID: 3, teamID: 2, name: "Roma"},
-                        {leagueID: 3, teamID: 3, name: "AC Milan"},
-                        {leagueID: 3, teamID: 4, name: "Internazionale"},
-                        {leagueID: 3, teamID: 5, name: "Caigliari"},
-                        {leagueID: 3, teamID: 6, name: "Lazio"},
-                        {leagueID: 3, teamID: 7, name: "Palermo"},
-                        {leagueID: 3, teamID: 8, name: "Torino"},
-                        {leagueID: 4, teamID: 1, name: "Bayern München"},
-                        {leagueID: 4, teamID: 2, name: "borussia Dortmund"},
-                        {leagueID: 4, teamID: 3, name: "Schalke 04"},
-                        {leagueID: 4, teamID: 4, name: "Hannover 96"},
-                        {leagueID: 4, teamID: 5, name: "Stuttgart"},
-                        {leagueID: 4, teamID: 6, name: "Wolfsburg"},
-                        {leagueID: 4, teamID: 7, name: "Werder Bremen"},
-                        {leagueID: 4, teamID: 8, name: "Köln"},
-                        {leagueID: 1, teamID: 1, name: "Olimpia"},
-                        {leagueID: 1, teamID: 2, name: "Platense"},
-                        {leagueID: 1, teamID: 3, name: "Marathon"},
-                        {leagueID: 1, teamID: 4, name: "Parrillas One"},
-                        {leagueID: 1, teamID: 5, name: "Real España"},
-                        {leagueID: 1, teamID: 6, name: "Honduras Progreso"},
-                        {leagueID: 1, teamID: 7, name: "Vida"},
-                        {leagueID: 1, teamID: 8, name: "Victoria"}
-                        ];
-        
+
+        $scope.setLeagueEnabled = function(league, value){
+            league.isEnabled = value;
+        };
+
+        $scope.deleteLeague = function(leagueName){
+            for (var i = 0; i < $scope.leagues.length; i++) {
+                if ($scope.leagues[i].name === leagueName)
+                    $scope.leagues.splice(i, 1);
+            }
+        };
 
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
@@ -122,47 +90,47 @@ angular.module('app.controllers', [])
         $scope.teamsFilter = [];
 
        $scope.teams = [
-                        { leagueID: 1, teamID: 1, name: "Real Madrid FC" },
-                        { leagueID: 1, teamID: 2, name: "FC Barcelona" },
-                        { leagueID: 1, teamID: 3, name: "Atletico Madrid" },
-                        { leagueID: 1, teamID: 4, name: "Valencia" },
-                        { leagueID: 1, teamID: 5, name: "Villareal" },
-                        { leagueID: 1, teamID: 6, name: "Sevilla FC" },
-                        { leagueID: 1, teamID: 7, name: "Real Sociedad" },
-                        { leagueID: 1, teamID: 8, name: "Malaga" },
-                        { leagueID: 2, teamID: 1, name: "Manchester United" },
-                        { leagueID: 2, teamID: 2, name: "Chealsea FC" },
-                        { leagueID: 2, teamID: 3, name: "Everton" },
-                        { leagueID: 2, teamID: 4, name: "Arsenal" },
-                        { leagueID: 2, teamID: 5, name: "Manchester City" },
-                        { leagueID: 2, teamID: 6, name: "Liverpool" },
-                        { leagueID: 2, teamID: 7, name: "Tottenham Hotspur" },
-                        { leagueID: 2, teamID: 8, name: "New Castle" },
-                        { leagueID: 3, teamID: 1, name: "Juventus" },
-                        { leagueID: 3, teamID: 2, name: "Roma" },
-                        { leagueID: 3, teamID: 3, name: "AC Milan" },
-                        { leagueID: 3, teamID: 4, name: "Internazionale" },
-                        { leagueID: 3, teamID: 5, name: "Caigliari" },
-                        { leagueID: 3, teamID: 6, name: "Lazio" },
-                        { leagueID: 3, teamID: 7, name: "Palermo" },
-                        { leagueID: 3, teamID: 8, name: "Torino" },
-                        { leagueID: 4, teamID: 1, name: "Bayern München" },
-                        { leagueID: 4, teamID: 2, name: "borussia Dortmund" },
-                        { leagueID: 4, teamID: 3, name: "Schalke 04" },
-                        { leagueID: 4, teamID: 4, name: "Hannover 96" },
-                        { leagueID: 4, teamID: 5, name: "Stuttgart" },
-                        { leagueID: 4, teamID: 6, name: "Wolfsburg" },
-                        { leagueID: 4, teamID: 7, name: "Werder Bremen" },
-                        { leagueID: 4, teamID: 8, name: "Köln" },
-                        { leagueID: 5, teamID: 1, name: "Olimpia" },
-                        { leagueID: 5, teamID: 2, name: "Platense" },
-                        { leagueID: 5, teamID: 3, name: "Marathon" },
-                        { leagueID: 5, teamID: 4, name: "Parrillas One" },
-                        { leagueID: 5, teamID: 5, name: "Real España" },
-                        { leagueID: 5, teamID: 6, name: "Honduras Progreso" },
-                        { leagueID: 5, teamID: 7, name: "Vida" },
-                        { leagueID: 5, teamID: 8, name: "Victoria" }
-        ];
+                        {leagueID: 1, teamID: 1, name: "Real Madrid FC", isEnabled: true},
+                        {leagueID: 1, teamID: 2, name: "FC Barcelona", isEnabled: true},
+                        {leagueID: 1, teamID: 3, name: "Atletico Madrid", isEnabled: true},
+                        {leagueID: 1, teamID: 4, name: "Valencia", isEnabled: true},
+                        {leagueID: 1, teamID: 5, name: "Villareal", isEnabled: true},
+                        {leagueID: 1, teamID: 6, name: "Sevilla FC", isEnabled: true},
+                        {leagueID: 1, teamID: 7, name: "Real Sociedad", isEnabled: true},
+                        {leagueID: 1, teamID: 8, name: "Malaga", isEnabled: true},
+                        {leagueID: 2, teamID: 1, name: "Manchester United", isEnabled: true},
+                        {leagueID: 2, teamID: 2, name: "Chealsea FC", isEnabled: true},
+                        {leagueID: 2, teamID: 3, name: "Everton", isEnabled: true},
+                        {leagueID: 2, teamID: 4, name: "Arsenal", isEnabled: true},
+                        {leagueID: 2, teamID: 5, name: "Manchester City", isEnabled: true},
+                        {leagueID: 2, teamID: 6, name: "Liverpool", isEnabled: true},
+                        {leagueID: 2, teamID: 7, name: "Tottenham Hotspur", isEnabled: true},
+                        {leagueID: 2, teamID: 8, name: "New Castle", isEnabled: true},
+                        {leagueID: 3, teamID: 2, name: "Roma", isEnabled: true},
+                        {leagueID: 3, teamID: 1, name: "Juventus", isEnabled: true},
+                        {leagueID: 3, teamID: 3, name: "AC Milan", isEnabled: true},
+                        {leagueID: 3, teamID: 4, name: "Internazionale", isEnabled: true},
+                        {leagueID: 3, teamID: 5, name: "Caigliari", isEnabled: true},
+                        {leagueID: 3, teamID: 6, name: "Lazio", isEnabled: true},
+                        {leagueID: 3, teamID: 7, name: "Palermo", isEnabled: true},
+                        {leagueID: 3, teamID: 8, name: "Torino", isEnabled: true},
+                        {leagueID: 4, teamID: 1, name: "Bayern München", isEnabled: true},
+                        {leagueID: 4, teamID: 2, name: "borussia Dortmund", isEnabled: true},
+                        {leagueID: 4, teamID: 3, name: "Schalke 04", isEnabled: true},
+                        {leagueID: 4, teamID: 4, name: "Hannover 96", isEnabled: true},
+                        {leagueID: 4, teamID: 5, name: "Stuttgart", isEnabled: true},
+                        {leagueID: 4, teamID: 6, name: "Wolfsburg", isEnabled: true},
+                        {leagueID: 4, teamID: 7, name: "Werder Bremen", isEnabled: true},
+                        {leagueID: 4, teamID: 8, name: "Köln", isEnabled: true},
+                        {leagueID: 1, teamID: 1, name: "Olimpia", isEnabled: true},
+                        {leagueID: 1, teamID: 2, name: "Platense", isEnabled: true},
+                        {leagueID: 1, teamID: 3, name: "Marathon", isEnabled: true},
+                        {leagueID: 1, teamID: 4, name: "Parrillas One", isEnabled: true},
+                        {leagueID: 1, teamID: 5, name: "Real España", isEnabled: true},
+                        {leagueID: 1, teamID: 6, name: "Honduras Progreso", isEnabled: true},
+                        {leagueID: 1, teamID: 7, name: "Vida", isEnabled: true},
+                        {leagueID: 1, teamID: 8, name: "Victoria", isEnabled: true}
+                        ];
 
         var cleanLists = function() {
             $scope.teamsFilter = [];
@@ -172,11 +140,24 @@ angular.module('app.controllers', [])
             }
         };
 
+        $scope.setTeamEnabled = function(team, value){
+            team.isEnabled = value;
+        };
+
+        $scope.deleteTeam = function(teamName){
+            for (var i = 0; i < $scope.teams.length; i++) {
+                if ($scope.teams[i].name === teamName)
+                    $scope.teamsFilter.splice(i, 1);
+            }
+            cleanLists();
+        };
+
         cleanLists();
 
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
+            
     }])
 
     // Path: /signup
