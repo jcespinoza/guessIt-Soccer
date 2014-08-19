@@ -158,14 +158,14 @@ angular.module('app.controllers', [])
                         {leagueID: 4, teamID: 6, name: "Wolfsburg", isEnabled: true},
                         {leagueID: 4, teamID: 7, name: "Werder Bremen", isEnabled: true},
                         {leagueID: 4, teamID: 8, name: "Köln", isEnabled: true},
-                        {leagueID: 1, teamID: 1, name: "Olimpia", isEnabled: true},
-                        {leagueID: 1, teamID: 2, name: "Platense", isEnabled: true},
-                        {leagueID: 1, teamID: 3, name: "Marathon", isEnabled: true},
-                        {leagueID: 1, teamID: 4, name: "Parrillas One", isEnabled: true},
-                        {leagueID: 1, teamID: 5, name: "Real España", isEnabled: true},
-                        {leagueID: 1, teamID: 6, name: "Honduras Progreso", isEnabled: true},
-                        {leagueID: 1, teamID: 7, name: "Vida", isEnabled: true},
-                        {leagueID: 1, teamID: 8, name: "Victoria", isEnabled: true}
+                        {leagueID: 5, teamID: 1, name: "Olimpia", isEnabled: true},
+                        {leagueID: 5, teamID: 2, name: "Platense", isEnabled: true},
+                        {leagueID: 5, teamID: 3, name: "Marathon", isEnabled: true},
+                        {leagueID: 5, teamID: 4, name: "Parrillas One", isEnabled: true},
+                        {leagueID: 5, teamID: 5, name: "Real España", isEnabled: true},
+                        {leagueID: 5, teamID: 6, name: "Honduras Progreso", isEnabled: true},
+                        {leagueID: 5, teamID: 7, name: "Vida", isEnabled: true},
+                        {leagueID: 5, teamID: 8, name: "Victoria", isEnabled: true}
                         ];
 
         $scope.isEditing = false;
