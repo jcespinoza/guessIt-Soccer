@@ -70,16 +70,35 @@ angular.module('app.controllers', [])
                             {id: 5, name: "Honduran Liga Nacional", isEnabled: true}
                         ];
         
-        $scope.updateLeague = function(league){
-            league.name = $scope.updatedName;
-            //disable planel
+        $scope.oldLeagueName = "";
+        $scope.editLeague = function(leagueName){
+            $scope.isEditing = true;
+            $scope.oldLeagueName = leagueName;
+            $scope.updatedName = leagueName;
+        }
+
+        $scope.cancelEditLeague = function(){
+            $scope.isEditing = false;
+        }
+        
+        $scope.updateLeague = function(){
+            for (var i = 0; i < $scope.leagues.length; i++) {
+                if ($scope.leagues[i].name === $scope.oldLeagueName) {
+                    $scope.leagues[i].name = $scope.updatedName;
+                }
+            }
+
+            $scope.isEditing = false;
+            $scope.updatedName = "";
+            $scope.oldLeagueName = "";           
         };
 
-        $scope.addNewTeam = function(){
+        $scope.addNewLeague = function(){
             var nid = $scope.leagues[$scope.leagues.length-1].id + 1;
             $scope.leagues.push(
-                { id: nid, name: $scope.newLeagueName, isEnabled: true };
+                { id: nid, name: $scope.newLeagueName, isEnabled: true }
             );
+            $scope.newLeagueName = "";
         };
 
         $scope.setLeagueEnabled = function(league, value){
