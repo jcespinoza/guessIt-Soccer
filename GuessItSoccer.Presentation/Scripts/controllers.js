@@ -56,6 +56,7 @@ angular.module('app.controllers', [])
         });
     }])
 
+    // Path: /leagues
     .controller('LeaguesCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
         $scope.$root.title = 'GuessIt Soccer | Leagues';
         
@@ -117,6 +118,7 @@ angular.module('app.controllers', [])
         });
     }])
 
+    // Path /league/#
     .controller('SingleLeagueCtrl', ['$scope', '$location', '$window', '$stateParams', function ($scope, $location, $window, $stateParams) {
         $scope.$root.title = 'GuessIt Soccer | League';
         console.log("Incoming league ID: " + $stateParams.id);
@@ -165,6 +167,43 @@ angular.module('app.controllers', [])
                         {leagueID: 1, teamID: 7, name: "Vida", isEnabled: true},
                         {leagueID: 1, teamID: 8, name: "Victoria", isEnabled: true}
                         ];
+
+        $scope.isEditing = false;
+        $scope.newTeamName = "";
+        $scope.updatedName = "";
+
+        $scope.oldTeamName = "";
+        $scope.editTeam = function(teamName){
+            $scope.isEditing = true;
+            $scope.oldTeamName = teamName;
+            $scope.updatedName = teamName;
+        }
+
+        $scope.cancelEditTeam = function(){
+            $scope.isEditing = false;
+        }
+        
+        $scope.updateTeam = function(){
+            for (var i = 0; i < $scope.teams.length; i++) {
+                if ($scope.teams[i].name === $scope.oldTeamName) {
+                    $scope.teams[i].name = $scope.updatedName;
+                }
+            }
+
+            $scope.isEditing = false;
+            $scope.updatedName = "";
+            $scope.oldTeamName = "";
+            cleanLists();           
+        };
+
+        $scope.addNewTeam = function(){
+            var nid = $scope.teams[$scope.teams.length-1].id + 1;
+            $scope.teams.push(
+                {leagueID:$stateParams.id.parseInt(), id: nid, name: $scope.newTeamName, isEnabled: true }
+            );
+            $scope.newTeamName = "";
+            cleanLists();
+        };
 
         var cleanLists = function() {
             $scope.teamsFilter = [];

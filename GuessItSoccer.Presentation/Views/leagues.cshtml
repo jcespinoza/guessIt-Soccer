@@ -13,7 +13,9 @@
             <tr ng-repeat="league in leagues">
                 <td>{{league.id}}</td>
                 <td><a href="/league/{{league.id}}">{{league.name}} <span class="disabled" ng-show="!league.isEnabled">(Disabled)</span></a></td>
-                <td><button class="btn btn-default" ng-click="editLeague(league.name)">Edit</button></td>
+                <td>
+                    <button class="btn btn-default" ng-click="editLeague(league.name)">Edit</button>
+                </td>
                 <td>
                     <button ng-class="(league.isEnabled)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, !league.isEnabled)">
                         <span ng-show="!league.isEnabled">Enable</span>
