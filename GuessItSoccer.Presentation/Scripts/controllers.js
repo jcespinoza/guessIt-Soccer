@@ -199,7 +199,7 @@ angular.module('app.controllers', [])
         $scope.addNewTeam = function(){
             var nid = $scope.teams[$scope.teams.length-1].id + 1;
             $scope.teams.push(
-                {leagueID:$stateParams.id.parseInt(), id: nid, name: $scope.newTeamName, isEnabled: true }
+                {leagueID:parseInt($stateParams.id), id: nid, name: $scope.newTeamName, isEnabled: true }
             );
             $scope.newTeamName = "";
             cleanLists();
