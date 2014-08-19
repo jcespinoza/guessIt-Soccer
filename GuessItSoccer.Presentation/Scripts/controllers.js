@@ -220,7 +220,7 @@ angular.module('app.controllers', [])
         $scope.deleteTeam = function(teamName){
             for (var i = 0; i < $scope.teams.length; i++) {
                 if ($scope.teams[i].name === teamName)
-                    $scope.teamsFilter.splice(i, 1);
+                    $scope.teams.splice(i, 1);
             }
             cleanLists();
         };
