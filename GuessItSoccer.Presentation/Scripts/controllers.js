@@ -124,6 +124,7 @@ angular.module('app.controllers', [])
         console.log("Incoming league ID: " + $stateParams.id);
 
         $scope.teamsFilter = [];
+        $scope.gamesFilter = [];
 
        $scope.teams = [
                         {leagueID: 1, teamID: 1, name: "Real Madrid FC", isEnabled: true},
@@ -168,6 +169,19 @@ angular.module('app.controllers', [])
                         {leagueID: 5, teamID: 8, name: "Victoria", isEnabled: true}
                         ];
 
+       $scope.games = [
+                        { leagueID: 1, team1: 4, team2: 5, date: new Date(2014, 8, 21, 20, 0, 0, 0), isEnabled:true },
+                        { leagueID: 1, team1: 1, team2: 6, date: new Date(2014, 8, 21, 16, 0, 0, 0), isEnabled: true },
+                        { leagueID: 1, team1: 3, team2: 7, date: new Date(2014, 8, 20, 20, 0, 0, 0), isEnabled: true },
+                        { leagueID: 1, team1: 2, team2: 8, date: new Date(2014, 8, 22, 20, 0, 0, 0), isEnabled: true }
+                        ];
+
+        $scope.getTeam = function(id) {
+            for(var i = 0; o < games.lenght; i++)
+                if ($scope.games[i].leagueID.toString() === $stateParams.id)
+                    return $scope.games[i];
+        }
+
         $scope.isEditing = false;
         $scope.newTeamName = "";
         $scope.updatedName = "";
@@ -207,14 +221,23 @@ angular.module('app.controllers', [])
 
         var cleanLists = function() {
             $scope.teamsFilter = [];
-            for (var i = 0; i < $scope.teams.length; i++) {
+            $scope.gamesFilter = [];
+            for (var i = 0; i < $scope.teams.length; i++)
                 if ($scope.teams[i].leagueID.toString() === $stateParams.id)
                     $scope.teamsFilter.push($scope.teams[i]);
-            }
+            
+            for (var i = 0; i < $scope.games.length; i++)
+                if ($scope.games[i].leagueID.toString() === $stateParams.id)
+                    $scope.gamesFilter.push($scope.games[i]);
         };
+
+        
 
         $scope.setTeamEnabled = function(team, value){
             team.isEnabled = value;
+        };
+        $scope.setGameEnabled = function (team, value) {
+            game.isEnabled = value;
         };
 
         $scope.deleteTeam = function(teamName){
