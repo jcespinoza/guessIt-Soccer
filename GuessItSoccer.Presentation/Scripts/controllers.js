@@ -177,7 +177,7 @@ angular.module('app.controllers', [])
                         ];
 
         $scope.getTeam = function(id) {
-            for(var i = 0; o < games.lenght; i++)
+            for(var i = 0; 0 < games.length; i++)
                 if ($scope.teams[i].teamID.toString() === id)
                     return $scope.teams[i];
         }
