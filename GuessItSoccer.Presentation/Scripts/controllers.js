@@ -122,6 +122,7 @@ angular.module('app.controllers', [])
     .controller('SingleLeagueCtrl', ['$scope', '$location', '$window', '$stateParams', function ($scope, $location, $window, $stateParams) {
         $scope.$root.title = 'GuessIt Soccer | League';
         console.log("Incoming league ID: " + $stateParams.id);
+        $scope.currentLeagueID = $stateParams.id;
 
         $scope.teamsFilter = [];
         $scope.gamesFilter = [];
@@ -219,7 +220,7 @@ angular.module('app.controllers', [])
         $scope.oldTeam1 = {};
         $scope.oldTeam2 = {};
         $scope.gameEditing = "";
-        $scope.editGame = function(team1, team2, gameID){
+        $scope.editGame = function(team1, team2, lid){
             $scope.isEditingGame = true;
             $scope.oldTeam1 = team1;
             $scope.oldTeam2 = team2;
@@ -268,7 +269,7 @@ angular.module('app.controllers', [])
         $scope.getTeamsByLeagueId = function(lid){
             var teams = [];
             for(var i = 0; i < $scope.teams.length; i++){
-                if($scope.teams[i].leagueID === lid)
+                if($scope.teams[i].leagueID === currentLeagueID)
                     teams.push($scope.teams[i]);
             }
             console.log("Returning: " + teams);
