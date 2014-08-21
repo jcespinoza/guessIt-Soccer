@@ -216,8 +216,23 @@ angular.module('app.controllers', [])
             $scope.updatedName = teamName;
         }
 
+        $scope.oldTeam1 = {};
+        $scope.oldTeam2 = {};
+        $scope.gameEditing = "";
+        $scope.editGame = function(team1, team2, gameID){
+            $scope.isEditingGame = true;
+            $scope.oldTeam1 = team1;
+            $scope.oldTeam2 = team2;
+            $scope.updatedTeam1 = team1;
+            $scope.updatedTeam2 = team2;
+        }
+
         $scope.cancelEditTeam = function(){
             $scope.isEditing = false;
+        }
+
+        $scope.cancelEditGame = function(){
+            $scope.isEditingGame = false;
         }
         
         $scope.updateTeam = function(){
@@ -242,6 +257,24 @@ angular.module('app.controllers', [])
             cleanLists();
         };
 
+        $scope.addNewGame = function(t1, t2){
+            var nid = $scope.games[$scope.games.length-1].id + 1;
+            $scope.games.push(
+                {leagueID:parseInt($stateParams.id), id: nid, team1: t1.id, team2: t2.id, isEnabled: true, date: new Date() }
+            );
+            cleanLists();
+        };
+
+        $scope.getTeamsByLeagueId = function(lid){
+            var teams = [];
+            for(var i = 0; i < $scope.teams.length; i++){
+                if($scope.teams[i].leagueID === lid)
+                    teams.push($scope.teams[i]);
+            }
+            console.log("Returning: " + teams);
+            return teams;
+        };
+
         var cleanLists = function() {
             $scope.teamsFilter = [];
             $scope.gamesFilter = [];
@@ -259,7 +292,7 @@ angular.module('app.controllers', [])
         $scope.setTeamEnabled = function(team, value){
             team.isEnabled = value;
         };
-        $scope.setGameEnabled = function (team, value) {
+        $scope.setGameEnabled = function (game, value) {
             game.isEnabled = value;
         };
 
@@ -267,6 +300,14 @@ angular.module('app.controllers', [])
             for (var i = 0; i < $scope.teams.length; i++) {
                 if ($scope.teams[i].name === teamName)
                     $scope.teams.splice(i, 1);
+            }
+            cleanLists();
+        };
+
+        $scope.deleteGame = function(gameID){
+            for (var i = 0; i < $scope.games.length; i++) {
+                if ($scope.games[i].id === gameID)
+                    $scope.games.splice(i, 1);
             }
             cleanLists();
         };
