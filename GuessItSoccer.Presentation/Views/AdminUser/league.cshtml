@@ -70,8 +70,8 @@
         </tbody>
     </table>
     <div class="row" ng-hide="isEditingGame">
-        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="addNewGame(team1, team2, currentLeagueID)">
-            <h2 class="text-center">New Game {{$stateParams.id}}</h2>
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="">
+            <h2 class="text-center">New Game</h2>
             <div class="form-box">
                 <div class="form-group" />
                     <label for="team1Select">Local Team</label>
@@ -82,7 +82,7 @@
                     <select name="team2Select" ng-model="team2" ng-options="team.name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(team2 && team1)" disabled>Add Game</button>
+                    <button class="btn btn-primary btn-block" ng-click="addNewGame(team1, team2, currentLeagueID)" type="button" ng-disabled="!(team2 && team1)" disabled>Add Game</button>
                 </div>
             </div>
         </form>

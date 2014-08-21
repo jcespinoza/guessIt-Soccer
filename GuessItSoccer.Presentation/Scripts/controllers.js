@@ -258,8 +258,10 @@ angular.module('app.controllers', [])
             cleanLists();
         };
 
-        $scope.addNewGame = function(t1, t2){
-            var nid = $scope.games[$scope.games.length-1].id + 1;
+        $scope.addNewGame = function (t1, t2, id) {
+            console.log(t1 + t2);
+            var nid = $scope.games[$scope.games.length - 1].id + 1;
+            console.log("Adding game with " + $scope.getTeam(t1.id) + " vs " + $scope.getTeam(t2.id));
             $scope.games.push(
                 {leagueID:parseInt($stateParams.id), id: nid, team1: t1.id, team2: t2.id, isEnabled: true, date: new Date() }
             );
