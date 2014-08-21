@@ -178,8 +178,8 @@ angular.module('app.controllers', [])
 
         $scope.getTeam = function(id) {
             for(var i = 0; o < games.lenght; i++)
-                if ($scope.games[i].leagueID.toString() === $stateParams.id)
-                    return $scope.games[i];
+                if ($scope.teams[i].teamID.toString() === id)
+                    return $scope.teams[i];
         }
 
         $scope.isEditing = false;
