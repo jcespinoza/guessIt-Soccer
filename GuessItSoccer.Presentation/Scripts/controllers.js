@@ -178,7 +178,7 @@ angular.module('app.controllers', [])
 
         $scope.getTeam = function(id) {
             for(var i = 0; i < $scope.games.length; i++)
-                if ($scope.teams[i].teamID.toString() === $stateParams.id)
+                if ($scope.teams[i].teamID.toString() === id &&  $scope.teams[i].leagueID.toString() === $stateParams.id)
                     return $scope.teams[i];
         }
 
