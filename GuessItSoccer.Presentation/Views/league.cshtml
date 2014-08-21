@@ -53,22 +53,13 @@
         </form>
     </div>
     <h2>Games</h2>
-    <table class="table table-striped table-hover">
-<!--
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Match</th>
-            <th>Date and Time</th>
-        </tr>
-    </thead>
-    -->
+    <table  class="table table-striped table-hover">
         <tbody>
             
             <tr ng-repeat="game in gamesFilter">
                 <td>
-                    <h2>{{game.date.toLocaleString()}}</h2>
-                    <p>{{getTeam(game.team1.toString()).name}} vs {{getTeam(game.team2.toString()).name}}<span class="disabled" ng-show="!game.isEnabled">(Disabled)</span></p>
+                    <h4>{{getTeam(game.team1.toString()).name}} vs {{getTeam(game.team2.toString()).name}}<span class="disabled" ng-show="!game.isEnabled">(Disabled)</span></h4>
+                    <h5>{{game.date.toLocaleString()}}</h5>
                     <button ng-click="editGame(game.name)" class="btn btn-default">Edit</button>
                     <button ng-class="(game.isEnabled)?'btn-warning':'btn-success'" class="btn" ng-click="setGameEnabled(game, !game.isEnabled)">
                         <span ng-show="!game.isEnabled">Enable</span>
