@@ -177,7 +177,7 @@ angular.module('app.controllers', [])
                         ];
 
         $scope.getTeam = function(id) {
-            for(var i = 0; i < $scope.games.length; i++)
+            for(var i = 0; i < $scope.teams.length; i++)
                 if ($scope.teams[i].teamID.toString() === id &&  $scope.teams[i].leagueID.toString() === $stateParams.id)
                     return $scope.teams[i];
         }
@@ -185,6 +185,13 @@ angular.module('app.controllers', [])
         $scope.isEditing = false;
         $scope.newTeamName = "";
         $scope.updatedName = "";
+
+        $scope.isEditingGame = false;
+        $scope.newTeam1 = "";
+        $scope.newTeam2 = "";
+        $scope.updatedName = "";
+        $scope.updatedTeam1 = "";
+        $scope.updatedTeam2 = "";
 
         $scope.oldTeamName = "";
         $scope.editTeam = function(teamName){
