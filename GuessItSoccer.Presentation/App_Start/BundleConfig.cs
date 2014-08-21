@@ -23,6 +23,7 @@ namespace App.GuessItSoccer.Presentation
                 "~/scripts/vendor/jquery-{version}.js",
                 "~/scripts/vendor/angular-ui-router.js",
                 "~/scripts/filters.js",
+                "~/scripts/vendor/ui-bootstrap-0.11.0.min.js",
                 "~/scripts/services.js",
                 "~/scripts/directives.js",
                 "~/scripts/controllers.js",

@@ -170,14 +170,30 @@ angular.module('app.controllers', [])
                         ];
 
        $scope.games = [
-                        { leagueID: 1, team1: 4, team2: 5, date: new Date(2014, 8, 21, 20, 0, 0, 0), isEnabled:true },
-                        { leagueID: 1, team1: 1, team2: 6, date: new Date(2014, 8, 21, 16, 0, 0, 0), isEnabled: true },
-                        { leagueID: 1, team1: 3, team2: 7, date: new Date(2014, 8, 20, 20, 0, 0, 0), isEnabled: true },
-                        { leagueID: 1, team1: 2, team2: 8, date: new Date(2014, 8, 22, 20, 0, 0, 0), isEnabled: true }
+                        {id: 1, leagueID: 1, team1: 4, team2: 5, date: new Date(), isEnabled:true },
+                        {id: 2, leagueID: 1, team1: 1, team2: 6, date: new Date(), isEnabled: true },
+                        {id: 3, leagueID: 1, team1: 3, team2: 7, date: new Date(), isEnabled: true },
+                        {id: 4, leagueID: 1, team1: 2, team2: 8, date: new Date(), isEnabled: true },
+                        {id: 11, leagueID: 2, team1: 4, team2: 5, date: new Date(), isEnabled:true },
+                        {id: 12, leagueID: 2, team1: 1, team2: 6, date: new Date(), isEnabled: true },
+                        {id: 13, leagueID: 2, team1: 3, team2: 7, date: new Date(), isEnabled: true },
+                        {id: 14, leagueID: 2, team1: 2, team2: 8, date: new Date(), isEnabled: true },
+                        {id: 21, leagueID: 3, team1: 4, team2: 5, date: new Date(), isEnabled:true },
+                        {id: 22, leagueID: 3, team1: 1, team2: 6, date: new Date(), isEnabled: true },
+                        {id: 23, leagueID: 3, team1: 3, team2: 7, date: new Date(), isEnabled: true },
+                        {id: 24, leagueID: 3, team1: 2, team2: 8, date: new Date(), isEnabled: true },
+                        {id: 31, leagueID: 4, team1: 4, team2: 5, date: new Date(), isEnabled:true },
+                        {id: 32, leagueID: 4, team1: 1, team2: 6, date: new Date(), isEnabled: true },
+                        {id: 33, leagueID: 4, team1: 3, team2: 7, date: new Date(), isEnabled: true },
+                        {id: 34, leagueID: 4, team1: 2, team2: 8, date: new Date(), isEnabled: true },
+                        {id: 41, leagueID: 5, team1: 4, team2: 5, date: new Date(), isEnabled:true },
+                        {id: 42, leagueID: 5, team1: 1, team2: 6, date: new Date(), isEnabled: true },
+                        {id: 43, leagueID: 5, team1: 3, team2: 7, date: new Date(), isEnabled: true },
+                        {id: 44, leagueID: 5, team1: 2, team2: 8, date: new Date(), isEnabled: true },
                         ];
 
         $scope.getTeam = function(id) {
-            for(var i = 0; i < $scope.teams.length; i++)
+            for(var i = 0; i < $scope.games.length; i++)
                 if ($scope.teams[i].teamID.toString() === id &&  $scope.teams[i].leagueID.toString() === $stateParams.id)
                     return $scope.teams[i];
         }
