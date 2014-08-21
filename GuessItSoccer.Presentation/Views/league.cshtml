@@ -64,7 +64,7 @@
         <tbody>
             <tr ng-repeat="games in gamesFilter">
                 <td>{{game.id}}</td>
-                <td>{{getTeam(game.team1,toString()).name}} vs {{getTeam(game.team2).name}}<span class="disabled" ng-show="!game.isEnabled">(Disabled)</span></td>
+                <td>{{getTeam(game.team1.toString()).name}} vs {{getTeam(game.team2).name}}<span class="disabled" ng-show="!game.isEnabled">(Disabled)</span></td>
                 <td><button ng-click="editgame(game.name)" class="btn btn-default">Edit</button></td>
                 <td>
                     <button ng-class="(game.isEnabled)?'btn-warning':'btn-success'" class="btn" ng-click="setGameEnabled(game, !game.isEnabled)">
