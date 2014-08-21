@@ -35,13 +35,13 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 controller: 'PassRecoveryCtrl'
             })
             .state('leagues', {
-                url: '/leagues',
-                templateUrl: '/views/leagues',
+                url: '/admin/leagues',
+                templateUrl: '/views/AdminUser/leagues',
                 controller: 'LeaguesCtrl'
             })
             .state('league', {
-                url: '/league/:id',
-                templateUrl: '/views/league',
+                url: '/admin/league/:id',
+                templateUrl: '/views/AdminUser/league',
                 controller: 'SingleLeagueCtrl'
             })
             .state('signup', {

@@ -26,7 +26,7 @@ angular.module('app.controllers', [])
         $scope.$root.title = 'GuessIt Soccer | Sign In';
         // TODO: Authorize a user
         $scope.login = function () {
-            $location.path('/leagues');
+            $location.path('admin/leagues');
             return false;
         };
         $scope.goToSignup = function(){
