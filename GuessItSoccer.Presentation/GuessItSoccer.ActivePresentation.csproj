@@ -499,6 +499,8 @@
     <Content Include="Views\password-recovery.cshtml" />
     <Content Include="Views\AdminUser\leagues.cshtml" />
     <Content Include="Views\AdminUser\league.cshtml" />
+    <Content Include="Views\NormalUser\league.cshtml" />
+    <Content Include="Views\NormalUser\leagues.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -520,7 +522,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Views\NormalUser\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
