@@ -82,7 +82,7 @@
                     <select name="team2Select" ng-model="team2" ng-options="team.name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block" ng-click="addNewGame(team1, team2, currentLeagueID)" type="button" ng-disabled="!(team2 && team1)" disabled>Add Game</button>
+                    <button class="btn btn-primary btn-block" ng-click="addNewGame(getTeamByName(team1.name), team2, currentLeagueID)" type="button" ng-disabled="!(team2 && team1)" disabled>Add Game</button>
                 </div>
                 <label>{{i = document.getElementById("mySelect").selectedIndex; teams[i].id}} {{team1.name}} vs {{team2.id}} {{team2.name}}</label>
             </div>

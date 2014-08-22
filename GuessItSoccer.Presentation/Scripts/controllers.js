@@ -199,6 +199,12 @@ angular.module('app.controllers', [])
                     return $scope.teams[i];
         }
 
+        $scope.getTeamByName = function(name) {
+            for(var i = 0; i < $scope.teams.length; i++)
+                if ($scope.teams[i].name === name &&  $scope.teams[i].leagueID.toString() === $stateParams.id)
+                    return $scope.teams[i];
+        }
+
         $scope.isEditing = false;
         $scope.newTeamName = "";
         $scope.updatedName = "";
@@ -277,6 +283,8 @@ angular.module('app.controllers', [])
             console.log("Returning: " + teams);
             return teams;
         };
+
+
 
         var cleanLists = function() {
             $scope.teamsFilter = [];
