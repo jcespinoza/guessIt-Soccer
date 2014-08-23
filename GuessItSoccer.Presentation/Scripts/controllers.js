@@ -223,14 +223,14 @@ angular.module('app.controllers', [])
 
         $scope.oldTeam1 = {};
         $scope.oldTeam2 = {};
-        $scope.updatedTeam1 = "";
+        $scope.editingTeam1 = {};
         $scope.updatedTeam2 = "";
         $scope.gameEditing = "";
         $scope.editGame = function(team1, team2, lid){
             $scope.isEditingGame = true;
             $scope.oldTeam1 = team1;
             $scope.oldTeam2 = team2;
-            $scope.updatedTeam1 = team1;
+            $scope.editingTeam1 = team1;
             $scope.updatedTeam2 = team2;
         }
 
@@ -271,7 +271,7 @@ angular.module('app.controllers', [])
                 {leagueID:parseInt($stateParams.id), id: nid, team1: t1.teamID, team2: t2.teamID, isEnabled: true, date: new Date() }
             );
             cleanLists();
-            t1 = {};
+            editingTeam1 = {};
             t2 = {};
         };
 
@@ -289,14 +289,13 @@ angular.module('app.controllers', [])
         var cleanLists = function() {
             $scope.teamsFilter = [];
             $scope.gamesFilter = [];
-            for (var i = 0; i < $scope.teams.length; i++)
+            for(var i = 0; i < $scope.teams.length; i++)
                 if ($scope.teams[i].leagueID.toString() === $stateParams.id)
                     $scope.teamsFilter.push($scope.teams[i]);
             
-            for (var i = 0; i < $scope.games.length; i++)
+            for(var i = 0; i < $scope.games.length; i++)
                 if ($scope.games[i].leagueID.toString() === $stateParams.id)
                     $scope.gamesFilter.push($scope.games[i]);
-//            console.log($scope.gamesFilter);
         };
 
         
