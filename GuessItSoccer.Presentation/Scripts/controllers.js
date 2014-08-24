@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 // Google Analytics Collection APIs Reference:
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/
@@ -45,9 +45,12 @@ angular.module('app.controllers', [])
     // Path: /PassRecovery
     .controller('PassRecoveryCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
         $scope.$root.title = 'GuessIt Soccer | Password Recovery';
-        // TODO: Authorize a user
+
+        $scope.requestSent = false;
+
         $scope.submitRequest = function () {
-            $location.path('/login');
+            $scope.requestSent = true;
+
             return false;
         };
         
@@ -190,7 +193,7 @@ angular.module('app.controllers', [])
                         {id: 41, leagueID: 5, team1: 4, team2: 5, date: new Date(), isEnabled:true },
                         {id: 42, leagueID: 5, team1: 1, team2: 6, date: new Date(), isEnabled: true },
                         {id: 43, leagueID: 5, team1: 3, team2: 7, date: new Date(), isEnabled: true },
-                        {id: 44, leagueID: 5, team1: 2, team2: 8, date: new Date(), isEnabled: true },
+                        {id: 44, leagueID: 5, team1: 2, team2: 8, date: new Date(), isEnabled: true }
                         ];
 
         $scope.getTeam = function(id) {
@@ -296,9 +299,7 @@ angular.module('app.controllers', [])
             for(var i = 0; i < $scope.games.length; i++)
                 if ($scope.games[i].leagueID.toString() === $stateParams.id)
                     $scope.gamesFilter.push($scope.games[i]);
-        };
-
-        
+        };      
 
         $scope.setTeamEnabled = function(team, value){
             team.isEnabled = value;
@@ -328,7 +329,6 @@ angular.module('app.controllers', [])
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
-            
     }])
 
     // Path: /signup
