@@ -46,6 +46,7 @@
       <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,11 +55,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionStrings.cs" />
+    <Compile Include="MappingScheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GuessItSoccer.Domain\GuessItSoccer.Domain.csproj">
+      <Project>{7099503C-CA3B-4E94-AFF6-9A4875647CC3}</Project>
+      <Name>GuessItSoccer.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
