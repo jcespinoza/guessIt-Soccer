@@ -7,7 +7,7 @@ angular.module('app.controllers', [])
 
     // Path: /
     .controller('HomeCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-        $scope.$root.title = 'AngularJS SPA Template for Visual Studio';
+        $scope.$root.title = 'JC Espinoza\'s GuessIt Soccer';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
@@ -15,7 +15,7 @@ angular.module('app.controllers', [])
 
     // Path: /about
     .controller('AboutCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-        $scope.$root.title = 'GuessIt Soccer SPA | About';
+        $scope.$root.title = 'GuessIt Soccer | About';
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
