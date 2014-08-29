@@ -60,9 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountSeeder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -72,6 +72,10 @@
     <ProjectReference Include="..\GuessItSoccer.Data\GuessItSoccer.Data.csproj">
       <Project>{57FCFF9B-CA68-4CAE-B3F4-3C013FB15090}</Project>
       <Name>GuessItSoccer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GuessItSoccer.Domain\GuessItSoccer.Domain.csproj">
+      <Project>{7099503C-CA3B-4E94-AFF6-9A4875647CC3}</Project>
+      <Name>GuessItSoccer.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
