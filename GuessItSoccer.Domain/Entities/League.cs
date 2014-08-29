@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Iesi.Collections;
+using NHibernate.Loader.Custom.Sql;
 
 namespace GuessItSoccer.Domain.Entities
 {
@@ -7,12 +9,8 @@ namespace GuessItSoccer.Domain.Entities
         public virtual long Id { get; set; }
         public virtual bool IsArchived { get; set; }
         public virtual string Name { get; set; }
-        public virtual IEnumerable<Team> Teams { get; set; } 
-        //games
-        //Games have Teams
-        //games have a date
-        //games have a result
-        //games have a prediction
+        public virtual IEnumerable<Team> Teams { get; set; }
+        public virtual IEnumerable<Game> Games { get; set; }
         //prediction have a user
         //predictions have a result
         //
