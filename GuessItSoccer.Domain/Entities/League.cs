@@ -11,8 +11,5 @@ namespace GuessItSoccer.Domain.Entities
         public virtual string Name { get; set; }
         public virtual IEnumerable<Team> Teams { get; set; }
         public virtual IEnumerable<Game> Games { get; set; }
-        //prediction have a user
-        //predictions have a result
-        //
     }
 }

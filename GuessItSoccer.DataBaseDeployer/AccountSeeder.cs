@@ -23,9 +23,9 @@ namespace GuessItSoccer.DataBaseDeployer
             _session.Save(new Account
             {
                 IsArchived = false,
-                Email = "test@test.com",
-                Name = "Test Name",
-                Password = "password"
+                Email = "admin@jcespinoza.com",
+                Name = "Juan Carlos",
+                Password = ""
             });
         }
     }

@@ -100,7 +100,7 @@ angular.module('app.controllers', [])
         $scope.addNewLeague = function(){
             var nid = $scope.leagues[$scope.leagues.length-1].id + 1;
             $scope.leagues.push(
-                { id: nid, name: $scope.newLeagueName, isEnabled: true }
+                 { id: nid, name: $scope.newLeagueName, isEnabled: true }
             );
             $scope.newLeagueName = "";
         };

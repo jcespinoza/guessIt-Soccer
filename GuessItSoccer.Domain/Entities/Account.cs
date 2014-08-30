@@ -18,8 +18,8 @@ namespace GuessItSoccer.Domain.Entities
 
         public virtual string Password { get; set; }
 
-        
-        
+
+        public virtual IEnumerable<Prediction> Predictions { get; set; }
         public virtual IEnumerable<League>  Leagues { get; set; }
     }
 }
