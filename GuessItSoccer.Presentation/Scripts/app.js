@@ -39,8 +39,13 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/AdminUser/leagues',
                 controller: 'LeaguesCtrl'
             })
+            .state('userleagues', {
+                url: '/{user}/leagues',
+                templateUrl: '/views/NormalUser/leagues',
+                controller: 'UserLeaguesCtrl'
+            })
             .state('league', {
-                url: '/admin/league/:id',
+                url: '/admin/league/{id}',
                 templateUrl: '/views/AdminUser/league',
                 controller: 'SingleLeagueCtrl'
             })
