@@ -8,6 +8,6 @@ namespace GuessItSoccer.Domain.Services
 {
     public interface IEncryption
     {
-        string Encrypt(string key, string content);
+        string Encrypt( string content);
     }
 }

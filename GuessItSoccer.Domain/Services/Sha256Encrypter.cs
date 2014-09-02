@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GuessItSoccer.Domain.Services
+{
+    public class Sha256Encrypter: IEncryption
+    {
+        public string Encrypt(string content)
+        {
+            SHA256Managed hasher = new SHA256Managed();
+            byte[] textWithSaltBytes = Encoding.UTF8.GetBytes(string.Concat(content, "ultraSafeSalt"));
+            byte[] hashedBytes = hasher.ComputeHash(textWithSaltBytes);
+            hasher.Clear();
+            return Convert.ToBase64String(hashedBytes);
+        }
+    }
+}
