@@ -10,5 +10,6 @@ namespace GuessItSoccer.Domain.Entities
         public virtual Team AwayTeam { get; set; }
         public virtual DateTime MatchDate { get; set; }
         public virtual Result Result{ get;set;}
+        public virtual bool Completed { get; set; }
     }
 }

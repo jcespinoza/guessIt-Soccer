@@ -26,7 +26,7 @@ namespace GuessItSoccer.DataBaseDeployer
             {
                 IsArchived = false,
                 Email = "admin@jcespinoza.com",
-                Name = "Juan Carlos",
+                Name = "Juan Carlos Espinoza",
                 Password = encrypter.Encrypt("secretPassword")
             });
         }
