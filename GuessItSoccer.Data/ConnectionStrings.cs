@@ -6,7 +6,7 @@ namespace GuessItSoccer.Data
         public static string Get()
         {
             var local = ConfigurationManager.ConnectionStrings["local"].ToString();
-
+            var apphb = ConfigurationManager.ConnectionStrings["apphb"].ToString();
             //Other two connections here
 
             var environment = (ConfigurationManager.AppSettings["Environment"] ?? "").ToLower();
@@ -14,7 +14,7 @@ namespace GuessItSoccer.Data
 
             if (environment == "qa" || environment == "remote")
             {
-                connectionStringToUse = string.Empty;
+                connectionStringToUse = apphb;
             }
             else if (environment == "production")
             {
