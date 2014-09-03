@@ -27,7 +27,7 @@ namespace GuessItSoccer.API.Controllers
             _readOnlyRepository = readOnlyRepository;
         }
 
-        public AuthModel Post([FromBody] AccountLoginModel model)
+        public AuthModel Post([FromBody]AccountLoginModel model)
         {
             string connectionString = ConnectionStrings.Get();
 
