@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GuessItSoccer.Domain.Services;
 
 namespace GuessItSoccer.Domain.Entities
 {
@@ -21,5 +22,12 @@ namespace GuessItSoccer.Domain.Entities
 
         public virtual IEnumerable<Prediction> Predictions { get; set; }
         public virtual IEnumerable<League>  Leagues { get; set; }
+
+        public virtual bool PasswordsEqual(string testPassword)
+        {
+            IEncryption encryptor = new Sha256Encrypter();
+            string hashedTestPassword = encryptor.Encrypt(testPassword);
+            return (Password == hashedTestPassword);
+        }
     }
 }
