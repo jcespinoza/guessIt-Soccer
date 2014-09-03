@@ -34,7 +34,7 @@ namespace GuessItSoccer.DataBaseDeployer
                     //three comented lines here :d
                 }
             }
-            Console.WriteLine("");
+            Console.WriteLine(connectionString);
             Console.WriteLine("Database dropped.");
             dd.Drop();
             Thread.Sleep(1000);
