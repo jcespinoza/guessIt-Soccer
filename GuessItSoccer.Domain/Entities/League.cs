@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Iesi.Collections;
-using NHibernate.Loader.Custom.Sql;
 
 namespace GuessItSoccer.Domain.Entities
 {

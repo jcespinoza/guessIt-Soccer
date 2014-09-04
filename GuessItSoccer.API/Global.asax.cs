@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using GuessItSoccer.API.App_Start;
+using GuessItSoccer.API.Controllers;
 
 namespace GuessItSoccer.API
 {
@@ -17,11 +16,29 @@ namespace GuessItSoccer.API
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            //GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //WebApiConfig.Register(GlobalConfiguration.Configuration);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BuildContainer();
+        }
+
+        public IContainer BuildContainer()
+        {
+            var containerBuilder = new ContainerBuilder();
+            return new Bootstrapper(containerBuilder).WithTask(new ConfigureDependencies(containerBuilder))
+                .WithTask(new ConfigureAutomapper())
+                .WithExampleMvcController<HomeController>()
+                .WithExampleWebApiController<LoginController>()
+                .AndAfterContainerIsBuilt(container =>
+                {
+                    GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+                    DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+                }).Run();
         }
     }
 }

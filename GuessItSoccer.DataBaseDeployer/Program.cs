@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using AcklenAvenue.Data.NHibernate;
 using DomainDrivenDatabaseDeployer;
 using FluentNHibernate.Cfg.Db;
 using GuessItSoccer.Data;
 using NHibernate;
-using NHibernate.Impl;
 
 namespace GuessItSoccer.DataBaseDeployer
 {

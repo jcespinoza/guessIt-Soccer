@@ -6,7 +6,6 @@
 
 namespace App.GuessItSoccer.Presentation
 {
-    using System.Web;
     using System.Web.Optimization;
 
     public class BundleConfig

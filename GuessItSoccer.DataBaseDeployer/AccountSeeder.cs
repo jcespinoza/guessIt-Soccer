@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainDrivenDatabaseDeployer;
+﻿using DomainDrivenDatabaseDeployer;
 using GuessItSoccer.Domain.Entities;
 using GuessItSoccer.Domain.Services;
 using NHibernate;
