@@ -17,13 +17,14 @@ namespace GuessItSoccer.DataBaseDeployer
         public void Seed()
         {
             IEncryption encrypter = new Sha256Encrypter();
-            _session.Save(new Account
+            var account = new Account
             {
                 IsArchived = false,
                 Email = "admin@jcespinoza.com",
                 Name = "Juan Carlos Espinoza",
                 Password = encrypter.Encrypt("secretPassword")
-            });
+            };
+            _session.Save(account);
         }
     }
 

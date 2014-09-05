@@ -22,17 +22,16 @@ angular.module('app.controllers', [])
     }])
 
     // Path: /login
-    .controller('LoginCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+    .controller('LoginCtrl', ['$scope', 'LoginService', '$location', '$window', function ($scope, $location, $window, LoginService) {
         $scope.$root.title = 'GuessIt Soccer | Sign In';
         $scope.userFound = true;
-        $scope.login = function (user, pass) {
-            if(user =="admin" && pass == "admin" )
-                $location.path('admin/leagues');
-            else if(user == "guest" && pass == "123456")
-                $location.path('/'+ user +'/leagues');
-            else
-                $scope.userFound = false;
-            return false;
+        $scope.user = {};
+        $scope.login = function () {
+            LoginService.login($scope.user, function(response) {
+                
+            }, function(error) {
+
+            });
         };
         $scope.goToSignup = function(){
             $location.path('/signup');
