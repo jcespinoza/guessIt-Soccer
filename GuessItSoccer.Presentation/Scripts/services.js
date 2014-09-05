@@ -7,7 +7,7 @@ angular.module('app.services', [])
     return {
         login: function(loginModel, success, error) {
             $http
-                .post('http://guessitsoccerapi.apphb.com/api/login', loginModel)
+                .post('http://guessitsoccerapi.apphb.com/login', loginModel)
                 .success(function(response) {
                     success(response);
                 })
