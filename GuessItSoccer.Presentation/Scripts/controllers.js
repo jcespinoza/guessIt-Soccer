@@ -22,12 +22,12 @@ angular.module('app.controllers', [])
     }])
 
     // Path: /login
-    .controller('LoginCtrl', ['$scope', 'LoginService', '$location', '$window', function ($scope, $location, $window, LoginService) {
+    .controller('LoginCtrl', ['$scope', '$location', '$window', 'LoginService', function ($scope, $location, $window, $LoginService) {
         $scope.$root.title = 'GuessIt Soccer | Sign In';
         $scope.userFound = true;
         $scope.user = {};
         $scope.login = function () {
-            LoginService.login($scope.user, function(response) {
+            $LoginService.login($scope.user, function(response) {
                 console.log(response);
             }, function(error) {
 
