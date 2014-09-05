@@ -28,7 +28,7 @@ angular.module('app.controllers', [])
         $scope.user = {};
         $scope.login = function () {
             LoginService.login($scope.user, function(response) {
-                
+                console.log(response);
             }, function(error) {
 
             });
