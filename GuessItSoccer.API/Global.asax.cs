@@ -34,6 +34,7 @@ namespace GuessItSoccer.API
                 .WithTask(new ConfigureAutomapper())
                 .WithExampleMvcController<HomeController>()
                 .WithExampleWebApiController<LoginController>()
+                .WithExampleWebApiController<SignUpController>()
                 .AndAfterContainerIsBuilt(container =>
                 {
                     GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
