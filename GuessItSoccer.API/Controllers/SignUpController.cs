@@ -44,7 +44,7 @@ namespace GuessItSoccer.API.Controllers
 
             var authModel = new AuthModel()
             {
-                Token = (new Sha256Encrypter()).Encrypt(Enumerable.Concat(user.Name, user.Email).ToString())
+                Token = (new Sha256Encrypter()).Encrypt(string.Format("{0}{1}", user.Name, user.Email))
             };
             return authModel;
         }
