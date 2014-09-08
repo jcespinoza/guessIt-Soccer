@@ -39,7 +39,7 @@ namespace GuessItSoccer.API.Controllers
                 IsArchived = false,
                 Email = model.Email,
                 Name = model.Name,
-                Password = (new Sha256Encrypter()).Encrypt(model.Password),
+                Password = (new Sha256Encrypter()).Encrypt(model.Password)
             };
 
             _writeOnlyRepository.Create(user);

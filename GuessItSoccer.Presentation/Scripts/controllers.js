@@ -58,7 +58,7 @@ angular.module('app.controllers', [])
     }])
 
     // Path: /PassRecovery
-    .controller('PassRecoveryCtrl', ['$scope', '$location', '$window', '$ResetPasswordService', function ($scope, $location, $window, $ResetPasswordService) {
+    .controller('PassRecoveryCtrl', ['$scope', '$location', '$window', 'ResetPasswordService', function ($scope, $location, $window, $ResetPasswordService) {
         $scope.$root.title = 'GuessIt Soccer | Password Recovery';
 
         $scope.requestSent = false;
