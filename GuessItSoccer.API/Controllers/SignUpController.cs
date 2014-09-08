@@ -18,11 +18,13 @@ namespace GuessItSoccer.API.Controllers
         
         readonly IWriteOnlyRepository _writeOnlyRepository;
         private readonly IReadOnlyRepository _readOnlyRepository;
+        private readonly IEmailService _emailService;
 
-        public SignUpController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository)
+        public SignUpController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository, IEmailService emailService)
         {
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
+            _emailService = emailService;
         }
 
         [HttpPost]
@@ -42,11 +44,23 @@ namespace GuessItSoccer.API.Controllers
 
             _writeOnlyRepository.Create(user);
 
+            NotifyOnSignup(user.Name, user.Email);
+
             var authModel = new AuthModel()
             {
                 Token = (new Sha256Encrypter()).Encrypt(string.Format("{0}{1}", user.Name, user.Email))
             };
             return authModel;
+        }
+
+        public void NotifyOnSignup(string who, string email)
+        {
+            _emailService.SendEmail(
+                new List<string>(){string.Format("{0} <{1}>", who, email)},
+                "GuessIt Soccer <noreply@guessitsoccer.apphb.com>",
+                string.Format("Welcome to GuessIt Soccer {0}", who),
+                "You have successfully created an account in GuessIt Soccer. Now you login and start predicting game results!"
+                );
         }
     }
 }
