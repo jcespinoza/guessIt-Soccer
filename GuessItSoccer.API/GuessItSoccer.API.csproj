@@ -236,6 +236,8 @@
     <Compile Include="Models\AccountLoginModel.cs" />
     <Compile Include="Models\AccountSignUpModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
+    <Compile Include="Models\PasswordResetModel.cs" />
+    <Compile Include="Models\ResetConfirmationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

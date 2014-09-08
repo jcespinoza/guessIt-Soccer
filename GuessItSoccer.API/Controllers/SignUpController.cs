@@ -103,14 +103,4 @@ namespace GuessItSoccer.API.Controllers
                 );
         }
     }
-
-    public class PasswordResetModel
-    {
-        public string Email { get; set; }
-    }
-
-    public class ResetConfirmationModel
-    {
-        public string Value { get; set; }
-    }
 }

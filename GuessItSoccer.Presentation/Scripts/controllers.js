@@ -40,7 +40,7 @@ angular.module('app.controllers', [])
             $SignupService.signup($scope.newUser, function(response) {
                 console.log(response);
             }, function(error) {
-
+                console.log(error);
             });
             console.log("request sent:" + $scope.newUser);
         };
