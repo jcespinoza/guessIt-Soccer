@@ -14,4 +14,17 @@ angular.module('app.services', [])
                 .error(error);
         }
     };
-});
+    })
+    .factory('SignupService', function($http) {
+    return {
+        signup: function(signupModel, success, error) {
+            $http
+                //.post("http://guessitsoccerapi.apphb.com/signup", signupModel)
+                .post("http://localhost:60166/signup", signupModel)
+                .success(function(response) {
+                    success(response);
+                })
+                .error(error);
+        }
+    };
+    });

@@ -22,16 +22,27 @@ angular.module('app.controllers', [])
     }])
 
     // Path: /login
-    .controller('LoginCtrl', ['$scope', '$location', '$window', 'LoginService', function ($scope, $location, $window, $LoginService) {
+    .controller('LoginCtrl', ['$scope', '$location', '$window', 'LoginService', 'SignupService', function ($scope, $location, $window, $LoginService, $SignupService) {
         $scope.$root.title = 'GuessIt Soccer | Sign In';
         $scope.userFound = true;
         $scope.user = {};
         $scope.login = function () {
+            console.log("About to do request");
             $LoginService.login($scope.user, function(response) {
                 console.log(response);
             }, function(error) {
 
             });
+        };
+        $scope.newUser = {};
+        $scope.signup = function() {
+            console.log("about to sign up");
+            $SignupService.signup($scope.newUser, function(response) {
+                console.log(response);
+            }, function(error) {
+
+            });
+            console.log("request sent:" + $scope.newUser);
         };
         $scope.goToSignup = function(){
             $location.path('/signup');

@@ -19,10 +19,10 @@ namespace GuessItSoccer.API.Controllers
         readonly IWriteOnlyRepository _writeOnlyRepository;
         private readonly IReadOnlyRepository _readOnlyRepository;
 
-        public SignUpController(IWriteOnlyRepository writeOnlyRepository, IReadOnlyRepository readOnlyRepository)
+        public SignUpController(IReadOnlyRepository readOnlyRepository)
         {
             _readOnlyRepository = readOnlyRepository;
-            _writeOnlyRepository = writeOnlyRepository;
+            //_writeOnlyRepository = writeOnlyRepository;
         }
 
         [HttpPost]
@@ -39,19 +39,12 @@ namespace GuessItSoccer.API.Controllers
                 Name = model.Name,
                 Password = (new Sha256Encrypter()).Encrypt(model.Password),
             };
-            _writeOnlyRepository.Create(user);
+            
             var authModel = new AuthModel()
             {
                 Token = (new Sha256Encrypter()).Encrypt(Enumerable.Concat(user.Name, user.Email).ToString())
             };
             return authModel;
         }
-    }
-
-    public class AccountSignUpModel
-    {
-        public string Email { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
     }
 }
