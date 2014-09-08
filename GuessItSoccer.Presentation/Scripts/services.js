@@ -19,12 +19,23 @@ angular.module('app.services', [])
     return {
         signup: function(signupModel, success, error) {
             $http
-                .post("http://guessitsoccerapi.apphb.com/signup", signupModel)
-                //.post("http://localhost:60166/signup", signupModel)
+                .post('http://guessitsoccerapi.apphb.com/signup', signupModel)
                 .success(function(response) {
                     success(response);
                 })
                 .error(error);
         }
     };
+    })
+    .factory('ResetPasswordService', function($http) {
+        return {
+            reset: function(resetModel, success, error) {
+                $http
+                    .post('http://guessitsoccerapi.apphb.com/resetpassword', resetModel)
+                    .success(function(response){
+                        success(response);
+                    })
+                    .error(error);
+            }
+        };
     });

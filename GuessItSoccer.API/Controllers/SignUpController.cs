@@ -53,6 +53,46 @@ namespace GuessItSoccer.API.Controllers
             return authModel;
         }
 
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("resetpassword")]
+        public ResetConfirmationModel Post([FromBody] PasswordResetModel model)
+        {
+            var user = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == model.Email);
+            if (user == null) throw new HttpException((int)HttpStatusCode.NotFound, "User does not exist.");
+
+            string pass =  ResetPassword(user);
+            NotifyOnResetPassword(user.Name, user.Email, pass);
+
+            var confirmation = new ResetConfirmationModel()
+            {
+                Value = "Successfully sent an email to you inbox"
+            };
+
+            return confirmation;
+        }
+
+        private void NotifyOnResetPassword(string name, string email, string pass)
+        {
+            _emailService.SendEmail(
+                new List<string>() { string.Format("{0} <{1}>", name, email) },
+                "GuessIt Soccer <noreply@guessitsoccer.apphb.com>",
+                string.Format("GuessIt Soccer - Password Reset", ""),
+                string.Format("You have requested to reset you password in GuessIt Soccer.\n" +
+                "Please go to the login area and use this password:\n!" +
+                "Password: {0}\n\n\n" +
+                "Remember to change this to your new password soon.", pass)
+                );
+        }
+
+        private string ResetPassword(Account user)
+        {
+            string pass = Guid.NewGuid().ToString().Substring(0, 8);
+            user.Password = (new Sha256Encrypter()).Encrypt(pass);
+            _writeOnlyRepository.Update(user);
+            return pass;
+        }
+
         public void NotifyOnSignup(string who, string email)
         {
             _emailService.SendEmail(
@@ -62,5 +102,15 @@ namespace GuessItSoccer.API.Controllers
                 "You have successfully created an account in GuessIt Soccer. Now you login and start predicting game results!"
                 );
         }
+    }
+
+    public class PasswordResetModel
+    {
+        public string Email { get; set; }
+    }
+
+    public class ResetConfirmationModel
+    {
+        public string Value { get; set; }
     }
 }
