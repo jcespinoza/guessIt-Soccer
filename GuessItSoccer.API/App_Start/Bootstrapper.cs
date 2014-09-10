@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using GuessItSoccer.API.App_Start;
 
-namespace GuessItSoccer.API.App_Start
+namespace GuessItSoccer.API
 {
     public class Bootstrapper
     {

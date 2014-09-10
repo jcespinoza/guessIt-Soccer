@@ -2,45 +2,60 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using AcklenAvenue.Data.NHibernate;
 using AttributeRouting.Web.Http;
+using AutoMapper;
+using FluentNHibernate.Cfg.Db;
 using GuessItSoccer.API.Models;
+using GuessItSoccer.Data;
 using GuessItSoccer.Domain.Entities;
 using GuessItSoccer.Domain.Services;
 using NHibernate;
 
 namespace GuessItSoccer.API.Controllers
 {
-    public class SignUpController : ApiController
+    public class AccountController : ApiController
     {
-        
         readonly IWriteOnlyRepository _writeOnlyRepository;
         private readonly IReadOnlyRepository _readOnlyRepository;
         private readonly IEmailService _emailService;
+        private readonly IMappingEngine _mappingEngine;
 
-        public SignUpController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository, IEmailService emailService)
+        public AccountController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository, IEmailService emailService, IMappingEngine mappingEngine)
         {
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
             _emailService = emailService;
+            _mappingEngine = mappingEngine;
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST","HEAD")]
+        [POST("login")]
+        public AuthModel Login([FromBody]AccountLoginModel model)
+        {
+            var user = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == model.Email);
+            if (user == null) throw new HttpException((int)HttpStatusCode.NotFound, "User does not exist.");
+            if (!user.PasswordsEqual(model.Password))
+                throw new HttpException((int)HttpStatusCode.Unauthorized, "Incorrect Email or Password");
+            var authModel = new AuthModel()
+            {
+                Token = (new Sha256Encrypter()).Encrypt(Enumerable.Concat(user.Name, user.Email).ToString())
+            };
+            return authModel;           
         }
 
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
         [POST("signup")]
-        public AuthModel Post([FromBody] AccountSignUpModel model)
+        public AuthModel SignUp([FromBody] AccountSignUpModel model)
         {
             var user = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == model.Email);
             if (user != null) throw new HttpException((int)HttpStatusCode.NotFound, "User already exists.");
-            user = new Account()
-            {
-                IsArchived = false,
-                Email = model.Email,
-                Name = model.Name,
-                Password = (new Sha256Encrypter()).Encrypt(model.Password)
-            };
+            user = _mappingEngine.Map<AccountSignUpModel, Account>(model);
+            user.Password = (new Sha256Encrypter()).Encrypt(model.Password);
 
             _writeOnlyRepository.Create(user);
 
@@ -56,12 +71,12 @@ namespace GuessItSoccer.API.Controllers
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
         [POST("resetpassword")]
-        public ResetConfirmationModel Post([FromBody] PasswordResetModel model)
+        public ResetConfirmationModel ResetPassword([FromBody] PasswordResetModel model)
         {
             var user = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == model.Email);
             if (user == null) throw new HttpException((int)HttpStatusCode.NotFound, "User does not exist.");
 
-            string pass =  ResetPassword(user);
+            string pass = ResetPassword(user);
             NotifyOnResetPassword(user.Name, user.Email, pass);
 
             var confirmation = new ResetConfirmationModel()
@@ -96,7 +111,7 @@ namespace GuessItSoccer.API.Controllers
         public void NotifyOnSignup(string who, string email)
         {
             _emailService.SendEmail(
-                new List<string>(){string.Format("{0} <{1}>", who, email)},
+                new List<string>() { string.Format("{0} <{1}>", who, email) },
                 "GuessIt Soccer <noreply@guessitsoccer.apphb.com>",
                 string.Format("Welcome to GuessIt Soccer {0}", who),
                 "You have successfully created an account in GuessIt Soccer. Now you login and start predicting game results!"

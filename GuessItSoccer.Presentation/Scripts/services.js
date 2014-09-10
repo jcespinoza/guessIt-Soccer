@@ -2,39 +2,32 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
+//var server = 'http://guessitsoccerapi.apphb.com';
+var server = 'http://localhost:60166';
+
 angular.module('app.services', [])
-    .factory('LoginService', function($http) {
-    return {
-        login: function(loginModel, success, error) {
-            $http
-                .post('http://guessitsoccerapi.apphb.com/login', loginModel)
-                .success(function(response) {
-                    success(response);
-                })
-                .error(error);
-        }
-    };
-    })
-    .factory('SignupService', function($http) {
-    return {
-        signup: function(signupModel, success, error) {
-            $http
-                .post('http://guessitsoccerapi.apphb.com/signup', signupModel)
-                //.post('http://localhost:60166/signup', signupModel)
-                .success(function(response) {
-                    success(response);
-                })
-                .error(error);
-        }
-    };
-    })
-    .factory('ResetPasswordService', function($http) {
+    .factory('AccountService', function($http) {
         return {
+            login: function(loginModel, success, error) {
+                $http
+                    .post(server + '/login', loginModel)
+                    .success(function(response) {
+                        success(response);
+                    })
+                    .error(error);
+            },
+            signup: function(signupModel, success, error) {
+                $http
+                    .post(server + '/signup', signupModel)
+                    .success(function(response) {
+                        success(response);
+                    })
+                    .error(error);
+            },
             reset: function(resetModel, success, error) {
                 $http
-                    .post('http://guessitsoccerapi.apphb.com/resetpassword', resetModel)
-                    //.post('http://localhost:60166/resetpassword', resetModel)
-                    .success(function(response){
+                    .post(server + '/resetpassword', resetModel)
+                    .success(function(response) {
                         success(response);
                     })
                     .error(error);

@@ -49,12 +49,6 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/AdminUser/league',
                 controller: 'SingleLeagueCtrl'
             })
-            .state('signup', {
-                url: '/signup',
-                layout: 'basic',
-                templateUrl: '/views/signup',
-                controller: 'SignupCtrl'
-            })
             .state('otherwise', {
                 url: '*path',
                 templateUrl: '/views/404',

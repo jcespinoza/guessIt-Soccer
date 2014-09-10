@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 using AttributeRouting.Web.Http.WebHost;
 using AttributeRouting.Web.Mvc;
+using GuessItSoccer.API.App_Start;
 
-namespace GuessItSoccer.API.App_Start
+namespace GuessItSoccer.API
 {
     public class ConfigureRoutes : IBootstrapperTask
     {

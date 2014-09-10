@@ -2,8 +2,9 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using GuessItSoccer.API.App_Start;
 
-namespace GuessItSoccer.API.App_Start
+namespace GuessItSoccer.API
 {
 public class ConfigureThisWebApplication : IBootstrapperTask
     {

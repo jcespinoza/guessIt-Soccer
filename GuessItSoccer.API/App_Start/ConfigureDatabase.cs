@@ -1,10 +1,11 @@
 ﻿using AcklenAvenue.Data.NHibernate;
 using Autofac;
 using FluentNHibernate.Cfg.Db;
+using GuessItSoccer.API.App_Start;
 using GuessItSoccer.Data;
 using NHibernate;
 
-namespace GuessItSoccer.API.App_Start
+namespace GuessItSoccer.API
 {
     public class ConfigureDatabase: IBootstrapperTask
     {

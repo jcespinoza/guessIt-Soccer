@@ -1,10 +1,9 @@
 using System.Reflection;
 using Autofac;
 using AutoMapper;
-using GuessItSoccer.Data;
-using GuessItSoccer.Domain.Services;
+using GuessItSoccer.API.App_Start;
 
-namespace GuessItSoccer.API.App_Start
+namespace GuessItSoccer.API
 {
     public class ConfigureDependencies : IBootstrapperTask
     {

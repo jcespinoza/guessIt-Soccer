@@ -22,31 +22,28 @@ angular.module('app.controllers', [])
     }])
 
     // Path: /login
-    .controller('LoginCtrl', ['$scope', '$location', '$window', 'LoginService', 'SignupService', function ($scope, $location, $window, $LoginService, $SignupService) {
+    .controller('LoginCtrl', ['$scope', '$location', '$window', 'AccountService', function ($scope, $location, $window, accountService) {
         $scope.$root.title = 'GuessIt Soccer | Sign In';
         $scope.userFound = true;
         $scope.user = {};
         $scope.login = function () {
             console.log("About to do request");
-            $LoginService.login($scope.user, function(response) {
+            accountService.login($scope.user, function (response) {
                 console.log(response);
             }, function(error) {
-
+                alert(error);
             });
         };
         $scope.newUser = {};
         $scope.signup = function() {
             console.log("about to sign up");
-            $SignupService.signup($scope.newUser, function(response) {
+            accountService.signup($scope.newUser, function (response) {
                 console.log(response);
+                $location.path('/login');
             }, function(error) {
                 console.log(error);
             });
             console.log("request sent:" + $scope.newUser);
-        };
-        $scope.goToSignup = function(){
-            $location.path('/signup');
-            return false;
         };
         $scope.goToPassRecovery = function () {
             $location.path('/password-recovery');
@@ -58,13 +55,13 @@ angular.module('app.controllers', [])
     }])
 
     // Path: /PassRecovery
-    .controller('PassRecoveryCtrl', ['$scope', '$location', '$window', 'ResetPasswordService', function ($scope, $location, $window, $ResetPasswordService) {
+    .controller('PassRecoveryCtrl', ['$scope', '$location', '$window', 'AccountService', function ($scope, $location, $window, accountService) {
         $scope.$root.title = 'GuessIt Soccer | Password Recovery';
 
         $scope.requestSent = false;
         $scope.user = {};
         $scope.submitRequest = function () {
-            $ResetPasswordService.reset($scope.user, function(response) {
+            accountService.reset($scope.user, function (response) {
                 console.log(response);
             }, function(error) {
                 console.log(error);
@@ -415,16 +412,6 @@ angular.module('app.controllers', [])
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
-    }])
-
-    // Path: /signup
-    .controller('SignupCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-        $scope.$root.title = 'GuessIt Soccer | Sign Up';
-        // TODO: Create a new account
-        $scope.goToLogin = function () {
-            $location.path('/login');
-            return false;
-        };
     }])
 
     // Path: /error/404
