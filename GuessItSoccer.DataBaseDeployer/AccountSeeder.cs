@@ -2,6 +2,7 @@
 using GuessItSoccer.Domain.Entities;
 using GuessItSoccer.Domain.Services;
 using NHibernate;
+using System.Collections.Generic;
 
 namespace GuessItSoccer.DataBaseDeployer
 {
@@ -27,5 +28,4 @@ namespace GuessItSoccer.DataBaseDeployer
             _session.Save(account);
         }
     }
-
 }

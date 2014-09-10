@@ -46,6 +46,10 @@ namespace GuessItSoccer.DataBaseDeployer
                 {
                     new AccountSeeder(session)
                 });
+                dd.Seed(new List<IDataSeeder>
+                {
+                    new LeagueSeeder(session)
+                });
                 tx.Commit();
             }
             session.Close();

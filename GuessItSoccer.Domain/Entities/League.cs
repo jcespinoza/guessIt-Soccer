@@ -7,6 +7,7 @@ namespace GuessItSoccer.Domain.Entities
         public virtual long Id { get; set; }
         public virtual bool IsArchived { get; set; }
         public virtual string Name { get; set; }
+        public virtual string Country { get; set; }
         public virtual IEnumerable<Team> Teams { get; set; }
         public virtual IEnumerable<Game> Games { get; set; }
     }

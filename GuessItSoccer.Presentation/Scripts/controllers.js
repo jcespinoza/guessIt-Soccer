@@ -221,6 +221,7 @@ angular.module('app.controllers', [])
                         {leagueID: 1, teamID: 6, name: "Sevilla FC", isEnabled: true},
                         {leagueID: 1, teamID: 7, name: "Real Sociedad", isEnabled: true},
                         {leagueID: 1, teamID: 8, name: "Malaga", isEnabled: true},
+
                         {leagueID: 2, teamID: 1, name: "Manchester United", isEnabled: true},
                         {leagueID: 2, teamID: 2, name: "Chealsea FC", isEnabled: true},
                         {leagueID: 2, teamID: 3, name: "Everton", isEnabled: true},
@@ -229,6 +230,7 @@ angular.module('app.controllers', [])
                         {leagueID: 2, teamID: 6, name: "Liverpool", isEnabled: true},
                         {leagueID: 2, teamID: 7, name: "Tottenham Hotspur", isEnabled: true},
                         {leagueID: 2, teamID: 8, name: "New Castle", isEnabled: true},
+
                         {leagueID: 3, teamID: 2, name: "Roma", isEnabled: true},
                         {leagueID: 3, teamID: 1, name: "Juventus", isEnabled: true},
                         {leagueID: 3, teamID: 3, name: "AC Milan", isEnabled: true},
@@ -237,6 +239,7 @@ angular.module('app.controllers', [])
                         {leagueID: 3, teamID: 6, name: "Lazio", isEnabled: true},
                         {leagueID: 3, teamID: 7, name: "Palermo", isEnabled: true},
                         {leagueID: 3, teamID: 8, name: "Torino", isEnabled: true},
+
                         {leagueID: 4, teamID: 1, name: "Bayern München", isEnabled: true},
                         {leagueID: 4, teamID: 2, name: "borussia Dortmund", isEnabled: true},
                         {leagueID: 4, teamID: 3, name: "Schalke 04", isEnabled: true},
@@ -245,6 +248,7 @@ angular.module('app.controllers', [])
                         {leagueID: 4, teamID: 6, name: "Wolfsburg", isEnabled: true},
                         {leagueID: 4, teamID: 7, name: "Werder Bremen", isEnabled: true},
                         {leagueID: 4, teamID: 8, name: "Köln", isEnabled: true},
+                        
                         {leagueID: 5, teamID: 1, name: "Olimpia", isEnabled: true},
                         {leagueID: 5, teamID: 2, name: "Platense", isEnabled: true},
                         {leagueID: 5, teamID: 3, name: "Marathon", isEnabled: true},
