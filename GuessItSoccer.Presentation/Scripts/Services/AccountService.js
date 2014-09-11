@@ -1,11 +1,11 @@
 ﻿'use strict';
 angular.module('app.services')
-    .factory('AccountService', function ($http, Server) {
+    .factory('AccountService', function ($http, ServerService) {
         return {
             login: function (loginModel, success, error) {
                 $http
                     .post(
-                        Server.get() + '/login', loginModel)
+                        ServerService.get() + '/login', loginModel)
                     .success(function (response) {
                         success(response);
                     })
@@ -14,7 +14,7 @@ angular.module('app.services')
             signup: function (registerModel, success, error) {
                 $http
                     .post(
-                        Server.get() + '/signup', registerModel)
+                        ServerService.get() + '/signup', registerModel)
                     .success(function (response) {
                         success(response);
                     })

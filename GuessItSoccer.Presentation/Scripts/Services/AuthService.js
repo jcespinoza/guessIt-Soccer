@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('app.services')
-.factory('AuthService', function ($http, $cookieStore, Server) {
+.factory('AuthService', function ($http, $cookieStore, ServerService) {
     var accessLevels = routingConfig.accessLevels,
     userRoles = routingConfig.userRoles,
     currentUser = $cookieStore.get('user') || { username: '', role: userRoles.public };
@@ -35,7 +35,7 @@ angular.module('app.services')
         },
         login: function (user, success, error) {
 
-            $http.post(Server.get() + '/login', user).success(function (res) {
+            $http.post(ServerService.get() + '/login', user).success(function (res) {
 
                 $cookieStore.put('access_token', res.access_token);
                 $cookieStore.put('user', res);
@@ -62,7 +62,7 @@ angular.module('app.services')
         getUserId: function (success, error) {
             $http
             .get(
-            Server.get() + '/subcontractor/getUserId',
+            ServerService.get() + '/subcontractor/getUserId',
             {
                 headers: { 'Authorization': $cookieStore.get('access_token') }
             }).success(function (response) {
