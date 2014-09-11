@@ -9,7 +9,7 @@ namespace GuessItSoccer.API.Controllers
         // GET api/values
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("values")]
+        [GET("api/values")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -18,7 +18,7 @@ namespace GuessItSoccer.API.Controllers
         // GET api/values/5
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("values/{id}")]
+        [GET("api/values/{id}")]
         public string Get(int id)
         {
             return "value";
@@ -27,7 +27,7 @@ namespace GuessItSoccer.API.Controllers
         // POST api/values
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
-        [POST("values")]
+        [POST("api/values")]
         public void Post([FromBody]string value)
         {
         }
@@ -35,7 +35,7 @@ namespace GuessItSoccer.API.Controllers
         // PUT api/values/5
         [HttpPut]
         [AcceptVerbs("PUT", "HEAD")]
-        [POST("values/{id}")]
+        [POST("api/values/{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
@@ -43,7 +43,7 @@ namespace GuessItSoccer.API.Controllers
         // DELETE api/values/5
         [HttpDelete]
         [AcceptVerbs("DELETE", "HEAD")]
-        [POST("values/{id}")]
+        [POST("api/values/{id}")]
         public void Delete(int id)
         {
         }

@@ -5,9 +5,7 @@ namespace GuessItSoccer.API.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpGet]
-        [AcceptVerbs("GET", "HEAD")]
-        [GET("")]
+        [GET("/")]
         public ActionResult Index()
         {
             return View();

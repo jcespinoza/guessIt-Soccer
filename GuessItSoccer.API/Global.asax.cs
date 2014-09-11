@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using GuessItSoccer.API.App_Start;
 using GuessItSoccer.API.Controllers;
 
 namespace GuessItSoccer.API

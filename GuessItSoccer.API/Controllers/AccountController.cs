@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using AcklenAvenue.Data.NHibernate;
 using AttributeRouting.Web.Http;
 using AutoMapper;
-using FluentNHibernate.Cfg.Db;
 using GuessItSoccer.API.Models;
-using GuessItSoccer.Data;
 using GuessItSoccer.Domain.Entities;
 using GuessItSoccer.Domain.Services;
-using NHibernate;
 
 namespace GuessItSoccer.API.Controllers
 {
-    public class AccountController : ApiController
+    public class AccountController : BaseApiController
     {
         readonly IWriteOnlyRepository _writeOnlyRepository;
         private readonly IReadOnlyRepository _readOnlyRepository;
@@ -40,9 +35,14 @@ namespace GuessItSoccer.API.Controllers
             if (user == null) throw new HttpException((int)HttpStatusCode.NotFound, "User does not exist.");
             if (!user.PasswordsEqual(model.Password))
                 throw new HttpException((int)HttpStatusCode.Unauthorized, "Incorrect Email or Password");
-            var authModel = new AuthModel()
+            var authModel = new AuthModel
             {
-                Token = (new Sha256Encrypter()).Encrypt(Enumerable.Concat(user.Name, user.Email).ToString())
+                email = user.Email,
+                access_token = AuthRequestFactory.BuildEncryptedRequest(user.Email),
+                role = new RoleModel
+                {
+                    bitMask = 2, title = "admin"
+                }
             };
             return authModel;           
         }
@@ -94,7 +94,7 @@ namespace GuessItSoccer.API.Controllers
                 "GuessIt Soccer <noreply@guessitsoccer.apphb.com>",
                 string.Format("GuessIt Soccer - Password Reset", ""),
                 string.Format("You have requested to reset you password in GuessIt Soccer.\n" +
-                "Please go to the login area and use this password:\n!" +
+                "Please go to the login area and use this password:\n" +
                 "Password: {0}\n\n\n" +
                 "Remember to change this to your new password soon.", pass)
                 );
@@ -114,7 +114,7 @@ namespace GuessItSoccer.API.Controllers
                 new List<string>() { string.Format("{0} <{1}>", who, email) },
                 "GuessIt Soccer <noreply@guessitsoccer.apphb.com>",
                 string.Format("Welcome to GuessIt Soccer {0}", who),
-                "You have successfully created an account in GuessIt Soccer. Now you login and start predicting game results!"
+                "You have successfully created an account in GuessIt Soccer. Now you can login and start predicting game results!"
                 );
         }
     }
