@@ -2,8 +2,8 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-//var server = 'http://guessitsoccerapi.apphb.com';
-var server = 'http://localhost:60166';
+var server = 'http://guessitsoccerapi.apphb.com';
+//var server = 'http://localhost:60166';
 
 angular.module('app.services', [])
     .factory('AccountService', function($http) {
