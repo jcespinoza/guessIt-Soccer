@@ -19,7 +19,7 @@ angular.module('app', ['ui.router',  'ngCookies','app.filters', 'app.services', 
         $httpProvider.defaults.headers.patch = { 'Content-Type': 'application/json' };
         $httpProvider.defaults.headers.get = { 'Content-Type': 'application/json' };
 
-        var access = routingConfig.accessLevels;
+        //var access = routingConfig.accessLevels;
 
         $stateProvider
             .state('home', {

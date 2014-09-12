@@ -20,8 +20,8 @@ namespace App.GuessItSoccer.Presentation
             bundles.Add(new ScriptBundle("~/js/app").Include(
                 "~/scripts/vendor/angular.min.js",
                 "~/scripts/vendor/jquery-{version}.js",
-                "~/scripts/vendor/angular-ui-router.js",
                 "~/scripts/vendor/angular-cookies.js",
+                "~/scripts/vendor/angular-ui-router.js",
                 "~/scripts/filters.js",
                 "~/scripts/vendor/ui-bootstrap-0.11.0.min.js",
                 "~/scripts/Services.js",
@@ -36,8 +36,8 @@ namespace App.GuessItSoccer.Presentation
                 "~/scripts/Controllers/PasswordRecoveryController.js",
                 "~/scripts/Controllers/SingleLeagueController.js",
                 "~/scripts/Controllers/UserLeaguesController.js",
-                "~/scripts/Services/AccountService.js",
                 "~/scripts/Services/AuthService.js",
+                "~/scripts/Services/AccountService.js",
                 "~/scripts/Services/ServerService.js",
                 "~/scripts/app.js"));
         }
