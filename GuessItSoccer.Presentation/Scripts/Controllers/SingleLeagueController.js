@@ -11,69 +11,69 @@ angular.module('app.controllers')
         $scope.gamesFilter = [];
 
         $scope.teams = [
-            { leagueID: 1, teamID: 1, name: "Real Madrid FC", isEnabled: true },
-            { leagueID: 1, teamID: 2, name: "FC Barcelona", isEnabled: true },
-            { leagueID: 1, teamID: 3, name: "Atletico Madrid", isEnabled: true },
-            { leagueID: 1, teamID: 4, name: "Valencia", isEnabled: true },
-            { leagueID: 1, teamID: 5, name: "Villareal", isEnabled: true },
-            { leagueID: 1, teamID: 6, name: "Sevilla FC", isEnabled: true },
-            { leagueID: 1, teamID: 7, name: "Real Sociedad", isEnabled: true },
-            { leagueID: 1, teamID: 8, name: "Malaga", isEnabled: true },
-            { leagueID: 2, teamID: 1, name: "Manchester United", isEnabled: true },
-            { leagueID: 2, teamID: 2, name: "Chealsea FC", isEnabled: true },
-            { leagueID: 2, teamID: 3, name: "Everton", isEnabled: true },
-            { leagueID: 2, teamID: 4, name: "Arsenal", isEnabled: true },
-            { leagueID: 2, teamID: 5, name: "Manchester City", isEnabled: true },
-            { leagueID: 2, teamID: 6, name: "Liverpool", isEnabled: true },
-            { leagueID: 2, teamID: 7, name: "Tottenham Hotspur", isEnabled: true },
-            { leagueID: 2, teamID: 8, name: "New Castle", isEnabled: true },
-            { leagueID: 3, teamID: 2, name: "Roma", isEnabled: true },
-            { leagueID: 3, teamID: 1, name: "Juventus", isEnabled: true },
-            { leagueID: 3, teamID: 3, name: "AC Milan", isEnabled: true },
-            { leagueID: 3, teamID: 4, name: "Internazionale", isEnabled: true },
-            { leagueID: 3, teamID: 5, name: "Caigliari", isEnabled: true },
-            { leagueID: 3, teamID: 6, name: "Lazio", isEnabled: true },
-            { leagueID: 3, teamID: 7, name: "Palermo", isEnabled: true },
-            { leagueID: 3, teamID: 8, name: "Torino", isEnabled: true },
-            { leagueID: 4, teamID: 1, name: "Bayern München", isEnabled: true },
-            { leagueID: 4, teamID: 2, name: "borussia Dortmund", isEnabled: true },
-            { leagueID: 4, teamID: 3, name: "Schalke 04", isEnabled: true },
-            { leagueID: 4, teamID: 4, name: "Hannover 96", isEnabled: true },
-            { leagueID: 4, teamID: 5, name: "Stuttgart", isEnabled: true },
-            { leagueID: 4, teamID: 6, name: "Wolfsburg", isEnabled: true },
-            { leagueID: 4, teamID: 7, name: "Werder Bremen", isEnabled: true },
-            { leagueID: 4, teamID: 8, name: "Köln", isEnabled: true },
-            { leagueID: 5, teamID: 1, name: "Olimpia", isEnabled: true },
-            { leagueID: 5, teamID: 2, name: "Platense", isEnabled: true },
-            { leagueID: 5, teamID: 3, name: "Marathon", isEnabled: true },
-            { leagueID: 5, teamID: 4, name: "Parrillas One", isEnabled: true },
-            { leagueID: 5, teamID: 5, name: "Real España", isEnabled: true },
-            { leagueID: 5, teamID: 6, name: "Honduras Progreso", isEnabled: true },
-            { leagueID: 5, teamID: 7, name: "Vida", isEnabled: true },
-            { leagueID: 5, teamID: 8, name: "Victoria", isEnabled: true }
+            { leagueID: 1, teamID: 1, Name: "Real Madrid FC", IsArchived: true },
+            { leagueID: 1, teamID: 2, Name: "FC Barcelona", IsArchived: true },
+            { leagueID: 1, teamID: 3, Name: "Atletico Madrid", IsArchived: true },
+            { leagueID: 1, teamID: 4, Name: "Valencia", IsArchived: true },
+            { leagueID: 1, teamID: 5, Name: "Villareal", IsArchived: true },
+            { leagueID: 1, teamID: 6, Name: "Sevilla FC", IsArchived: true },
+            { leagueID: 1, teamID: 7, Name: "Real Sociedad", IsArchived: true },
+            { leagueID: 1, teamID: 8, Name: "Malaga", IsArchived: true },
+            { leagueID: 2, teamID: 1, Name: "Manchester United", IsArchived: true },
+            { leagueID: 2, teamID: 2, Name: "Chealsea FC", IsArchived: true },
+            { leagueID: 2, teamID: 3, Name: "Everton", IsArchived: true },
+            { leagueID: 2, teamID: 4, Name: "Arsenal", IsArchived: true },
+            { leagueID: 2, teamID: 5, Name: "Manchester City", IsArchived: true },
+            { leagueID: 2, teamID: 6, Name: "Liverpool", IsArchived: true },
+            { leagueID: 2, teamID: 7, Name: "Tottenham Hotspur", IsArchived: true },
+            { leagueID: 2, teamID: 8, Name: "New Castle", IsArchived: true },
+            { leagueID: 3, teamID: 2, Name: "Roma", IsArchived: true },
+            { leagueID: 3, teamID: 1, Name: "Juventus", IsArchived: true },
+            { leagueID: 3, teamID: 3, Name: "AC Milan", IsArchived: true },
+            { leagueID: 3, teamID: 4, Name: "Internazionale", IsArchived: true },
+            { leagueID: 3, teamID: 5, Name: "Caigliari", IsArchived: true },
+            { leagueID: 3, teamID: 6, Name: "Lazio", IsArchived: true },
+            { leagueID: 3, teamID: 7, Name: "Palermo", IsArchived: true },
+            { leagueID: 3, teamID: 8, Name: "Torino", IsArchived: true },
+            { leagueID: 4, teamID: 1, Name: "Bayern München", IsArchived: true },
+            { leagueID: 4, teamID: 2, Name: "borussia Dortmund", IsArchived: true },
+            { leagueID: 4, teamID: 3, Name: "Schalke 04", IsArchived: true },
+            { leagueID: 4, teamID: 4, Name: "Hannover 96", IsArchived: true },
+            { leagueID: 4, teamID: 5, Name: "Stuttgart", IsArchived: true },
+            { leagueID: 4, teamID: 6, Name: "Wolfsburg", IsArchived: true },
+            { leagueID: 4, teamID: 7, Name: "Werder Bremen", IsArchived: true },
+            { leagueID: 4, teamID: 8, Name: "Köln", IsArchived: true },
+            { leagueID: 5, teamID: 1, Name: "Olimpia", IsArchived: true },
+            { leagueID: 5, teamID: 2, Name: "Platense", IsArchived: true },
+            { leagueID: 5, teamID: 3, Name: "Marathon", IsArchived: true },
+            { leagueID: 5, teamID: 4, Name: "Parrillas One", IsArchived: true },
+            { leagueID: 5, teamID: 5, Name: "Real España", IsArchived: true },
+            { leagueID: 5, teamID: 6, Name: "Honduras Progreso", IsArchived: true },
+            { leagueID: 5, teamID: 7, Name: "Vida", IsArchived: true },
+            { leagueID: 5, teamID: 8, Name: "Victoria", IsArchived: true }
         ];
 
         $scope.games = [
-            { id: 1, leagueID: 1, team1: 4, team2: 5, date: new Date(), isEnabled: true },
-            { id: 2, leagueID: 1, team1: 1, team2: 6, date: new Date(), isEnabled: true },
-            { id: 3, leagueID: 1, team1: 3, team2: 7, date: new Date(), isEnabled: true },
-            { id: 4, leagueID: 1, team1: 2, team2: 8, date: new Date(), isEnabled: true },
-            { id: 11, leagueID: 2, team1: 4, team2: 5, date: new Date(), isEnabled: true },
-            { id: 12, leagueID: 2, team1: 1, team2: 6, date: new Date(), isEnabled: true },
-            { id: 13, leagueID: 2, team1: 3, team2: 7, date: new Date(), isEnabled: true },
-            { id: 14, leagueID: 2, team1: 2, team2: 8, date: new Date(), isEnabled: true },
-            { id: 21, leagueID: 3, team1: 4, team2: 5, date: new Date(), isEnabled: true },
-            { id: 22, leagueID: 3, team1: 1, team2: 6, date: new Date(), isEnabled: true },
-            { id: 23, leagueID: 3, team1: 3, team2: 7, date: new Date(), isEnabled: true },
-            { id: 24, leagueID: 3, team1: 2, team2: 8, date: new Date(), isEnabled: true },
-            { id: 31, leagueID: 4, team1: 4, team2: 5, date: new Date(), isEnabled: true },
-            { id: 32, leagueID: 4, team1: 1, team2: 6, date: new Date(), isEnabled: true },
-            { id: 33, leagueID: 4, team1: 3, team2: 7, date: new Date(), isEnabled: true },
-            { id: 34, leagueID: 4, team1: 2, team2: 8, date: new Date(), isEnabled: true },
-            { id: 41, leagueID: 5, team1: 4, team2: 5, date: new Date(), isEnabled: true },
-            { id: 42, leagueID: 5, team1: 1, team2: 6, date: new Date(), isEnabled: true },
-            { id: 43, leagueID: 5, team1: 3, team2: 7, date: new Date(), isEnabled: true },
-            { id: 44, leagueID: 5, team1: 2, team2: 8, date: new Date(), isEnabled: true }
+            { id: 1, leagueID: 1, team1: 4, team2: 5, date: new Date(), IsArchived: true },
+            { id: 2, leagueID: 1, team1: 1, team2: 6, date: new Date(), IsArchived: true },
+            { id: 3, leagueID: 1, team1: 3, team2: 7, date: new Date(), IsArchived: true },
+            { id: 4, leagueID: 1, team1: 2, team2: 8, date: new Date(), IsArchived: true },
+            { id: 11, leagueID: 2, team1: 4, team2: 5, date: new Date(), IsArchived: true },
+            { id: 12, leagueID: 2, team1: 1, team2: 6, date: new Date(), IsArchived: true },
+            { id: 13, leagueID: 2, team1: 3, team2: 7, date: new Date(), IsArchived: true },
+            { id: 14, leagueID: 2, team1: 2, team2: 8, date: new Date(), IsArchived: true },
+            { id: 21, leagueID: 3, team1: 4, team2: 5, date: new Date(), IsArchived: true },
+            { id: 22, leagueID: 3, team1: 1, team2: 6, date: new Date(), IsArchived: true },
+            { id: 23, leagueID: 3, team1: 3, team2: 7, date: new Date(), IsArchived: true },
+            { id: 24, leagueID: 3, team1: 2, team2: 8, date: new Date(), IsArchived: true },
+            { id: 31, leagueID: 4, team1: 4, team2: 5, date: new Date(), IsArchived: true },
+            { id: 32, leagueID: 4, team1: 1, team2: 6, date: new Date(), IsArchived: true },
+            { id: 33, leagueID: 4, team1: 3, team2: 7, date: new Date(), IsArchived: true },
+            { id: 34, leagueID: 4, team1: 2, team2: 8, date: new Date(), IsArchived: true },
+            { id: 41, leagueID: 5, team1: 4, team2: 5, date: new Date(), IsArchived: true },
+            { id: 42, leagueID: 5, team1: 1, team2: 6, date: new Date(), IsArchived: true },
+            { id: 43, leagueID: 5, team1: 3, team2: 7, date: new Date(), IsArchived: true },
+            { id: 44, leagueID: 5, team1: 2, team2: 8, date: new Date(), IsArchived: true }
         ];
 
         $scope.getTeam = function (id) {
@@ -84,7 +84,7 @@ angular.module('app.controllers')
 
         $scope.getTeamByName = function (name) {
             for (var i = 0; i < $scope.teams.length; i++)
-                if ($scope.teams[i].name === name && $scope.teams[i].leagueID.toString() === $stateParams.id)
+                if ($scope.teams[i].Name === name && $scope.teams[i].leagueID.toString() === $stateParams.id)
                     return $scope.teams[i];
         }
 
@@ -127,8 +127,8 @@ angular.module('app.controllers')
 
         $scope.updateTeam = function () {
             for (var i = 0; i < $scope.teams.length; i++) {
-                if ($scope.teams[i].name === $scope.oldTeamName) {
-                    $scope.teams[i].name = $scope.updatedName;
+                if ($scope.teams[i].Name === $scope.oldTeamName) {
+                    $scope.teams[i].Name = $scope.updatedName;
                 }
             }
 
@@ -141,7 +141,7 @@ angular.module('app.controllers')
         $scope.addNewTeam = function () {
             var nid = $scope.teams[$scope.teams.length - 1].id + 1;
             $scope.teams.push(
-                { leagueID: parseInt($stateParams.id), id: nid, name: $scope.newTeamName, isEnabled: true }
+                { leagueID: parseInt($stateParams.id), id: nid, Name: $scope.newTeamName, IsArchived: true }
             );
             $scope.newTeamName = "";
             cleanLists();
@@ -151,7 +151,7 @@ angular.module('app.controllers')
             var nid = $scope.games[$scope.games.length - 1].id + 1;
 
             $scope.games.push(
-                { leagueID: parseInt($stateParams.id), id: nid, team1: t1.teamID, team2: t2.teamID, isEnabled: true, date: new Date() }
+                { leagueID: parseInt($stateParams.id), id: nid, team1: t1.teamID, team2: t2.teamID, IsArchived: true, date: new Date() }
             );
             cleanLists();
             editingTeam1 = {};
@@ -181,15 +181,15 @@ angular.module('app.controllers')
         };
 
         $scope.setTeamEnabled = function (team, value) {
-            team.isEnabled = value;
+            team.IsArchived = value;
         };
         $scope.setGameEnabled = function (game, value) {
-            game.isEnabled = value;
+            game.IsArchived = value;
         };
 
         $scope.deleteTeam = function (teamName) {
             for (var i = 0; i < $scope.teams.length; i++) {
-                if ($scope.teams[i].name === teamName)
+                if ($scope.teams[i].Name === teamName)
                     $scope.teams.splice(i, 1);
             }
             cleanLists();

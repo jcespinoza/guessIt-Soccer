@@ -10,12 +10,12 @@ angular.module('app.controllers')
         $scope.newLeagueName = "";
         $scope.updatedName = "";
 
-        $scope.leagues = [
-            { id: 1, name: "Spanish La Liga", isEnabled: true },
-            { id: 2, name: "English Premier League", isEnabled: true },
-            { id: 3, name: "Italian Serie A", isEnabled: true },
-            { id: 4, name: "German Bundesliga", isEnabled: true },
-            { id: 5, name: "Honduran Liga Nacional", isEnabled: true }
+        $scope.availableLeagues = [
+            { id: 1, Name: "Spanish La Liga", IsArchived: true },
+            { id: 2, Name: "English Premier League", IsArchived: true },
+            { id: 3, Name: "Italian Serie A", IsArchived: true },
+            { id: 4, Name: "German Bundesliga", IsArchived: true },
+            { id: 5, Name: "Honduran Liga Nacional", IsArchived: true }
         ];
 
         $scope.oldLeagueName = "";
@@ -30,9 +30,9 @@ angular.module('app.controllers')
         }
 
         $scope.updateLeague = function () {
-            for (var i = 0; i < $scope.leagues.length; i++) {
-                if ($scope.leagues[i].name === $scope.oldLeagueName) {
-                    $scope.leagues[i].name = $scope.updatedName;
+            for (var i = 0; i < $scope.availableLeagues.length; i++) {
+                if ($scope.availableLeagues[i].Name === $scope.oldLeagueName) {
+                    $scope.availableLeagues[i].Name = $scope.updatedName;
                 }
             }
 
@@ -42,21 +42,21 @@ angular.module('app.controllers')
         };
 
         $scope.addNewLeague = function () {
-            var nid = $scope.leagues[$scope.leagues.length - 1].id + 1;
-            $scope.leagues.push(
-                { id: nid, name: $scope.newLeagueName, isEnabled: true }
+            var nid = $scope.availableLeagues[$scope.availableLeagues.length - 1].id + 1;
+            $scope.availableLeagues.push(
+                { id: nid, Name: $scope.newLeagueName, IsArchived: true }
             );
             $scope.newLeagueName = "";
         };
 
         $scope.setLeagueEnabled = function (league, value) {
-            league.isEnabled = value;
+            league.IsArchived = value;
         };
 
         $scope.deleteLeague = function (leagueName) {
-            for (var i = 0; i < $scope.leagues.length; i++) {
-                if ($scope.leagues[i].name === leagueName)
-                    $scope.leagues.splice(i, 1);
+            for (var i = 0; i < $scope.availableLeagues.length; i++) {
+                if ($scope.availableLeagues[i].Name === leagueName)
+                    $scope.availableLeagues.splice(i, 1);
             }
         };
 

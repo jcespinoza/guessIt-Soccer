@@ -1,14 +1,20 @@
 ﻿'user strict';
 angular.module('app.controllers')
 // Path: /login
-    .controller('LoginCtrl', ['$scope', '$location', '$window', 'AccountService', function ($scope, $location, $window, accountService) {
+    .controller('LoginCtrl', ['$scope', '$location', '$window', 'AuthService', function ($scope, $location, $window, authService) {
         $scope.$root.title = 'GuessIt Soccer | Sign In';
         $scope.userFound = true;
         $scope.user = {};
         $scope.login = function () {
             console.log("About to do request");
-            accountService.login($scope.user, function (response) {
+            authService.login($scope.user, function (response) {
                 console.log(response);
+                if (response.role.title === 'admin') {
+                    $location.path('/leagues');
+                } else {
+                    $location.path('/');
+                }
+                $scope.isLoading = false;
             }, function (error) {
                 alert(error);
             });
@@ -16,7 +22,7 @@ angular.module('app.controllers')
         $scope.newUser = {};
         $scope.signup = function () {
             console.log("About to sign up");
-            accountService.signup($scope.newUser, function (response) {
+            authService.signup($scope.newUser, function (response) {
                 console.log(response);
                 $location.path('/login');
             }, function (error) {

@@ -241,9 +241,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountLoginModel.cs" />
+    <Compile Include="Models\AccountRegisteredModel.cs" />
     <Compile Include="Models\AccountSignUpModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
-    <Compile Include="Models\LeaguesModel.cs" />
+    <Compile Include="Models\LeagueModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
     <Compile Include="Models\ResetConfirmationModel.cs" />
     <Compile Include="Models\RoleModel.cs" />

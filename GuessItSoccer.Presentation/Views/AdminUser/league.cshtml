@@ -13,15 +13,15 @@
         <tbody>
             <tr ng-repeat="team in teamsFilter">
                 <td>{{team.teamID}} </td>
-                <td>{{team.name}} <span class="disabled" ng-show="!team.isEnabled">(Disabled)</span></td>
-                <td><button ng-click="editTeam(team.name)" class="btn btn-default">Edit</button></td>
+                <td>{{team.Name}} <span class="disabled" ng-show="!team.IsArchived">(Disabled)</span></td>
+                <td><button ng-click="editTeam(team.Name)" class="btn btn-default">Edit</button></td>
                 <td>
-                    <button ng-class="(team.isEnabled)?'btn-warning':'btn-success'" class="btn" ng-click="setTeamEnabled(team, !team.isEnabled)">
-                        <span ng-show="!team.isEnabled">Enable</span>
-                        <span ng-show="team.isEnabled">Disable</span>
+                    <button ng-class="(team.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setTeamEnabled(team, !team.IsArchived)">
+                        <span ng-show="!team.IsArchived">Enable</span>
+                        <span ng-show="team.IsArchived">Disable</span>
                     </button>
                 </td>
-                <td><button ng-click="deleteTeam(team.name)" class="btn btn-danger">Delete</button></td>
+                <td><button ng-click="deleteTeam(team.Name)" class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
     </table>
@@ -57,12 +57,12 @@
         <tbody>
             <tr ng-repeat="game in gamesFilter">
                 <td>
-                    <h4>{{getTeam(game.team1.toString()).name}} vs {{getTeam(game.team2.toString()).name}}<span class="disabled" ng-show="!game.isEnabled">(Disabled)</span></h4>
+                    <h4>{{getTeam(game.team1.toString()).Name}} vs {{getTeam(game.team2.toString()).Name}}<span class="disabled" ng-show="!game.IsArchived">(Disabled)</span></h4>
                     <h5>{{game.date.toLocaleString()}}</h5>
                     <button ng-click="editGame(game.team1, game.team2, game.id)" class="btn btn-default">Edit</button>
-                    <button ng-class="(game.isEnabled)?'btn-warning':'btn-success'" class="btn" ng-click="setGameEnabled(game, !game.isEnabled)">
-                        <span ng-show="!game.isEnabled">Enable</span>
-                        <span ng-show="game.isEnabled">Disable</span>
+                    <button ng-class="(game.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setGameEnabled(game, !game.IsArchived)">
+                        <span ng-show="!game.IsArchived">Enable</span>
+                        <span ng-show="game.IsArchived">Disable</span>
                     </button>
                     <button ng-click="deleteGame(game.id)" class="btn btn-danger">Delete</button>
                 </td>
@@ -75,11 +75,11 @@
             <div class="form-box">
                 <div class="form-group">
                     <label for="team1Select">Local Team</label>
-                    <select name="team1Select" ng-model="team1" ng-options="team.name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
+                    <select name="team1Select" ng-model="team1" ng-options="team.Name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
                 </div>
                 <div class="form-group">
                     <label for="team2Select">Visitor Team</label>
-                    <select name="team2Select" ng-model="team2" ng-options="team.name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
+                    <select name="team2Select" ng-model="team2" ng-options="team.Name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" ng-click="addNewGame(team1, team2)" type="button" ng-disabled="!(team2 && team1)" disabled>Add Game</button>
@@ -94,11 +94,11 @@
             <div class="form-box">
                 <div class="form-group">
                     <label for="editingTeam1Select">Local Team</label>
-                    <select name="editingTeam1Select" ng-model="editingTeam1" ng-options="team.name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
+                    <select name="editingTeam1Select" ng-model="editingTeam1" ng-options="team.Name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
                 </div>
                 <div class="form-group">
                     <label for="editingTeam2Select">Visitor Team</label>
-                    <select name="editingTeam2Select" ng-model="editingTeam2" ng-options="team.name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
+                    <select name="editingTeam2Select" ng-model="editingTeam2" ng-options="team.Name for team in teams | filter: {leagueID: currentLeagueID}" required></select>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit">Save</button>

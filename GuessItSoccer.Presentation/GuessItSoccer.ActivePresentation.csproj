@@ -161,6 +161,7 @@
     </Content>
     <Content Include="Scripts\Services\AccountService.js" />
     <Content Include="Scripts\Services\AuthService.js" />
+    <Content Include="Scripts\Services\LeaguesService.js" />
     <Content Include="Scripts\Services\ServerService.js" />
     <Content Include="Scripts\vendor\angular-csp.css" />
     <Content Include="Scripts\vendor\angular-ui-router.js" />

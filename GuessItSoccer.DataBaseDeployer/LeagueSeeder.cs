@@ -20,7 +20,7 @@ namespace GuessItSoccer.DataBaseDeployer
             List<League> leagues = new List<League>(){
                 new League(){
                         IsArchived = false,
-                        Name = "Liga Nacional",
+                        Name = "Honduran Liga Nacional",
                         Country = "Honduras",
                         Teams = new List<Team>(){
                                 new Team(){
@@ -59,7 +59,7 @@ namespace GuessItSoccer.DataBaseDeployer
                     },
                     new League(){
                         IsArchived = false,
-                        Name = "La Liga",
+                        Name = "Spanish La Liga",
                         Country = "Spain",
                         Teams = new List<Team>(){
                                 new Team(){
@@ -98,7 +98,7 @@ namespace GuessItSoccer.DataBaseDeployer
                     },
                     new League(){
                         IsArchived = false,
-                        Name = "Premier League`",
+                        Name = "English Premier League",
                         Country = "England",
                         Teams = new List<Team>(){
                                 new Team(){
@@ -137,7 +137,7 @@ namespace GuessItSoccer.DataBaseDeployer
                     },
                     new League(){
                         IsArchived = false,
-                        Name = "Serie A",
+                        Name = "Italian Serie A",
                         Country = "Italy",
                         Teams = new List<Team>(){
                                 new Team(){
@@ -176,7 +176,7 @@ namespace GuessItSoccer.DataBaseDeployer
                     },
                     new League(){
                         IsArchived = false,
-                        Name = "Bundesliga",
+                        Name = "German Bundesliga",
                         Country = "Germany",
                         Teams = new List<Team>(){
                                 new Team(){

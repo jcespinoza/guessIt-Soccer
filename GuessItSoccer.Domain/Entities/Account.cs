@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GuessItSoccer.Domain.Services;
 
 namespace GuessItSoccer.Domain.Entities
@@ -15,9 +16,31 @@ namespace GuessItSoccer.Domain.Entities
 
         public virtual string Password { get; set; }
 
+        private IEnumerable<League> _leagues = new List<League>();
 
         public virtual IEnumerable<Prediction> Predictions { get; set; }
-        public virtual IEnumerable<League>  Leagues { get; set; }
+        public virtual IEnumerable<League> Leagues
+        {
+            get { return _leagues; }
+            protected set { this._leagues = value; }
+        }
+
+        public virtual void AddLeagues(League league)
+        {
+            if (Leagues.All(x => x.Id == league.Id))
+            {
+                ((IList<League>)Leagues).Add(league);
+            }
+        }
+
+        public virtual void RemoveLeages(long leagueId)
+        {
+            var league = Leagues.FirstOrDefault(x => x.Id == leagueId);
+            if (league != null)
+            {
+                ((IList<League>) Leagues).Remove(league);
+            }
+        }
 
         public virtual bool PasswordsEqual(string testPassword)
         {
