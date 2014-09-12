@@ -10,9 +10,6 @@ angular.module('app', ['ui.router',  'ngCookies','app.filters', 'app.services', 
         // UI States, URL Routing & Mapping. For more info see: https://github.com/angular-ui/ui-router
         // ------------------------------------------------------------------------------------------------------------
 
-        // UI States, URL Routing & Mapping. For more info see: https://github.com/angular-ui/ui-router
-        // ------------------------------------------------------------------------------------------------------------
-
         $httpProvider.defaults.headers.common = { 'Content-Type': 'application/json' };
         $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json' };
         $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json' };

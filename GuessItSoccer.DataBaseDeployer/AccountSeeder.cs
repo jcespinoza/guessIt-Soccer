@@ -29,6 +29,15 @@ namespace GuessItSoccer.DataBaseDeployer
             
             account.AddLeagues(laLiga);
             _session.Save(account);
+
+            var account2 = new Account
+            {
+                IsArchived = false,
+                Email = "jcespinozahz@live.com",
+                Name = "Juan Carlos Espinoza",
+                Password = encrypter.Encrypt("secretPassword")
+            };
+            _session.Save(account2);
         }
     }
 }
