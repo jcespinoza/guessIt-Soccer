@@ -1,5 +1,5 @@
 ﻿'user strict';
-angular.module('app.controllers', [])
+angular.module('app.controllers')
 // Path: /login
     .controller('LoginCtrl', ['$scope', '$location', '$window', 'AccountService', function ($scope, $location, $window, accountService) {
         $scope.$root.title = 'GuessIt Soccer | Sign In';

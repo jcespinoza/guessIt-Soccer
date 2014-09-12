@@ -1,5 +1,5 @@
 ﻿'user strict';
-angular.module('app.controllers', [])
+angular.module('app.controllers')
 // Path /league/#
 .controller('SingleLeagueCtrl', [
     '$scope', '$location', '$window', '$stateParams', function ($scope, $location, $window, $stateParams) {

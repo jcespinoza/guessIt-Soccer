@@ -1,5 +1,5 @@
 ﻿'user strict';
-angular.module('app.controllers', [])
+angular.module('app.controllers')
 // Path: /PassRecovery
     .controller('PassRecoveryCtrl', [
         '$scope', '$location', '$window', 'AccountService', function($scope, $location, $window, accountService) {

@@ -1,5 +1,5 @@
 ﻿'user strict';
-angular.module('app.controllers', [])
+angular.module('app.controllers')
 // Path: /about
     .controller('AboutCtrl', [
         '$scope', '$location', '$window', function($scope, $location, $window) {

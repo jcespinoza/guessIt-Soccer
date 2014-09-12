@@ -1,5 +1,5 @@
 ﻿'user strict';
-angular.module('app.controllers', [])
+angular.module('app.controllers')
 // Path: /
     .controller('HomeCtrl', [
         '$scope', '$location', '$window', function ($scope, $location, $window) {
