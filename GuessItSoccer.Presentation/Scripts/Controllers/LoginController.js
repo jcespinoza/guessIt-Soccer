@@ -37,4 +37,4 @@ angular.module('app.controllers')
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
-    }])
+    }]);
