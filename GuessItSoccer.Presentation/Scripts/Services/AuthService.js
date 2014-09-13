@@ -26,7 +26,7 @@ angular.module('app.services')
             }
             return user.role.title === userRoles.user.title || user.role.title === userRoles.admin.title;
         },
-        register: function (user, success, error) {
+        signup: function (user, success, error) {
             $http.post('/signup', user).success(function (res) {
 
                 changeUser(res);
