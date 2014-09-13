@@ -60,8 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountLeagueSeeder.cs" />
     <Compile Include="AccountSeeder.cs" />
-    <Compile Include="LeagueSeeder.cs"/>
+    <Compile Include="LeagueSeeder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

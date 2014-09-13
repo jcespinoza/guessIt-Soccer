@@ -9,6 +9,9 @@ angular.module('app.controllers')
         $scope.newLeagueName = "";
         $scope.updatedName = "";
 
+        $scope.availableLeagues = [];
+        $scope.suscribedLeages = [];
+
         $scope.loadLeagues = function () {
             LeaguesService.getAvailableLeagues(function (availableLeagues) {
                 $scope.availableLeagues = availableLeagues;
@@ -17,7 +20,11 @@ angular.module('app.controllers')
             });
         };
 
-        $scope.availableLeagues = [];
+        LeaguesService.getSuscribedLeagues(function (suscribedLeagues) {
+            $scope.suscribedLeages = suscribedLeagues;
+        }, function (error) {
+            alert('error loading suscribed leagues');
+        });
 
         $scope.oldLeagueName = "";
         $scope.editLeague = function (leagueName) {

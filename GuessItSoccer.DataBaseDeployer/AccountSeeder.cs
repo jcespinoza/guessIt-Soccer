@@ -25,9 +25,6 @@ namespace GuessItSoccer.DataBaseDeployer
                 Name = "Juan Carlos Espinoza",
                 Password = encrypter.Encrypt("secretPassword")
             };
-            var laLiga = _session.QueryOver<League>().Where(x => x.Name == "Spanish La Liga").SingleOrDefault();
-            
-            account.AddLeagues(laLiga);
             _session.Save(account);
 
             var account2 = new Account
