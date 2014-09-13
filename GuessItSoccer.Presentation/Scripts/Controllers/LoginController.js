@@ -10,7 +10,7 @@ angular.module('app.controllers')
             authService.login($scope.user, function (response) {
                 console.log(response);
                 if (response.role.title === 'admin') {
-                    $location.path('/leagues');
+                    $location.path('/admin/leagues');
                 } else {
                     $location.path('/');
                 }
