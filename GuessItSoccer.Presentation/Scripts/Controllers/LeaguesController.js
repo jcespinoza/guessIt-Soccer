@@ -20,8 +20,6 @@ angular.module('app.controllers')
             });
         };
 
-        $scope.loadLeagues();
-
         LeaguesService.getSuscribedLeagues(function (suscribedLeagues) {
             $scope.suscribedLeages = suscribedLeagues;
         }, function (error) {
