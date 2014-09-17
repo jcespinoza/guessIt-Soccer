@@ -15,6 +15,8 @@ angular.module('app.controllers')
         $scope.loadLeagues = function () {
             LeaguesService.getAvailableLeagues(function (availableLeagues) {
                 $scope.availableLeagues = availableLeagues;
+                console.log("Leagues were loaded");
+                console.log(availableLeagues);
             }, function (error) {
                 alert('error loading available leagues');
             });
