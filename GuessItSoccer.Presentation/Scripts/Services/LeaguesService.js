@@ -12,6 +12,15 @@ angular.module('app.services')
                                 success(response);
                             })
                         .error(error);
+                },
+                getSuscribedLeagues: function (success, error) {
+                    $http.get(ServerService.get() + '/leagues/suscribed', {
+                        headers: { 'Authorization': $cookieStore.get('access_token') }
+
+                    })
+                        .success(function (response) {
+                            success(response);
+                        }).error(error);
                 }
             
         };
