@@ -6,6 +6,7 @@ angular.module('app.controllers')
         $scope.$root.title = 'GuessIt Soccer | Leagues';
 
         $scope.isEditing = false;
+        $scope.variable = "algo";
         $scope.newLeagueName = "";
         $scope.updatedName = "";
 
