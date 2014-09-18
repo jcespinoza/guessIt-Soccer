@@ -1,27 +1,26 @@
-﻿﻿'use strict';
+﻿'use strict';
 angular.module('app.services')
     .factory('LeaguesService', function ($http, ServerService, $cookieStore) {
-            return {
-                getAvailableLeagues: function (success, error) {
-                        $http
-                            .get(
-                                ServerService.get() + '/leagues/available', {
-                                        Authorization: $cookieStore.get('access_token')
-                                })
-                        .success(function (response) {
-                                success(response);
-                            })
-                        .error(error);
-                },
-                getSuscribedLeagues: function (success, error) {
-                    $http.get(ServerService.get() + '/leagues/suscribed', {
-                        headers: { 'Authorization': $cookieStore.get('access_token') }
-
+        return {
+            getAvailableLeagues: function (success, error) {
+                $http
+                    .get(
+                        ServerService.get() + '/leagues/available', {
+                            header: { 'Authorization': $cookieStore.get('access_token') }
                     })
-                        .success(function (response) {
-                            success(response);
-                        }).error(error);
-                }
-            
+                .success(function (response) {
+                    success(response);
+                })
+                .error(error);
+            },
+            getSuscribedLeagues: function (success, error) {
+                $http
+                    .get(ServerService.get() + '/leagues/suscribed', {
+                        headers: { 'Authorization': $cookieStore.get('access_token') }
+                    })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            }
         };
     });
