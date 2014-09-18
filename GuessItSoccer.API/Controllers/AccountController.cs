@@ -52,15 +52,17 @@ namespace GuessItSoccer.API.Controllers
         [POST("signup")]
         public AccountRegisteredModel SignUp([FromBody] AccountSignUpModel model)
         {
-            var user = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == model.Email);
+            Account user = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == model.Email);
             if (user != null) throw new HttpException((int)HttpStatusCode.NotFound, "User already exists.");
-            user = _mappingEngine.Map<AccountSignUpModel, Account>(model);
-            user.Password = (new Sha256Encrypter()).Encrypt(model.Password);
-            var createdUser = _writeOnlyRepository.Create(user);
 
-            NotifyOnSignup(user.Name, user.Email);
+            Account newUser = _mappingEngine.Map<AccountSignUpModel, Account>(model);
+            newUser.Password = (new Sha256Encrypter()).Encrypt(model.Password);
 
-            var createdUserModel = _mappingEngine.Map<Account, AccountRegisteredModel>(createdUser);
+            Account createdUser = _writeOnlyRepository.Create(newUser);
+
+            NotifyOnSignup(createdUser.Name, createdUser.Email);
+
+            AccountRegisteredModel createdUserModel = _mappingEngine.Map<Account, AccountRegisteredModel>(createdUser);
             return createdUserModel;
         }
 
