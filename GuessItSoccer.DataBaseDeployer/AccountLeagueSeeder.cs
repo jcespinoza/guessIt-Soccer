@@ -27,7 +27,7 @@ namespace GuessItSoccer.DataBaseDeployer
                     _session.QueryOver<Account>()
                         .Where(x => x.Email == "admin@jcespinoza.com")
                         .SingleOrDefault<Account>(),
-                League = _session.QueryOver<League>().Where(x => x.Name == "Liga BBVA").SingleOrDefault<League>()
+                League = _session.QueryOver<League>().Where(x => x.Name == "Spanish La Liga").SingleOrDefault<League>()
             };
             _session.Save(accountLeague);
         }
