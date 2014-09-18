@@ -11,20 +11,21 @@ angular.module('app.controllers')
         $scope.updatedName = "";
 
         $scope.availableLeagues = [];
-        $scope.suscribedLeages = [];
+        $scope.suscribedLeagues = [];
 
-        $scope.loadLeagues = function () {
+        $scope.loadLeagues = function() {
             LeaguesService.getAvailableLeagues(function (availableLeagues) {
                 $scope.availableLeagues = availableLeagues;
                 console.log("Leagues were loaded");
                 console.log(availableLeagues);
             }, function (error) {
                 alert('error loading available leagues');
+                console.log(error);
             });
         };
-
+        $scope.loadLeagues();
         LeaguesService.getSuscribedLeagues(function (suscribedLeagues) {
-            $scope.suscribedLeages = suscribedLeagues;
+            $scope.suscribedLeagues = suscribedLeagues;
         }, function (error) {
             alert('error loading suscribed leagues');
         });

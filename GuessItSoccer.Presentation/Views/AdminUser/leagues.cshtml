@@ -1,19 +1,21 @@
 ﻿@{
     PageData["title"] = "GuessIt Soccer | Leagues";
 }
-<body ng-controller="LeaguesCtrl" ng-init="loadLeagues()">
+<body>
     <h2>Leagues</h2>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>League Name {{variable}}</th>
+                <th>Country</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="league in availableLeagues">
-                <td>{{league.id}}</td>
-                <td><a href="/admin/league/{{league.id}}">{{league.Name}} <span class="disabled" ng-show="!league.IsArchived">(Disabled)</span></a></td>
+                <td>{{league.Id}}</td>
+                <td><a href="/admin/league/{{league.Id}}">{{league.Name}} <span class="disabled" ng-show="!league.IsArchived">(Disabled)</span></a></td>
+                <td>{{league.Country}}</td>
                 <td>
                     <button class="btn btn-default" ng-click="editLeague(league.Name)">Edit</button>
                 </td>

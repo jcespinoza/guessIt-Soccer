@@ -13,7 +13,7 @@ namespace GuessItSoccer.API
             //automappings go here
             //Ex: Mapper.CreateMap<SomeType, SomeOtherType>().ReverseMap();
             Mapper.CreateMap<AccountSignUpModel, Account>().ReverseMap();
-            Mapper.CreateMap<AccountRegisteredModel, Account>().ReverseMap();
+            Mapper.CreateMap<Account, AccountRegisteredModel>().ReverseMap();
             Mapper.CreateMap<League, LeagueModel>().ReverseMap();
         }
         #endregion
