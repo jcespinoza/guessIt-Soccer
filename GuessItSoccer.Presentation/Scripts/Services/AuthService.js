@@ -34,7 +34,6 @@ angular.module('app.services')
             }).error(error);
         },
         login: function (user, success, error) {
-
             $http.post(ServerService.get() + '/login', user).success(function (res) {
 
                 $cookieStore.put('access_token', res.access_token);

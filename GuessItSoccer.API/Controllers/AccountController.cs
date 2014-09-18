@@ -86,7 +86,7 @@ namespace GuessItSoccer.API.Controllers
         private void NotifyOnResetPassword(string name, string email, string pass)
         {
             _emailService.SendEmail(
-                new List<string>() { string.Format("{0} <{1}>", name, email) },
+                new List<string>(){ string.Format("{0} <{1}>", name, email) },
                 "GuessIt Soccer <noreply@guessitsoccer.apphb.com>",
                 string.Format("GuessIt Soccer - Password Reset", ""),
                 string.Format("You have requested to reset you password in GuessIt Soccer.\n" +

@@ -6,18 +6,18 @@ angular.module('app.services')
                 $http
                     .get(
                         ServerService.get() + '/leagues/available', {
-                            header: { 'Authorization': $cookieStore.get('access_token') }
-                    })
-                .success(function (response) {
-                    success(response);
-                })
-                .error(error);
+                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
             },
             getSuscribedLeagues: function (success, error) {
                 $http
-                    .get(ServerService.get() + '/leagues/suscribed', {
-                        headers: { 'Authorization': $cookieStore.get('access_token') }
-                    })
+                    .get(
+                        ServerService.get() + '/leagues/suscribed', {
+                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                        })
                     .success(function (response) {
                         success(response);
                     }).error(error);
