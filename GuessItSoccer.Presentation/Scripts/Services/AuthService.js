@@ -28,7 +28,6 @@ angular.module('app.services')
         },
         signup: function (user, success, error) {
             $http.post('/signup', user).success(function (res) {
-
                 changeUser(res);
                 success(res);
             }).error(error);

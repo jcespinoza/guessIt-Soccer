@@ -19,6 +19,12 @@ angular.module('app.services')
                         success(response);
                     })
                     .error(error);
-            }
+            },
+            reset: function (user, success, error) {
+                $http.post('/resetpassword', user).success(function (response) {
+                    success(response);
+                })
+                    .error(error);
+            },
         };
     });

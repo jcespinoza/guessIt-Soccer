@@ -7,7 +7,7 @@ angular.module('app.controllers')
 
             $scope.requestSent = false;
             $scope.user = {};
-            $scope.submitRequest = function() {
+            $scope.submitRequest = function () {
                 accountService.reset($scope.user, function(response) {
                     console.log(response);
                 }, function(error) {

@@ -15,11 +15,13 @@ namespace GuessItSoccer.API.Controllers
     public class LeaguesController: BaseApiController
     {
         readonly IReadOnlyRepository _readOnlyRepository;
+        private readonly IWriteOnlyRepository _writeOnlyRepository;
         readonly IMappingEngine _mappingEngine;
 
-        public LeaguesController(IReadOnlyRepository readOnlyRepository, IMappingEngine mappingEngine)
+        public LeaguesController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository, IMappingEngine mappingEngine)
         {
             _readOnlyRepository = readOnlyRepository;
+            _writeOnlyRepository = writeOnlyRepository;
             _mappingEngine = mappingEngine;
         }
 
@@ -55,11 +57,18 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("GET", "HEAD")]
-        [GET("leagues/deleteleague/{id}")]
-        public void ArchiveLeague([FromBody] int Id)
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/deleteleague/{id}")]
+        public LeagueModel ArchiveLeague(int Id)
         {
-            
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == Id);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "League not found");
+
+            foundLeague.IsArchived = true;
+            var updatedLeague = _writeOnlyRepository.Update(foundLeague);
+            var updatedLeagueModel = _mappingEngine.Map<League, LeagueModel>(updatedLeague);
+            return updatedLeagueModel;
         }
     }
 }
