@@ -21,10 +21,11 @@ angular.module('app.services')
                     .error(error);
             },
             reset: function (user, success, error) {
-                $http.post('/resetpassword', user).success(function (response) {
+                $http.post(ServerService.get() + '/resetpassword', user).success(function (response) {
                     success(response);
                 })
                     .error(error);
+                return false;
             },
         };
     });
