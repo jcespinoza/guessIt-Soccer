@@ -6,9 +6,11 @@ angular.module('app.controllers')
         $scope.$root.title = 'GuessIt Soccer | Leagues';
 
         $scope.isEditing = false;
-        $scope.variable = "algo";
+        $scope.variable = "*";
         $scope.newLeagueName = "";
+        $scope.newLeagueCountry = "";
         $scope.updatedName = "";
+        $scope.updatedCountry = "";
 
         $scope.availableLeagues = [];
         $scope.suscribedLeagues = [];
@@ -31,6 +33,7 @@ angular.module('app.controllers')
         });
 
         $scope.oldLeagueName = "";
+        $scope.oldCountryName = "";
         $scope.editLeague = function (leagueName) {
             $scope.isEditing = true;
             $scope.oldLeagueName = leagueName;
@@ -50,6 +53,7 @@ angular.module('app.controllers')
 
             $scope.isEditing = false;
             $scope.updatedName = "";
+            $scope.updatedCountry = "";
             $scope.oldLeagueName = "";
         };
 

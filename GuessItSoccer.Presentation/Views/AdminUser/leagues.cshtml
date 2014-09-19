@@ -20,7 +20,7 @@
                     <button class="btn btn-default" ng-click="editLeague(league.Name)">Edit</button>
                 </td>
                 <td>
-                    <button ng-class="(league.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, !league.IsArchived)">
+                    <button ng-class="(!league.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, !league.IsArchived)">
                         <span ng-show="league.IsArchived">Enable</span>
                         <span ng-show="!league.IsArchived">Disable</span>
                     </button>
@@ -37,6 +37,9 @@
                     <input ng-model="newLeagueName" type="text" class="form-control" placeholder="League Name" required />
                 </div>
                 <div class="form-group">
+                    <input ng-model="newLeagueCountry" type="text" class="form-control" placeholder="Country Name" required />
+                </div>
+                <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(newLeagueName)" disabled>Add League</button>
                 </div>
             </div>
@@ -48,6 +51,9 @@
             <div class="form-box">
                 <div class="form-group">
                     <input ng-model="updatedName" type="text" class="form-control" placeholder="League Name" required />
+                </div>
+                <div class="form-group">
+                    <input ng-model="updatedCountry" type="text" class="form-control" placeholder="Country Name" required />
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit">Save</button>
