@@ -14,15 +14,15 @@
         <tbody>
             <tr ng-repeat="league in availableLeagues">
                 <td>{{league.Id}}</td>
-                <td><a href="/admin/league/{{league.Id}}">{{league.Name}} <span class="disabled" ng-show="!league.IsArchived">(Disabled)</span></a></td>
+                <td><a href="/admin/league/{{league.Id}}">{{league.Name}} <span class="disabled" ng-show="league.IsArchived">(Disabled)</span></a></td>
                 <td>{{league.Country}}</td>
                 <td>
                     <button class="btn btn-default" ng-click="editLeague(league.Name)">Edit</button>
                 </td>
                 <td>
                     <button ng-class="(league.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, !league.IsArchived)">
-                        <span ng-show="!league.IsArchived">Enable</span>
-                        <span ng-show="league.IsArchived">Disable</span>
+                        <span ng-show="league.IsArchived">Enable</span>
+                        <span ng-show="!league.IsArchived">Disable</span>
                     </button>
                 </td>
                 <td><button ng-click="deleteLeague(league.Name)" class="btn btn-danger">Delete</button></td>

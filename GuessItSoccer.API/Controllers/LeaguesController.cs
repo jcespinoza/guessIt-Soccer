@@ -53,5 +53,13 @@ namespace GuessItSoccer.API.Controllers
             var leaguesModel = _mappingEngine.Map<List<League>, List<LeagueModel>>(account.ToList());
             return leaguesModel;
         }
+
+        [HttpGet]
+        [AcceptVerbs("GET", "HEAD")]
+        [GET("leagues/deleteleague/{id}")]
+        public void ArchiveLeague([FromBody] int Id)
+        {
+            
+        }
     }
 }
