@@ -6,15 +6,17 @@ angular.module('app.controllers')
             $scope.$root.title = 'GuessIt Soccer | Password Recovery';
 
             $scope.requestSent = false;
+            $scope.requestFailed = false;
             $scope.user = {};
             $scope.submitRequest = function () {
                 accountService.reset($scope.user, function(response) {
                     console.log(response);
-                }, function(error) {
+                    $scope.requestSent = true;
+                    console.log("Email sent");
+                }, function(error){
                     console.log(error);
-                });
-                console.log("Email sent");
-                $scope.requestSent = true;
+                    $scope.requestFailed = true;
+                });               
             };
 
             $scope.$on('$viewContentLoaded', function() {
