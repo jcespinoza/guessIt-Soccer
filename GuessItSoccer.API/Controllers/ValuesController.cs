@@ -35,7 +35,7 @@ namespace GuessItSoccer.API.Controllers
         // PUT api/values/5
         [HttpPut]
         [AcceptVerbs("PUT", "HEAD")]
-        [POST("api/values/{id}")]
+        [PUT("api/values/{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
@@ -43,7 +43,7 @@ namespace GuessItSoccer.API.Controllers
         // DELETE api/values/5
         [HttpDelete]
         [AcceptVerbs("DELETE", "HEAD")]
-        [POST("api/values/{id}")]
+        [DELETE("api/values/{id}")]
         public void Delete(int id)
         {
         }

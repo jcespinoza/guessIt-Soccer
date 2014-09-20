@@ -1,10 +1,10 @@
 ﻿namespace GuessItSoccer.Domain.Entities
 {
-    public class Team: IEntity
+    public class Location: IEntity
     {
+        public virtual double Latitude { get; set; }
+        public virtual double Longitude { get; set; }
         public virtual long Id { get; set; }
         public virtual bool IsArchived { get; set; }
-        public virtual string Name { get; set; }
-        public virtual string City { get; set; }
     }
 }

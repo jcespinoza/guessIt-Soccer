@@ -233,9 +233,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LeaguesController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -244,14 +246,20 @@
     <Compile Include="Models\AccountRegisteredModel.cs" />
     <Compile Include="Models\AccountSignUpModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
+    <Compile Include="Models\DeletedTeamModel.cs" />
     <Compile Include="Models\LeagueCreatedModel.cs" />
     <Compile Include="Models\LeagueModel.cs" />
     <Compile Include="Models\LeagueSuscribedModel.cs" />
     <Compile Include="Models\LeagueUpdateModel.cs" />
     <Compile Include="Models\NewLeagueModel.cs" />
+    <Compile Include="Models\NewTeamModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
     <Compile Include="Models\ResetConfirmationModel.cs" />
+    <Compile Include="Models\RestoredTeamModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\TeamCreatedModel.cs" />
+    <Compile Include="Models\UpdatedTeamModel.cs" />
+    <Compile Include="Models\TeamUpdateModel.cs" />
     <Compile Include="Models\UpdatedLeagueModel.cs" />
     <Compile Include="Models\UserTokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
