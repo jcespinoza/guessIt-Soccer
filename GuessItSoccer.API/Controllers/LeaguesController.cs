@@ -70,5 +70,57 @@ namespace GuessItSoccer.API.Controllers
             var updatedLeagueModel = _mappingEngine.Map<League, LeagueModel>(updatedLeague);
             return updatedLeagueModel;
         }
+
+        [HttpGet]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/restoreleague/{id}")]
+        public LeagueModel RestoreLeague(int Id)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == Id);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "League not found");
+
+            foundLeague.IsArchived = false;
+            var updatedLeague = _writeOnlyRepository.Update(foundLeague);
+            var updatedLeagueModel = _mappingEngine.Map<League, LeagueModel>(updatedLeague);
+            return updatedLeagueModel;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/createleague")]
+        public LeagueCreatedModel CreateNewLeague([FromBody] NewLeagueModel model)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault < League>(le => le.Name == model.Name);
+            if(foundLeague != null)
+                throw new HttpException((int)HttpStatusCode.Conflict, "A league with this name was already registered");
+
+            League newLeague = _mappingEngine.Map<NewLeagueModel, League>(model);
+            League createdLeague = _writeOnlyRepository.Create(newLeague);
+
+            var leagueCreatedModel = _mappingEngine.Map<League, LeagueCreatedModel>(createdLeague);
+            leagueCreatedModel.Value = "Successufully Created the league";
+            return leagueCreatedModel;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/editleague/{id}")]
+        public UpdatedLeagueModel UpdateLeague([FromBody] LeagueUpdateModel model)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault< League>(le => le.Id == model.Id);
+            if(foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "That League was not found");
+
+            foundLeague.Name = model.Name;
+            foundLeague.Country = model.Country;
+            League updatedLeague = _writeOnlyRepository.Update(foundLeague);
+
+            UpdatedLeagueModel updatedModel = new UpdatedLeagueModel()
+            {
+                Value = "Succesfully Updated the League"
+            };
+            return updatedModel;
+        }
     }
 }

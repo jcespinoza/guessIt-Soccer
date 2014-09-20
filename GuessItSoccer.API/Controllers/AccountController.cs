@@ -60,7 +60,7 @@ namespace GuessItSoccer.API.Controllers
 
             Account createdUser = _writeOnlyRepository.Create(newUser);
 
-            NotifyOnSignup(createdUser.Name, createdUser.Email);
+            //NotifyOnSignup(createdUser.Name, createdUser.Email);
 
             AccountRegisteredModel createdUserModel = _mappingEngine.Map<Account, AccountRegisteredModel>(createdUser);
             return createdUserModel;
@@ -75,7 +75,7 @@ namespace GuessItSoccer.API.Controllers
             if (user == null) throw new HttpException((int)HttpStatusCode.NotFound, "User does not exist.");
 
             string pass = ResetPassword(user);
-            NotifyOnResetPassword(user.Name, user.Email, pass);
+            //NotifyOnResetPassword(user.Name, user.Email, pass);
 
             var confirmation = new ResetConfirmationModel()
             {

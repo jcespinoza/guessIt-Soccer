@@ -244,10 +244,14 @@
     <Compile Include="Models\AccountRegisteredModel.cs" />
     <Compile Include="Models\AccountSignUpModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
+    <Compile Include="Models\LeagueCreatedModel.cs" />
     <Compile Include="Models\LeagueModel.cs" />
+    <Compile Include="Models\LeagueUpdateModel.cs" />
+    <Compile Include="Models\NewLeagueModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
     <Compile Include="Models\ResetConfirmationModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\UpdatedLeagueModel.cs" />
     <Compile Include="Models\UserTokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

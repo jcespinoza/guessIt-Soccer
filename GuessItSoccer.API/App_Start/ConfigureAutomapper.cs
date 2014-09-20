@@ -7,7 +7,6 @@ namespace GuessItSoccer.API
 {
     public class ConfigureAutomapper: IBootstrapperTask
     {
-        #region IBoostrapper Members
         public void Run()
         {
             //automappings go here
@@ -15,7 +14,9 @@ namespace GuessItSoccer.API
             Mapper.CreateMap<AccountSignUpModel, Account>().ReverseMap();
             Mapper.CreateMap<Account, AccountRegisteredModel>().ReverseMap();
             Mapper.CreateMap<League, LeagueModel>().ReverseMap();
+            Mapper.CreateMap<League, NewLeagueModel>().ReverseMap();
+            Mapper.CreateMap<League, LeagueCreatedModel>().ReverseMap();
+            Mapper.CreateMap<League, LeagueUpdateModel>().ReverseMap();
         }
-        #endregion
     }
 }
