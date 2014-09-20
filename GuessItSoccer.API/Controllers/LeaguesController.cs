@@ -57,8 +57,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("POST", "HEAD")]
-        [POST("leagues/deleteleague/{id}")]
+        [AcceptVerbs("DELETE", "HEAD")]
+        [DELETE("leagues/deleteleague/{id}")]
         public LeagueModel ArchiveLeague(int Id)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == Id);
@@ -72,8 +72,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("POST", "HEAD")]
-        [POST("leagues/restoreleague/{id}")]
+        [AcceptVerbs("PUT", "HEAD")]
+        [PUT("leagues/restoreleague/{id}")]
         public LeagueModel RestoreLeague(int Id)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == Id);
@@ -87,8 +87,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("POST", "HEAD")]
-        [POST("leagues/createleague")]
+        [AcceptVerbs("PUT", "HEAD")]
+        [PUT("leagues/createleague")]
         public LeagueCreatedModel CreateNewLeague([FromBody] NewLeagueModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault < League>(le => le.Name == model.Name);
@@ -104,8 +104,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("POST", "HEAD")]
-        [POST("leagues/editleague/{id}")]
+        [AcceptVerbs("PUT", "HEAD")]
+        [PUT("leagues/editleague/{id}")]
         public UpdatedLeagueModel UpdateLeague([FromBody] LeagueUpdateModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault< League>(le => le.Id == model.Id);
@@ -121,6 +121,32 @@ namespace GuessItSoccer.API.Controllers
                 Value = "Succesfully Updated the League"
             };
             return updatedModel;
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/suscribe/{leagueId}")]
+        public LeagueSuscribedModel SuscribeToLeague(long leagueId)
+        {
+            var userTokenModel = GetUserTokenModel();
+            if (userTokenModel == null)
+                throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
+
+            var account = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == userTokenModel.email);
+            var league = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
+
+            var accountLeague = new AccountLeague()
+            {
+                User = account,
+                League = league
+            };
+            var accLeaExistenceCheck = _readOnlyRepository.FirstOrDefault<AccountLeague>(x => x.User.Id == account.Id && x.League.Id == league.Id);
+
+            if(accLeaExistenceCheck != null)
+                throw new HttpException((int)HttpStatusCode.Conflict, "User is already suscribed to this league");
+
+            var accountLeagueCreated = _writeOnlyRepository.Create(accountLeague);
+            return new LeagueSuscribedModel(){Value = "Successfully Suscribed to league"};
         }
     }
 }

@@ -246,6 +246,7 @@
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\LeagueCreatedModel.cs" />
     <Compile Include="Models\LeagueModel.cs" />
+    <Compile Include="Models\LeagueSuscribedModel.cs" />
     <Compile Include="Models\LeagueUpdateModel.cs" />
     <Compile Include="Models\NewLeagueModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
