@@ -251,6 +251,7 @@
     <Compile Include="Models\LeagueModel.cs" />
     <Compile Include="Models\LeagueSuscribedModel.cs" />
     <Compile Include="Models\LeagueUpdateModel.cs" />
+    <Compile Include="Models\NewGameModel.cs" />
     <Compile Include="Models\NewLeagueModel.cs" />
     <Compile Include="Models\NewTeamModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />

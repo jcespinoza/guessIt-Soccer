@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -40,33 +39,39 @@ namespace GuessItSoccer.API.Controllers
         [HttpGet]
         [AcceptVerbs("PUT", "HEAD")]
         [PUT("leagues/{leagueId}/games/creategame")]
-        public void CreateGame([FromUri] long leagueId, [FromBody] NewGameModel model)
+        public bool CreateGame([FromUri] long leagueId, [FromBody] NewGameModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
             if (foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
+
+            Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.HomeTeamName);
+            Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.AwayTeamName);
+
             Game foundGame = _readOnlyRepository.FirstOrDefault<Game>(
-                x =>
-                    x.HomeTeam.Id == model.HomeTeam.Id &&
-                    x.AwayTeam.Id == model.AwayTeam.Id &&
-                    x.MatchDate == model.MatchDate
+                game =>
+                    game.HomeTeam == homeTeam &&
+                    game.AwayTeam == awayTeam &&
+                    game.MatchDate == model.MatchDate
                 );
 
             if (foundGame != null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "A game with this data already exist");
-            
-            foundGame = _mappingEngine.Map<NewGameModel, Game>(model);
+
+            foundGame = new Game()
+            {
+                HomeTeam = homeTeam,
+                AwayTeam = awayTeam,
+                MatchDate = model.MatchDate
+            };
+
             var gameList = foundLeague.Games.ToList();
             gameList.Add(foundGame);
             foundLeague.Games = gameList;
-            _writeOnlyRepository.Update(foundLeague);
-        }
-    }
 
-    public class NewGameModel
-    {
-        public Team HomeTeam { get; set; }
-        public Team AwayTeam { get; set; }
-        public DateTime MatchDate { get; set; }
+            _writeOnlyRepository.Update(foundLeague);
+
+            return true;
+        }
     }
 }
