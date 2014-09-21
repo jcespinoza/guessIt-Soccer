@@ -97,5 +97,19 @@ namespace GuessItSoccer.API.Controllers
 
             return true;
         }
+
+        [HttpGet]
+        [AcceptVerbs("DELETE", "HEAD")]
+        [DELETE("users/{userId}/games/{gameId}/predictions/deleteprediction/{predictionId}")]
+        public bool DeletePrediction([FromUri] long predictionId)
+        {
+            var userTokenModel = GetUserTokenModel();
+            if (userTokenModel == null)
+                throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
+
+            _writeOnlyRepository.Delete<Prediction>(predictionId);
+
+            return true;
+        }
     }
 }

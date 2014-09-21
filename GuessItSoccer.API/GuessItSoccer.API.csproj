@@ -254,6 +254,7 @@
     <Compile Include="Models\LeagueModel.cs" />
     <Compile Include="Models\LeagueSuscribedModel.cs" />
     <Compile Include="Models\LeagueUpdateModel.cs" />
+    <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\NewGameModel.cs" />
     <Compile Include="Models\NewLeagueModel.cs" />
     <Compile Include="Models\NewTeamModel.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Models\ResetConfirmationModel.cs" />
     <Compile Include="Models\RestoredTeamModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\StadiumModel.cs" />
     <Compile Include="Models\TeamCreatedModel.cs" />
     <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Models\UpdatedTeamModel.cs" />
