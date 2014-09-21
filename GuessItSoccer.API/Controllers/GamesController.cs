@@ -27,12 +27,12 @@ namespace GuessItSoccer.API.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
         [GET("leagues/{leagueId}/games")]
-        public List<Game> GetGames([FromUri] long leagueId)
+        public List<GameModel> GetGames([FromUri] long leagueId)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
             if (foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
-            List<Game> gamesInLeague = foundLeague.Games.ToList();
+            var gamesInLeague = _mappingEngine.Map<List<Game>, List<GameModel>>(foundLeague.Games.ToList());// foundLeague.Games.ToList();
             return gamesInLeague;
         }
 
@@ -65,9 +65,7 @@ namespace GuessItSoccer.API.Controllers
                 MatchDate = model.MatchDate
             };
 
-            var gameList = foundLeague.Games.ToList();
-            gameList.Add(foundGame);
-            foundLeague.Games = gameList;
+            foundLeague.AddGame(foundGame);
 
             _writeOnlyRepository.Create(foundLeague);
 
@@ -137,6 +135,25 @@ namespace GuessItSoccer.API.Controllers
             foundGame.IsArchived = false;
             _writeOnlyRepository.Update(foundGame);
 
+            return true;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("PUT", "HEAD")]
+        [PUT("leagues/{leagueId}/games/{gameId}/assignresult")]
+        public bool AssignResultToGame([FromUri] long leagueId, [FromUri] long gameId,
+            [FromBody] ResultDataModel resultModel)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
+
+            Game foundGame = _readOnlyRepository.FirstOrDefault<Game>(game => game.Id == gameId);
+            if (foundGame == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "A game with this Id was not found");
+
+            foundGame.Result = _mappingEngine.Map<ResultDataModel, Result>(resultModel);
+            _writeOnlyRepository.Update(foundGame);
             return true;
         }
     }

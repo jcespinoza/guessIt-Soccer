@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace GuessItSoccer.API.Controllers
 {
-    public class PredictionFromUserModel
+    public class ResultDataModel
     {
         public long GameId { get; set; }
         public int HomeTeamGoals { get; set; }

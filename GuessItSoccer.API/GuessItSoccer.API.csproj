@@ -237,7 +237,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LeaguesController.cs" />
-    <Compile Include="Controllers\PredictionFromUserModel.cs" />
+    <Compile Include="Controllers\ResultDataModel.cs" />
     <Compile Include="Controllers\PredictionsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -249,6 +249,7 @@
     <Compile Include="Models\AccountSignUpModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\DeletedTeamModel.cs" />
+    <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\LeagueCreatedModel.cs" />
     <Compile Include="Models\LeagueModel.cs" />
     <Compile Include="Models\LeagueSuscribedModel.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Models\RestoredTeamModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\TeamCreatedModel.cs" />
+    <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Models\UpdatedTeamModel.cs" />
     <Compile Include="Models\TeamUpdateModel.cs" />
     <Compile Include="Models\UpdatedLeagueModel.cs" />

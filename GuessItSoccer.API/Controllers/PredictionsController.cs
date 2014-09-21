@@ -39,6 +39,7 @@ namespace GuessItSoccer.API.Controllers
                 _readOnlyRepository.Query<AccountGamePrediction>(pred => pred.User == user)
                     .Select(pred => new PredictionGameModel
                     {
+                        LeagueName = pred.League.Name,
                         HomeTeamName = pred.Game.HomeTeam.Name,
                         AwayTeamName = pred.Game.AwayTeam.Name,
                         MatchDate = pred.Game.MatchDate,
@@ -49,15 +50,14 @@ namespace GuessItSoccer.API.Controllers
                         Winner = pred.Prediction.Winner
                     })
                     .ToList();
-            //FIX THIS
-            return new List<PredictionGameModel>();
-            //FIX THIS
+
+            return predictionData;
         }
 
         [HttpGet]
         [AcceptVerbs("PUT", "HEAD")]
         [PUT("users/{userId}/games/{gameId}/predictions/createprediction/")]
-        public bool CreatePrediction([FromUri] long userId, [FromUri] long gameId, [FromBody] PredictionFromUserModel model)
+        public bool CreatePrediction([FromUri] long userId, [FromUri] long gameId, [FromBody] ResultDataModel model)
         {
             var user = _readOnlyRepository.FirstOrDefault<Account>(usr => usr.Id == userId);
             if (user == null)
@@ -66,6 +66,9 @@ namespace GuessItSoccer.API.Controllers
             var game = _readOnlyRepository.FirstOrDefault<Game>(ga => ga.Id == gameId);
             if (game == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "There's no game with that Id");
+
+            if (game.Completed)
+                throw new HttpException((int)HttpStatusCode.Conflict, "The match already finished, you can't predict its result");
 
             var leagues = _readOnlyRepository.GetAll<League>().ToList().Where(le => le.Games.Contains(game));
             var league = leagues.FirstOrDefault(l => l.Games.ToList().Count > 0);
@@ -77,15 +80,20 @@ namespace GuessItSoccer.API.Controllers
             if(foundAccountGamePrediction != null)
                 throw new HttpException((int)HttpStatusCode.Conflict, "A prediction for this game already exist");
 
+            var prediction = _mappingEngine.Map<ResultDataModel, Prediction>(model);
+
             var newAccountGamePrediction = new AccountGamePrediction
             {
                 User = user,
-                Prediction = _mappingEngine.Map<PredictionFromUserModel, Prediction>(model),
+                Prediction = prediction,
                 Game = game,
                 League = league
             };
 
+            user.AddPrediction(prediction);
+            _writeOnlyRepository.Update(user);
             _writeOnlyRepository.Create(newAccountGamePrediction);
+
 
             return true;
         }

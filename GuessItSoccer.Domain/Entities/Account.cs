@@ -10,6 +10,8 @@ namespace GuessItSoccer.Domain.Entities
 
         public virtual bool IsArchived { get; set; }
 
+        public virtual string Country { get; set; }
+
         public virtual string Email { get; set; }
 
         public virtual string Name { get; set; }
@@ -33,6 +35,14 @@ namespace GuessItSoccer.Domain.Entities
         //        ((IList<League>)Leagues).Add(league);
         //    }
         //}
+
+        public virtual void AddPrediction(Prediction prediction)
+        {
+            if(Predictions.All(x => x.Id == prediction.Id))
+            {
+                ((IList<Prediction>)Predictions).Add(prediction);
+            }
+        }
 
         //public virtual void RemoveLeagues(long leagueId)
         //{

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace GuessItSoccer.Domain.Entities
 {
@@ -10,5 +11,13 @@ namespace GuessItSoccer.Domain.Entities
         public virtual string Country { get; set; }
         public virtual IEnumerable<Team> Teams { get; set; }
         public virtual IEnumerable<Game> Games { get; set; }
+
+        public virtual void AddGame(Game game)
+        {
+            if (Games.All(x => x.Id == game.Id))
+            {
+                ((IList<Game>)Games).Add(game);
+            }
+        }
     }
 }
