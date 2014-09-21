@@ -69,7 +69,7 @@ namespace GuessItSoccer.API.Controllers
             gameList.Add(foundGame);
             foundLeague.Games = gameList;
 
-            _writeOnlyRepository.Update(foundLeague);
+            _writeOnlyRepository.Create(foundLeague);
 
             return true;
         }
