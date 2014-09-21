@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Http;
 using AttributeRouting.Web.Http;
@@ -54,6 +55,23 @@ namespace GuessItSoccer.API.Controllers
                     .Select(y => y.League);
             var leaguesModel = _mappingEngine.Map<List<League>, List<LeagueModel>>(account.ToList());
             return leaguesModel;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("GET", "HEAD")]
+        [GET("leagues/{leagueId}/suscribedusers")]
+        public List<UserModel> GetSuscribedUsers([FromUri] long leagueId )
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == leagueId);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "League not found");
+
+            var accounts = _readOnlyRepository.Query<AccountLeague>(acl => acl.League == foundLeague).
+                Select(acl => acl.User).ToList();
+
+            var resultUsers = _mappingEngine.Map<List<Account>, List<UserModel>>(accounts);
+
+            return resultUsers;
         }
 
         [HttpGet]
