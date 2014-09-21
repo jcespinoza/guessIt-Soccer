@@ -8,6 +8,6 @@
         public virtual int AwayTeamGoals { get; set; }
         public virtual int HomeTeamPenalties { get; set; }
         public virtual int AwayTeamPenalties { get; set; }
-        public virtual Team WinnerTeam { get; set; }
+        public virtual WinnerTeam Winner { get; set; }
     }
 }
