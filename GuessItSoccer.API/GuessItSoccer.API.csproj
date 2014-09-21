@@ -237,6 +237,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LeaguesController.cs" />
+    <Compile Include="Controllers\PredictionFromUserModel.cs" />
     <Compile Include="Controllers\PredictionsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Models\NewLeagueModel.cs" />
     <Compile Include="Models\NewTeamModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
+    <Compile Include="Models\PredictionGameModel.cs" />
     <Compile Include="Models\ResetConfirmationModel.cs" />
     <Compile Include="Models\RestoredTeamModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
@@ -264,6 +266,7 @@
     <Compile Include="Models\TeamUpdateModel.cs" />
     <Compile Include="Models\UpdatedLeagueModel.cs" />
     <Compile Include="Models\UpdateGameModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserTokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

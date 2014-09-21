@@ -16,9 +16,10 @@ namespace GuessItSoccer.Domain.Entities
 
         public virtual string Password { get; set; }
 
+        public virtual IEnumerable<Prediction> Predictions { get; set; }
+
         //private IEnumerable<League> _leagues = new List<League>();
 
-        public virtual IEnumerable<Prediction> Predictions { get; set; }
         //public virtual IEnumerable<League> Leagues
         //{
         //    get { return _leagues; }
