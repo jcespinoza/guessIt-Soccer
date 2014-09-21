@@ -99,6 +99,34 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
+        [AcceptVerbs("PUT", "HEAD")]
+        [PUT("users/{userId}/games/{gameId}/predictions/editprediction/")]
+        public bool UpdatePrediction([FromUri] long userId, [FromUri] long gameId, [FromBody] ResultDataModel model)
+        {
+            var user = _readOnlyRepository.FirstOrDefault<Account>(usr => usr.Id == userId);
+            if (user == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "There's no user with that Id");
+
+            var game = _readOnlyRepository.FirstOrDefault<Game>(ga => ga.Id == gameId);
+            if (game == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "There's no game with that Id");
+
+            if (game.Completed)
+                throw new HttpException((int)HttpStatusCode.Conflict, "The match already finished, you can't predict its result");
+            var foundAccountGamePrediction = _readOnlyRepository.FirstOrDefault<AccountGamePrediction>(pred => pred.Game == game);
+            if (foundAccountGamePrediction == null)
+                throw new HttpException((int)HttpStatusCode.Conflict, "A prediction for this game does not exist");
+            var prediction = foundAccountGamePrediction.Prediction;
+            prediction = _mappingEngine.Map<ResultDataModel, Prediction>(model, prediction);
+            foundAccountGamePrediction.Prediction = prediction;
+
+            _writeOnlyRepository.Update(foundAccountGamePrediction);
+
+
+            return true;
+        }
+
+        [HttpGet]
         [AcceptVerbs("DELETE", "HEAD")]
         [DELETE("users/{userId}/games/{gameId}/predictions/deleteprediction/{predictionId}")]
         public bool DeletePrediction([FromUri] long predictionId)
@@ -106,9 +134,13 @@ namespace GuessItSoccer.API.Controllers
             var userTokenModel = GetUserTokenModel();
             if (userTokenModel == null)
                 throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
+            var user = _readOnlyRepository.FirstOrDefault<Account>(us => us.Email == userTokenModel.email);
+            if (user == null)
+                throw new HttpException((int) HttpStatusCode.NotFound, "Can not find user");
 
+            user.RemovePrediction(predictionId);
+            _writeOnlyRepository.Update(user);
             _writeOnlyRepository.Delete<Prediction>(predictionId);
-
             return true;
         }
     }

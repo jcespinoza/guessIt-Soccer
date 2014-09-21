@@ -53,6 +53,15 @@ namespace GuessItSoccer.Domain.Entities
         //    }
         //}
 
+        public virtual void RemovePrediction(long predictionId)
+        {
+            var prediction = Predictions.FirstOrDefault(pred => pred.Id == predictionId);
+            if (prediction != null)
+            {
+                ((IList<Prediction>) Predictions).Remove(prediction);
+            }
+        }
+
         public virtual bool PasswordsEqual(string testPassword)
         {
             IEncryption encryptor = new Sha256Encrypter();

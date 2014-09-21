@@ -55,6 +55,7 @@
     <Compile Include="Entities\Prediction.cs" />
     <Compile Include="Entities\AccountGamePrediction.cs" />
     <Compile Include="Entities\Result.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Stadium.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\WinnerTeam.cs" />

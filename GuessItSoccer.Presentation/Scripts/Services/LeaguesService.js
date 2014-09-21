@@ -21,6 +21,16 @@ angular.module('app.services')
                     .success(function (response) {
                         success(response);
                     }).error(error);
+            },
+            updateLeagueInServer: function(leagueModel, success, error) {
+                $http
+                    .put(
+                        ServerService.get() + 'leagues/editleague/' + leagueModel.Id, {
+                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function(response) {
+                    success(response);
+                }).error(error);
             }
         };
     });
