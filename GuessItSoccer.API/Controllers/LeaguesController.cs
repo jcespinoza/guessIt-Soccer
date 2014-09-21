@@ -111,11 +111,8 @@ namespace GuessItSoccer.API.Controllers
             League foundLeague = _readOnlyRepository.FirstOrDefault< League>(le => le.Id == model.Id);
             if(foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "That League was not found");
-            
-            foundLeague.Name = model.Name;
-            foundLeague.Country = model.Country;
-            
-            //foundLeague = _mappingEngine.Map<LeagueUpdateModel, League>(model);
+
+            foundLeague = _mappingEngine.Map<LeagueUpdateModel, League>(model, foundLeague);
             League updatedLeague = _writeOnlyRepository.Update(foundLeague);
 
             UpdatedLeagueModel updatedModel = new UpdatedLeagueModel()
