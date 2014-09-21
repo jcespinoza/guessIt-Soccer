@@ -56,7 +56,7 @@ namespace GuessItSoccer.API.Controllers
                 );
 
             if (foundGame != null)
-                throw new HttpException((int)HttpStatusCode.NotFound, "A game with this data already exist");
+                throw new HttpException((int)HttpStatusCode.Conflict, "A game with this data already exist");
 
             foundGame = new Game()
             {
@@ -70,6 +70,72 @@ namespace GuessItSoccer.API.Controllers
             foundLeague.Games = gameList;
 
             _writeOnlyRepository.Create(foundLeague);
+
+            return true;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("PUT", "HEAD")]
+        [PUT("leagues/{leagueId}/games/editgame")]
+        public bool UpdateGame([FromUri] long leagueId, [FromBody] UpdateGameModel model)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
+            Game foundGame = _readOnlyRepository.FirstOrDefault<Game>(
+                game =>
+                    game.Id == model.GameId
+                );
+
+            if (foundGame == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "This game doesn't exist");
+
+            Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.HomeTeamName);
+            Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.AwayTeamName);
+
+            foundGame.HomeTeam = homeTeam;
+            foundGame.AwayTeam = awayTeam;
+            foundGame.MatchDate = model.MatchDate;
+
+            _writeOnlyRepository.Update(foundGame);
+
+            return true;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("DELETE", "HEAD")]
+        [DELETE("leagues/{leagueId}/games/deletegame/{gameId}")]
+        public bool ArchiveGame([FromUri] long leagueId, [FromUri] long gameId)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
+
+            Game foundGame = _readOnlyRepository.FirstOrDefault<Game>(game => game.Id == gameId);
+            if(foundGame == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "A game with this Id was not found");
+
+            foundGame.IsArchived = true;
+            _writeOnlyRepository.Update(foundGame);
+
+            return true;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("PUT", "HEAD")]
+        [PUT("leagues/{leagueId}/games/restoregame/{gameId}")]
+        public bool RestoreGame([FromUri] long leagueId, [FromUri] long gameId)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
+
+            Game foundGame = _readOnlyRepository.FirstOrDefault<Game>(game => game.Id == gameId);
+            if (foundGame == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "A game with this Id was not found");
+
+            foundGame.IsArchived = false;
+            _writeOnlyRepository.Update(foundGame);
 
             return true;
         }

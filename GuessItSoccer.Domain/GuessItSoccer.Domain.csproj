@@ -53,6 +53,7 @@
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Prediction.cs" />
+    <Compile Include="Entities\PredictionGame.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Entities\Stadium.cs" />
     <Compile Include="Entities\Team.cs" />

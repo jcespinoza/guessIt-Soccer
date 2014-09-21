@@ -143,12 +143,39 @@ namespace GuessItSoccer.API.Controllers
                 League = league
             };
             var accLeaExistenceCheck = _readOnlyRepository.FirstOrDefault<AccountLeague>(x => x.User.Id == account.Id && x.League.Id == league.Id);
-
-            if(accLeaExistenceCheck != null)
-                throw new HttpException((int)HttpStatusCode.Conflict, "User is already suscribed to this league");
-
-            var accountLeagueCreated = _writeOnlyRepository.Create(accountLeague);
+            if (accLeaExistenceCheck != null){
+                if (accLeaExistenceCheck.IsArchived)
+                {
+                    accLeaExistenceCheck.IsArchived = false;
+                    _writeOnlyRepository.Update(accLeaExistenceCheck);
+                }
+            }
+            else
+            {
+                var accountLeagueCreated = _writeOnlyRepository.Create(accountLeague);
+            }
             return new LeagueSuscribedModel(){Value = "Successfully Suscribed to league"};
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/unsuscribe/{leagueId}")]
+        public string UnsuscribeFromoLeague(long leagueId)
+        {
+            var userTokenModel = GetUserTokenModel();
+            if (userTokenModel == null)
+                throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
+
+            var account = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == userTokenModel.email);
+
+            var accLeaExistenceCheck = _readOnlyRepository.FirstOrDefault<AccountLeague>(x => x.User.Id == account.Id && x.League.Id == leagueId);
+
+            if (accLeaExistenceCheck == null)
+                throw new HttpException((int)HttpStatusCode.Conflict, "User is not suscribed to this league");
+
+            accLeaExistenceCheck.IsArchived = true;
+            _writeOnlyRepository.Update(accLeaExistenceCheck);
+            return "Successfully unsuscribed from league";
         }
     }
 }

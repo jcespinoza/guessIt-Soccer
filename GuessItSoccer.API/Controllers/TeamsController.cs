@@ -68,7 +68,7 @@ namespace GuessItSoccer.API.Controllers
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
             Team foundTeam = foundLeague.Teams.FirstOrDefault(x => x.Id == model.TeamId);
             if (foundTeam == null)
-                throw new HttpException((int)HttpStatusCode.NotFound, "A team with this Id was not found");
+                throw new HttpException((int)HttpStatusCode.Conflict, "A team with this Id was not found");
 
             foundTeam.Name = model.Name;
             foundTeam.City = model.City;
@@ -85,13 +85,15 @@ namespace GuessItSoccer.API.Controllers
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id ==leagueId);
             if (foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
+
             Team foundTeam = foundLeague.Teams.FirstOrDefault(x => x.Id == teamId);
             if (foundTeam == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "A team with this Id was not found");
+
             foundTeam.IsArchived = true;
             _writeOnlyRepository.Update(foundTeam);
 
-            return  new DeletedTeamModel(){Value = "Successfully archived the tem"};
+            return  new DeletedTeamModel(){Value = "Successfully archived the team"};
         }
 
         [HttpGet]
@@ -102,9 +104,11 @@ namespace GuessItSoccer.API.Controllers
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
             if (foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
+
             Team foundTeam = foundLeague.Teams.FirstOrDefault(x => x.Id == teamId);
             if (foundTeam == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "A team with this Id was not found");
+
             foundTeam.IsArchived = false;
             _writeOnlyRepository.Update(foundTeam);
 
