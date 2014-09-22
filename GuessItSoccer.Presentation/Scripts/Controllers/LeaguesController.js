@@ -30,7 +30,7 @@ angular.module('app.controllers')
         $scope.loadLeagues();
         
         $scope.submitNewLeague = function() {
-            LeaguesService.uploadNewLeague(newLeague, function(response) {
+            LeaguesService.uploadNewLeague($scope.newLeague, function(response) {
                 console.log(response);
                 $scope.loadLeagues();
                 $scope.newLeagueCountry = {};
