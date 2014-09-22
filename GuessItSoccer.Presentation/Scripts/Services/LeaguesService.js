@@ -42,5 +42,15 @@ angular.module('app.services')
                         success(response);
                     }).error(error);
             },
+            archiveLeagueInServer: function(leagueId, success, error) {
+                $http
+                    .put(
+                        ServerService.delete() + '/leagues/deleteleague/' + leagueId, {
+                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            }
         };
     });
