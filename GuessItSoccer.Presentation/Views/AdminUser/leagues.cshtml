@@ -30,17 +30,17 @@
         </tbody>
     </table>
     <div class="row" ng-hide="isEditing">
-        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="addNewLeague()">
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="submitNewLeague()">
             <h2 class="text-center">New League</h2>
             <div class="form-box">
                 <div class="form-group">
-                    <input ng-model="newLeagueName" type="text" class="form-control" placeholder="League Name" required />
+                    <input ng-model="newLeague.Name" type="text" class="form-control" placeholder="League Name" required />
                 </div>
                 <div class="form-group">
-                    <input ng-model="newLeagueCountry" type="text" class="form-control" placeholder="Country Name" required />
+                    <input ng-model="newLeague.Country" type="text" class="form-control" placeholder="Country Name" required />
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(newLeagueName)" disabled>Add League</button>
+                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(newLeague.Name | newLeague.Country)" disabled>Add League</button>
                 </div>
             </div>
         </form>

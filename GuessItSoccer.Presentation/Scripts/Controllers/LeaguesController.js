@@ -12,8 +12,10 @@ angular.module('app.controllers')
         $scope.updatedName = "";
         $scope.updatedCountry = "";
 
+        //New variables for API
         $scope.availableLeagues = [];
         $scope.suscribedLeagues = [];
+        $scope.newLeagueCountry = {};
 
         $scope.loadLeagues = function() {
             LeaguesService.getAvailableLeagues(function (availableLeagues) {
@@ -26,11 +28,16 @@ angular.module('app.controllers')
             });
         };
         $scope.loadLeagues();
-        LeaguesService.getSuscribedLeagues(function (suscribedLeagues) {
-            $scope.suscribedLeagues = suscribedLeagues;
-        }, function (error) {
-            alert('error loading suscribed leagues');
-        });
+        
+        $scope.submitNewLeague = function() {
+            LeaguesService.uploadNewLeague(newLeague, function(response) {
+                console.log(response);
+                $scope.loadLeagues();
+                $scope.newLeagueCountry = {};
+            }, function(error) {
+                console.log(error);
+            });
+        }
 
         $scope.oldLeagueName = "";
         $scope.oldCountryName = "";
