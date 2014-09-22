@@ -105,8 +105,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/createleague")]
+        [AcceptVerbs("POST", "PUT", "HEAD")]
+        [POST("leagues/createleague")]
         public LeagueCreatedModel CreateNewLeague([FromBody] NewLeagueModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault < League>(le => le.Name == model.Name);
