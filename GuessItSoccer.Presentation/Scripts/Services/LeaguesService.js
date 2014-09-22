@@ -34,7 +34,7 @@ angular.module('app.services')
             },
             uploadNewLeague: function(leagueModel, success, error) {
                 $http
-                    .put(
+                    .post(
                         ServerService.get() + '/leagues/createleague', {
                             headers: { 'Authorization': $cookieStore.get('access_token') }
                         })
