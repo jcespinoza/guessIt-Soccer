@@ -40,7 +40,7 @@
                     <input ng-model="newLeague.Country" type="text" class="form-control" placeholder="Country Name" required />
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(newLeague.Name | newLeague.Country)" disabled>Add League</button>
+                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(newLeague.Name && newLeague.Country)" disabled>Add League</button>
                 </div>
             </div>
         </form>
