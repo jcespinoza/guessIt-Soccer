@@ -42,10 +42,9 @@ angular.module('app.controllers')
 
         $scope.oldLeagueName = "";
         $scope.oldCountryName = "";
-        $scope.editLeague = function (leagueName) {
+        $scope.editLeague = function (league) {
             $scope.isEditing = true;
-            $scope.oldLeagueName = leagueName;
-            $scope.updatedName = leagueName;
+            $scope.leagueForUpdate = league;
         }
 
         $scope.cancelEditLeague = function () {

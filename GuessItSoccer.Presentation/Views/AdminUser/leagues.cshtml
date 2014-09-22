@@ -17,7 +17,7 @@
                 <td><a href="/admin/league/{{league.Id}}">{{league.Name}} <span class="disabled" ng-show="league.IsArchived">(Disabled)</span></a></td>
                 <td>{{league.Country}}</td>
                 <td>
-                    <button class="btn btn-default" ng-click="editLeague(league.Name)">Edit</button>
+                    <button class="btn btn-default" ng-click="editLeague(league)">Edit</button>
                 </td>
                 <td>
                     <button ng-class="(!league.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, !league.IsArchived)">
@@ -50,10 +50,10 @@
             <h2 class="text-center">Edit League</h2>
             <div class="form-box">
                 <div class="form-group">
-                    <input ng-model="updatedName" type="text" class="form-control" placeholder="League Name" required />
+                    <input ng-model="leagueForUpdate.Name" type="text" class="form-control" placeholder="League Name" required />
                 </div>
                 <div class="form-group">
-                    <input ng-model="updatedCountry" type="text" class="form-control" placeholder="Country Name" required />
+                    <input ng-model="leagueForUpdate.Country" type="text" class="form-control" placeholder="Country Name" required />
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit">Save</button>

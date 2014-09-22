@@ -25,7 +25,7 @@ angular.module('app.services')
             updateLeagueInServer: function(leagueModel, success, error) {
                 $http
                     .put(
-                        ServerService.get() + 'leagues/editleague/' + leagueModel.Id, {
+                        ServerService.get() + '/leagues/editleague/' + leagueModel.Id, {
                             headers: { 'Authorization': $cookieStore.get('access_token') }
                         })
                     .success(function(response) {
@@ -35,7 +35,7 @@ angular.module('app.services')
             uploadNewLeague: function(leagueModel, success, error) {
                 $http
                     .put(
-                        ServerService.get() + 'leagues/createleague', {
+                        ServerService.get() + '/leagues/createleague', {
                             headers: { 'Authorization': $cookieStore.get('access_token') }
                         })
                     .success(function(response) {
