@@ -18,7 +18,8 @@ angular.module('app.controllers')
         $scope.newLeague = {};
         $scope.leagueForUpdate = {};
 
-        $scope.loadLeagues = function() {
+        $scope.loadLeagues = function () {
+            console.log($scope.newLeague);
             LeaguesService.getAvailableLeagues(function (availableLeagues) {
                 $scope.availableLeagues = availableLeagues;
                 console.log("Leagues were loaded");
@@ -34,10 +35,19 @@ angular.module('app.controllers')
             LeaguesService.uploadNewLeague($scope.newLeague, function(response) {
                 console.log(response);
                 $scope.loadLeagues();
-                $scope.newLeagueCountry = {};
+                $scope.newLeague = {};
             }, function(error) {
                 console.log(error);
             });
+        }
+
+        $scope.editLeague = function (league) {
+            $scope.isEditing = true;
+            $scope.leagueForUpdate = league;
+        }
+
+        $scope.cancelEditLeague = function () {
+            $scope.isEditing = false;
         }
 
         $scope.updateLeague = function () {
@@ -54,14 +64,9 @@ angular.module('app.controllers')
 
         $scope.oldLeagueName = "";
         $scope.oldCountryName = "";
-        $scope.editLeague = function (league) {
-            $scope.isEditing = true;
-            $scope.leagueForUpdate = league;
-        }
+        
 
-        $scope.cancelEditLeague = function () {
-            $scope.isEditing = false;
-        }
+        
 
         
 
