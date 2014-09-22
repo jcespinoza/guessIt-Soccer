@@ -40,6 +40,18 @@ angular.module('app.controllers')
             });
         }
 
+        $scope.updateLeague = function () {
+            LeaguesService.updateLeagueInServer($scope.leagueForUpdate, function(response) {
+                console.log(response);
+                $scope.loadLeagues();
+                $scope.isEditing = false;
+                $scope.leagueForUpdate = {};
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+
         $scope.oldLeagueName = "";
         $scope.oldCountryName = "";
         $scope.editLeague = function (league) {
@@ -51,18 +63,7 @@ angular.module('app.controllers')
             $scope.isEditing = false;
         }
 
-        $scope.updateLeague = function () {
-            for (var i = 0; i < $scope.availableLeagues.length; i++) {
-                if ($scope.availableLeagues[i].Name === $scope.oldLeagueName) {
-                    $scope.availableLeagues[i].Name = $scope.updatedName;
-                }
-            }
-
-            $scope.isEditing = false;
-            $scope.updatedName = "";
-            $scope.updatedCountry = "";
-            $scope.oldLeagueName = "";
-        };
+        
 
         $scope.addNewLeague = function () {
             var nid = $scope.availableLeagues[$scope.availableLeagues.length - 1].id + 1;
