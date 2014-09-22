@@ -75,8 +75,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("DELETE", "HEAD")]
-        [DELETE("leagues/deleteleague/{id}")]
+        [AcceptVerbs("POST","DELETE", "HEAD")]
+        [POST("leagues/deleteleague/{id}")]
         public LeagueModel ArchiveLeague(int Id)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == Id);
@@ -122,8 +122,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/editleague/{id}")]
+        [AcceptVerbs("POST","PUT", "HEAD")]
+        [POST("leagues/editleague/{id}")]
         public UpdatedLeagueModel UpdateLeague([FromBody] LeagueUpdateModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault< League>(le => le.Id == model.Id);

@@ -24,7 +24,7 @@ angular.module('app.services')
             },
             updateLeagueInServer: function(leagueModel, success, error) {
                 $http
-                    .put(
+                    .post(
                         ServerService.get() + '/leagues/editleague/' + leagueModel.Id, {
                             headers: { 'Authorization': $cookieStore.get('access_token') }
                         })
@@ -44,7 +44,7 @@ angular.module('app.services')
             },
             archiveLeagueInServer: function(leagueId, success, error) {
                 $http
-                    .put(
+                    .post(
                         ServerService.delete() + '/leagues/deleteleague/' + leagueId, {
                             headers: { 'Authorization': $cookieStore.get('access_token') }
                         })
