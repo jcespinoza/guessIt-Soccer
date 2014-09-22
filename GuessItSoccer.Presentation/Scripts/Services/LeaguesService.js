@@ -31,6 +31,16 @@ angular.module('app.services')
                     .success(function(response) {
                     success(response);
                 }).error(error);
-            }
+            },
+            uploadNewLeague: function(leagueModel, success, error) {
+                $http
+                    .put(
+                        ServerService.get() + 'leagues/createleague', {
+                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function(response) {
+                        success(response);
+                    }).error(error);
+            },
         };
     });
