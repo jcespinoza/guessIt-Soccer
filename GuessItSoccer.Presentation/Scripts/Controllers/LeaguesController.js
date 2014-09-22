@@ -15,7 +15,8 @@ angular.module('app.controllers')
         //New variables for API
         $scope.availableLeagues = [];
         $scope.suscribedLeagues = [];
-        $scope.newLeagueCountry = {};
+        $scope.newLeague = {};
+        $scope.leagueForUpdate = {};
 
         $scope.loadLeagues = function() {
             LeaguesService.getAvailableLeagues(function (availableLeagues) {
