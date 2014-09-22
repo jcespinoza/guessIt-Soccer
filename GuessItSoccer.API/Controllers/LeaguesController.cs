@@ -104,7 +104,7 @@ namespace GuessItSoccer.API.Controllers
             return updatedLeagueModel;
         }
 
-        [HttpGet]
+        [HttpPost]
         [AcceptVerbs("POST", "PUT", "HEAD")]
         [POST("leagues/createleague")]
         public LeagueCreatedModel CreateNewLeague([FromBody] NewLeagueModel model)
@@ -121,7 +121,7 @@ namespace GuessItSoccer.API.Controllers
             return leagueCreatedModel;
         }
 
-        [HttpGet]
+        [HttpPost]
         [AcceptVerbs("POST","PUT", "HEAD")]
         [POST("leagues/editleague/{id}")]
         public UpdatedLeagueModel UpdateLeague([FromBody] LeagueUpdateModel model)
