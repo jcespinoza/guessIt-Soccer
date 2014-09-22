@@ -6,7 +6,7 @@ angular.module('app.services')
                 $http
                     .get(
                         ServerService.get() + '/leagues/available', {
-                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
                         })
                     .success(function (response) {
                         success(response);
@@ -16,7 +16,7 @@ angular.module('app.services')
                 $http
                     .get(
                         ServerService.get() + '/leagues/suscribed', {
-                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
                         })
                     .success(function (response) {
                         success(response);
@@ -26,7 +26,9 @@ angular.module('app.services')
                 $http
                     .post(
                         ServerService.get() + '/leagues/editleague/' + leagueModel.Id, {
-                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                            headers: {"Content-Type": "application/json",
+                                 'Authorization': $cookieStore.get('access_token')
+                            }
                         })
                     .success(function(response) {
                     success(response);
@@ -36,7 +38,7 @@ angular.module('app.services')
                 $http
                     .post(
                         ServerService.get() + '/leagues/createleague', {
-                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
                         })
                     .success(function(response) {
                         success(response);
@@ -46,7 +48,7 @@ angular.module('app.services')
                 $http
                     .post(
                         ServerService.delete() + '/leagues/deleteleague/' + leagueId, {
-                            headers: { 'Authorization': $cookieStore.get('access_token') }
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
                         })
                     .success(function (response) {
                         success(response);
