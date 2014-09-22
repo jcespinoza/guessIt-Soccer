@@ -4,7 +4,7 @@ using System.Net;
 using System.Security.Policy;
 using System.Web;
 using System.Web.Http;
-using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using AutoMapper;
 using FluentNHibernate.Utils;
 using GuessItSoccer.API.Models;
