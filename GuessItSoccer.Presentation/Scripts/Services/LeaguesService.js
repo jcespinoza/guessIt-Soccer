@@ -24,12 +24,27 @@ angular.module('app.services')
             },
             updateLeagueInServer: function(leagueModel, success, error) {
                 $http
-                    .post(
+                    ({
+                        url: ServerService.get() + '/leagues/editleague/' + leagueModel.Id,
+                        dataType: 'json',
+                        method: 'POST',
+                        data: leagueModel,
+                        headers: {
+                            "Content-Type": "application/json",
+                            'Authorization': $cookieStore.get('access_token')
+                        }
+                    }
+                    /*.post(
+                        
+                        /*
                         ServerService.get() + '/leagues/editleague/' + leagueModel.Id, {
+                            data: leagueModel,
                             headers: {"Content-Type": "application/json",
                                  'Authorization': $cookieStore.get('access_token')
-                            }, data: leagueModel
-                        })
+                            }
+                        }
+                        */
+                        )
                     .success(function(response) {
                     success(response);
                 }).error(error);

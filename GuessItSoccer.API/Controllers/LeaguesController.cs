@@ -126,6 +126,7 @@ namespace GuessItSoccer.API.Controllers
         [POST("leagues/editleague/{leagueId}")]
         public UpdatedLeagueModel UpdateLeague([FromUri] long leagueId, [FromBody] LeagueUpdateModel model)
         {
+            var request = Request;
             League foundLeague = _readOnlyRepository.FirstOrDefault< League>(le => le.Id == model.Id);
             if(foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "That League was not found");

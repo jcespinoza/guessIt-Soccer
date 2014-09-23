@@ -35,7 +35,7 @@ angular.module('app.controllers')
             LeaguesService.uploadNewLeague($scope.newLeague, function(response) {
                 console.log(response);
                 $scope.loadLeagues();
-                $scope.newLeague = {};
+                //$scope.newLeague = {};
             }, function(error) {
                 console.log(error);
             });
@@ -43,7 +43,9 @@ angular.module('app.controllers')
 
         $scope.editLeague = function (league) {
             $scope.isEditing = true;
-            $scope.leagueForUpdate = league;
+            $scope.leagueForUpdate.Name = league.Name;
+            $scope.leagueForUpdate.Country = league.Country;
+            $scope.leagueForUpdate.Id = league.Id;
         }
 
         $scope.cancelEditLeague = function () {
@@ -60,15 +62,6 @@ angular.module('app.controllers')
                 console.log(error);
             });
         }
-
-
-        $scope.oldLeagueName = "";
-        $scope.oldCountryName = "";
-        
-
-        
-
-        
 
         $scope.addNewLeague = function () {
             var nid = $scope.availableLeagues[$scope.availableLeagues.length - 1].id + 1;
