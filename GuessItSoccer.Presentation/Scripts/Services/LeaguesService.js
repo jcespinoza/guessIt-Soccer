@@ -28,7 +28,7 @@ angular.module('app.services')
                         ServerService.get() + '/leagues/editleague/' + leagueModel.Id, {
                             headers: {"Content-Type": "application/json",
                                  'Authorization': $cookieStore.get('access_token')
-                            }
+                            }, data: leagueModel
                         })
                     .success(function(response) {
                     success(response);
@@ -47,7 +47,7 @@ angular.module('app.services')
             archiveLeagueInServer: function(leagueId, success, error) {
                 $http
                     .post(
-                        ServerService.delete() + '/leagues/deleteleague/' + leagueId, {
+                        ServerService.get() + '/leagues/deleteleague/' + leagueId, {
                             headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
                         })
                     .success(function (response) {
