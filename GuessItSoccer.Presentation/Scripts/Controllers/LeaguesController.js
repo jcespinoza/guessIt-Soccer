@@ -35,7 +35,7 @@ angular.module('app.controllers')
             LeaguesService.uploadNewLeague($scope.newLeague, function(response) {
                 console.log(response);
                 $scope.loadLeagues();
-                //$scope.newLeague = {};
+                $scope.newLeague = {};
             }, function(error) {
                 console.log(error);
             });
@@ -57,29 +57,35 @@ angular.module('app.controllers')
                 console.log(response);
                 $scope.loadLeagues();
                 $scope.isEditing = false;
-                //$scope.leagueForUpdate = {};
             }, function(error) {
                 console.log(error);
             });
         }
 
-        $scope.addNewLeague = function () {
-            var nid = $scope.availableLeagues[$scope.availableLeagues.length - 1].id + 1;
-            $scope.availableLeagues.push(
-                { id: nid, Name: $scope.newLeagueName, IsArchived: true }
-            );
-            $scope.newLeagueName = "";
-        };
-
         $scope.setLeagueEnabled = function (league, value) {
-            league.IsArchived = value;
+            if (value) {
+                LeaguesService.restoreLeagueInServer(league.Id,
+                function (response) {
+                    console.log(response);
+                    $scope.loadLeagues();
+                },
+                function (error) {
+                    console.log(error);
+                });
+            } else {
+                $scope.deleteLeague(league);
+            }
         };
 
-        $scope.deleteLeague = function (leagueName) {
-            for (var i = 0; i < $scope.availableLeagues.length; i++) {
-                if ($scope.availableLeagues[i].Name === leagueName)
-                    $scope.availableLeagues.splice(i, 1);
-            }
+        $scope.deleteLeague = function (league) {
+            LeaguesService.archiveLeagueInServer(league.Id,
+                function (response) {
+                    console.log(response);
+                    $scope.loadLeagues();
+                },
+                function (error) {
+                    console.log(error);
+                });
         };
 
         $scope.$on('$viewContentLoaded', function () {

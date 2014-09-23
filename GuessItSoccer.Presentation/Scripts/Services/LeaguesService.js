@@ -23,8 +23,7 @@ angular.module('app.services')
                     }).error(error);
             },
             updateLeagueInServer: function(leagueModel, success, error) {
-                $http
-                    ({
+                $http({
                         url: ServerService.get() + '/leagues/editleague/' + leagueModel.Id,
                         dataType: 'json',
                         method: 'POST',
@@ -33,28 +32,22 @@ angular.module('app.services')
                             "Content-Type": "application/json",
                             'Authorization': $cookieStore.get('access_token')
                         }
-                    }
-                    /*.post(
-                        
-                        /*
-                        ServerService.get() + '/leagues/editleague/' + leagueModel.Id, {
-                            data: leagueModel,
-                            headers: {"Content-Type": "application/json",
-                                 'Authorization': $cookieStore.get('access_token')
-                            }
-                        }
-                        */
-                        )
+                    })
                     .success(function(response) {
                     success(response);
                 }).error(error);
             },
             uploadNewLeague: function(leagueModel, success, error) {
-                $http
-                    .post(
-                        ServerService.get() + '/leagues/createleague', {
-                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
-                        })
+                $http({
+                        url: ServerService.get() + '/leagues/createleague',
+                        dataType: 'json',
+                        method: 'POST',
+                        data: leagueModel,
+                        headers: {
+                            "Content-Type": "application/json",
+                            'Authorization': $cookieStore.get('access_token')
+                        }
+                    })
                     .success(function(response) {
                         success(response);
                     }).error(error);
@@ -68,6 +61,16 @@ angular.module('app.services')
                     .success(function (response) {
                         success(response);
                     }).error(error);
-            }
+            },
+            restoreLeagueInServer: function(leagueId, success, error) {
+                $http
+                    .post(
+                        ServerService.get() + '/leagues/restoreleague/' + leagueId, {
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            },
         };
     });
