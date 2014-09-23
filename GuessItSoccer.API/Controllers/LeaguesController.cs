@@ -122,9 +122,9 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpPost]
-        [AcceptVerbs("POST","PUT", "HEAD")]
-        [POST("leagues/editleague/{id}")]
-        public UpdatedLeagueModel UpdateLeague([FromBody] LeagueUpdateModel model)
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/editleague/{leagueId}")]
+        public UpdatedLeagueModel UpdateLeague([FromUri] long leagueId, [FromBody] LeagueUpdateModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault< League>(le => le.Id == model.Id);
             if(foundLeague == null)

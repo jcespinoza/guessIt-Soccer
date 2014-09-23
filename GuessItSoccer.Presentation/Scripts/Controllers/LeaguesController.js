@@ -55,7 +55,7 @@ angular.module('app.controllers')
                 console.log(response);
                 $scope.loadLeagues();
                 $scope.isEditing = false;
-                $scope.leagueForUpdate = {};
+                //$scope.leagueForUpdate = {};
             }, function(error) {
                 console.log(error);
             });
