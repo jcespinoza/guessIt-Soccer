@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using AutoMapper;
 using GuessItSoccer.API.Models;
 using GuessItSoccer.Domain.Entities;
@@ -37,8 +37,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/{leagueId}/games/creategame")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/games/creategame")]
         public bool CreateGame([FromUri] long leagueId, [FromBody] NewGameModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
@@ -73,8 +73,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/{leagueId}/games/editgame")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/games/editgame")]
         public bool UpdateGame([FromUri] long leagueId, [FromBody] UpdateGameModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
@@ -82,27 +82,25 @@ namespace GuessItSoccer.API.Controllers
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
             Game foundGame = _readOnlyRepository.FirstOrDefault<Game>(
                 game =>
-                    game.Id == model.GameId
+                    game.Id == model.Id
                 );
 
             if (foundGame == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "This game doesn't exist");
 
-            Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.HomeTeamName);
-            Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.AwayTeamName);
+            Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.HomeTeam.Name);
+            Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.AwayTeam.Name);
 
-            foundGame.HomeTeam = homeTeam;
-            foundGame.AwayTeam = awayTeam;
-            foundGame.MatchDate = model.MatchDate;
+            foundGame = _mappingEngine.Map<UpdateGameModel, Game>(model, foundGame);
 
-            _writeOnlyRepository.Update(foundGame);
+            var up = _writeOnlyRepository.Update(foundGame);
 
             return true;
         }
 
         [HttpGet]
-        [AcceptVerbs("DELETE", "HEAD")]
-        [DELETE("leagues/{leagueId}/games/deletegame/{gameId}")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/games/deletegame/{gameId}")]
         public bool ArchiveGame([FromUri] long leagueId, [FromUri] long gameId)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
@@ -120,8 +118,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/{leagueId}/games/restoregame/{gameId}")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/games/restoregame/{gameId}")]
         public bool RestoreGame([FromUri] long leagueId, [FromUri] long gameId)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
@@ -139,8 +137,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/{leagueId}/games/{gameId}/assignresult")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/games/{gameId}/assignresult")]
         public bool AssignResultToGame([FromUri] long leagueId, [FromUri] long gameId,
             [FromBody] ResultDataModel resultModel)
         {

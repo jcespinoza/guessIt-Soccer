@@ -23,6 +23,7 @@ namespace GuessItSoccer.API
             Mapper.CreateMap<NewTeamModel, Team>().ReverseMap();
             Mapper.CreateMap<TeamUpdateModel, Team>().ReverseMap();
             Mapper.CreateMap<LeagueUpdateModel, League>().ReverseMap();
+            Mapper.CreateMap<UpdateGameModel, Game>().ReverseMap();
             Mapper.CreateMap<ResultDataModel, Prediction>().ReverseMap();
             Mapper.CreateMap<ResultDataModel, Result>().ReverseMap();
             Mapper.CreateMap<TeamModel, Team>().ReverseMap();

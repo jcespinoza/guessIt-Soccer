@@ -14,8 +14,10 @@
         <tbody>
             <tr ng-repeat="league in availableLeagues">
                 <td>{{league.Id}}</td>
-                <td><a href="/admin/league/{{league.Id}}">{{league.Name}} <span class="disabled" ng-show="league.IsArchived">(Disabled)</span></a></td>
+                <td><a href="/admin/league/{{league.Id}}/teams">{{league.Name}} <span class="disabled" ng-show="league.IsArchived">(Disabled)</span></a></td>
                 <td>{{league.Country}}</td>
+                <td><a href="/admin/league/{{league.Id}}/teams">Teams</a></td>
+                <td><a href="/admin/league/{{league.Id}}/games">Games</a></td>
                 <td>
                     <button class="btn btn-default" ng-click="editLeague(league)">Edit</button>
                 </td>

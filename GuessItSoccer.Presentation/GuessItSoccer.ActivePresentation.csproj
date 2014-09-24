@@ -139,6 +139,7 @@
       <DependentUpon>controllers.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Controllers\AboutController.js" />
+    <Content Include="Scripts\Controllers\AdminGamesCtrl.js" />
     <Content Include="Scripts\Controllers\Error404Controller.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
     <Content Include="Scripts\Controllers\LeaguesController.js" />
@@ -161,6 +162,7 @@
     </Content>
     <Content Include="Scripts\Services\AccountService.js" />
     <Content Include="Scripts\Services\AuthService.js" />
+    <Content Include="Scripts\Services\GamesService.js" />
     <Content Include="Scripts\Services\LeaguesService.js" />
     <Content Include="Scripts\Services\ServerService.js" />
     <Content Include="Scripts\Services\TeamsService.js" />
@@ -515,6 +517,7 @@
     <Content Include="Views\AdminUser\league.cshtml" />
     <Content Include="Views\NormalUser\league.cshtml" />
     <Content Include="Views\NormalUser\leagues.cshtml" />
+    <Content Include="Views\AdminUser\games.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -53,9 +53,14 @@ angular.module('app', ['ui.router',  'ngCookies','app.filters', 'app.services', 
                 controller: 'UserLeaguesCtrl'
             })
             .state('league', {
-                url: '/admin/league/{id}',
+                url: '/admin/league/{id}/teams',
                 templateUrl: '/views/AdminUser/league',
                 controller: 'SingleLeagueCtrl'
+            })
+            .state('games', {
+                url: '/admin/league/{id}/games',
+                templateUrl: '/views/AdminUser/games',
+                controller: 'AdminGamesCtrl'
             })
             .state('otherwise', {
                 url: '*path',
