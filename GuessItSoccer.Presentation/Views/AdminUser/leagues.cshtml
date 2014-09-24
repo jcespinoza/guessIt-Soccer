@@ -20,7 +20,7 @@
                     <button class="btn btn-default" ng-click="editLeague(league)">Edit</button>
                 </td>
                 <td>
-                    <button ng-class="(!league.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, !league.IsArchived)">
+                    <button ng-class="(!league.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, league.IsArchived)">
                         <span ng-show="league.IsArchived">Enable</span>
                         <span ng-show="!league.IsArchived">Disable</span>
                     </button>

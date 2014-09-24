@@ -90,8 +90,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/restoreleague/{id}")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/restoreleague/{id}")]
         public LeagueModel RestoreLeague(int Id)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == Id);
