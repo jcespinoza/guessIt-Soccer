@@ -6,11 +6,6 @@ angular.module('app.controllers')
         $scope.$root.title = 'GuessIt Soccer | Leagues';
 
         $scope.isEditing = false;
-        $scope.variable = "*";
-        $scope.newLeagueName = "";
-        $scope.newLeagueCountry = "";
-        $scope.updatedName = "";
-        $scope.updatedCountry = "";
 
         //New variables for API
         $scope.availableLeagues = [];
@@ -30,6 +25,14 @@ angular.module('app.controllers')
             });
         };
         $scope.loadLeagues();
+
+        $scope.getSuscribedUsers = function(league) {
+            LeaguesService.fetchSuscribedUsersFromServer(league.Id, function (suscribed) {
+                //Leagues could go here 
+            }, function(error) {
+                console.log(error);
+            });
+        }
         
         $scope.submitNewLeague = function() {
             LeaguesService.uploadNewLeague($scope.newLeague, function(response) {
@@ -43,9 +46,7 @@ angular.module('app.controllers')
 
         $scope.editLeague = function (league) {
             $scope.isEditing = true;
-            $scope.leagueForUpdate.Name = league.Name;
-            $scope.leagueForUpdate.Country = league.Country;
-            $scope.leagueForUpdate.Id = league.Id;
+            $scope.leagueForUpdate = league;
         }
 
         $scope.cancelEditLeague = function () {

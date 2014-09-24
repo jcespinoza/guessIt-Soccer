@@ -22,6 +22,16 @@ angular.module('app.services')
                         success(response);
                     }).error(error);
             },
+            fetchSuscribedUsersFromServer: function(leagueId, succes, error) {
+                $http
+                    .get(
+                        ServerService.get() + '/leagues/' +leagueId+ '/suscribedusers', {
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            },
             updateLeagueInServer: function(leagueModel, success, error) {
                 $http({
                         url: ServerService.get() + '/leagues/editleague/' + leagueModel.Id,

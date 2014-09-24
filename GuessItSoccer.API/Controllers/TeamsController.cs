@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using AutoMapper;
 using GuessItSoccer.API.Models;
 using GuessItSoccer.Domain.Entities;
@@ -28,22 +28,22 @@ namespace GuessItSoccer.API.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
         [GET("leagues/{leagueId}/teams")]
-        public List<Team> GetTeamsForLeagueWithId(long leagueId)
+        public List<TeamModel> GetTeamsForLeagueWithId(long leagueId)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
             if(foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
 
-            List<Team> teamsInLeague = foundLeague.Teams.ToList();
+            List<TeamModel> teamsInLeague = _mappingEngine.Map<List<Team>, List<TeamModel>>(foundLeague.Teams.ToList());
             return teamsInLeague;
         }
 
-        [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/{leagueId}/teams/createteam")]
-        public TeamCreatedModel AddTeamToLeague([FromBody] NewTeamModel model)
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/teams/createteam")]
+        public TeamCreatedModel AddTeamToLeague([FromUri]long leagueId, [FromBody] NewTeamModel model)
         {
-            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == model.LeagueId);
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
             if (foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
             Team foundTeam = foundLeague.Teams.FirstOrDefault(x => x.Name == model.Name);
@@ -58,28 +58,26 @@ namespace GuessItSoccer.API.Controllers
             return new TeamCreatedModel(){Value = "Successfully created a new team"};
         }
 
-        [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/{leagueId}/teams/editteam")]
-        public UpdatedTeamModel EditTeam([FromBody] TeamUpdateModel model)
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/teams/editteam")]
+        public UpdatedTeamModel EditTeam([FromUri]long leagueId, [FromBody] TeamUpdateModel model)
         {
-            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == model.LeagueId);
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
             if (foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
-            Team foundTeam = foundLeague.Teams.FirstOrDefault(x => x.Id == model.TeamId);
+            Team foundTeam = foundLeague.Teams.FirstOrDefault(x => x.Id == model.Id);
             if (foundTeam == null)
                 throw new HttpException((int)HttpStatusCode.Conflict, "A team with this Id was not found");
-
-            foundTeam.Name = model.Name;
-            foundTeam.City = model.City;
+            foundTeam = _mappingEngine.Map<TeamUpdateModel, Team>(model, foundTeam);
             _writeOnlyRepository.Update(foundTeam);
 
             return new UpdatedTeamModel(){Value = "Successfully Edited Team"};
         }
 
         [HttpGet]
-        [AcceptVerbs("DELETE", "HEAD")]
-        [DELETE("leagues/{leagueId}/teams/deleteteam/{teamId}")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/teams/deleteteam/{teamId}")]
         public DeletedTeamModel ArchiveTeam([FromUri] long leagueId, [FromUri] long teamId)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id ==leagueId);
@@ -97,8 +95,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("leagues/{leagueId}/teams/restoreteam/{teamId}")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("leagues/{leagueId}/teams/restoreteam/{teamId}")]
         public RestoredTeamModel RestoreTeam([FromUri] long leagueId, [FromUri] long teamId)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
