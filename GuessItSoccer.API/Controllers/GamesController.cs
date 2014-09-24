@@ -91,7 +91,10 @@ namespace GuessItSoccer.API.Controllers
             Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.HomeTeam.Name);
             Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.AwayTeam.Name);
 
-            foundGame = _mappingEngine.Map<GameModel, Game>(model, foundGame);
+            //foundGame = _mappingEngine.Map<GameModel, Game>(model, foundGame);
+            foundGame.HomeTeam = homeTeam;
+            foundGame.AwayTeam = awayTeam;
+            foundGame.MatchDate = model.MatchDate;
 
             var up = _writeOnlyRepository.Update(foundGame);
 
