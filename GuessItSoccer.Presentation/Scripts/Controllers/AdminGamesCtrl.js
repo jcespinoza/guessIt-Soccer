@@ -11,6 +11,7 @@ angular.module('app.controllers')
             $scope.teams = [];
             $scope.isEditing = false;
             $scope.newGame = {};
+            $scope.newGame.MatchDate = Date.now();
             $scope.format = "yyyy-MMMM-dd";
             $scope.gameForUpdate = {};
 
@@ -42,6 +43,17 @@ angular.module('app.controllers')
                     $scope.isEditing = false;
                 }, function (error) {
                     console.log(error);
+                });
+            }
+
+            $scope.addNewGame = function() {
+                GamesService.uploadGameToServer($scope.leagueID, $scope.newGame, function(response) {
+                    $scope.loadGames();
+                    $scope.newGame = {};
+                    $scope.newGame.MatchDate = Date.now();
+                    console.log("Created game");
+                }, function(error) {
+                    console.log("Failed");
                 });
             }
 

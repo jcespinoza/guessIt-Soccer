@@ -15,6 +15,28 @@
             </tr>
         </tbody>
     </table>
+    <div class="row" ng-hide="isEditingGame">
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="addNewGame()">
+            <h2 class="text-center">New Game</h2>
+            <div class="form-box">
+                <div class="form-group">
+                    <label for="team1Select">Home Team</label>
+                    <select name="team1Select" ng-model="newGame.HomeTeam" ng-options="team.Name for team in teams" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="team2Select">Away Team</label>
+                    <select name="team2Select" ng-model="newGame.AwayTeam" ng-options="team.Name for team in teams" required></select>
+                </div>
+                <div style="display:inline-block; min-height:290px;">
+                    <label for="creatingCalendar">Match Date</label>
+                    <datepicker name="creatingCalendar" ng-model="newGame.MatchDate" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(newGame.HomeTeam && newGame.AwayTeam)" disabled>Add Game</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="row" ng-show="isEditing">
         <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="updateGame()">
             <h2 class="text-center">Edit Game</h2>

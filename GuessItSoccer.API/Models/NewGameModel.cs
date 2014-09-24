@@ -1,11 +1,12 @@
 using System;
+using GuessItSoccer.Domain.Entities;
 
 namespace GuessItSoccer.API.Models
 {
     public class NewGameModel
     {
-        public string HomeTeamName { get; set; }
-        public string AwayTeamName { get; set; }
+        public Team HomeTeam { get; set; }
+        public Team AwayTeam { get; set; }
         public DateTime MatchDate { get; set; }
     }
 }

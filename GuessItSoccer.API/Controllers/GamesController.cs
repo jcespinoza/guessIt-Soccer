@@ -36,7 +36,7 @@ namespace GuessItSoccer.API.Controllers
             return gamesInLeague;
         }
 
-        [HttpGet]
+        [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
         [POST("leagues/{leagueId}/games/creategame")]
         public bool CreateGame([FromUri] long leagueId, [FromBody] NewGameModel model)
@@ -45,8 +45,8 @@ namespace GuessItSoccer.API.Controllers
             if (foundLeague == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "The league can not be found. Please check the Id");
 
-            Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.HomeTeamName);
-            Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.AwayTeamName);
+            Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Id == model.HomeTeam.Id);
+            Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Id == model.AwayTeam.Id);
 
             Game foundGame = _readOnlyRepository.FirstOrDefault<Game>(
                 game =>
@@ -75,7 +75,7 @@ namespace GuessItSoccer.API.Controllers
         [HttpGet]
         [AcceptVerbs("POST", "HEAD")]
         [POST("leagues/{leagueId}/games/editgame")]
-        public bool UpdateGame([FromUri] long leagueId, [FromBody] UpdateGameModel model)
+        public bool UpdateGame([FromUri] long leagueId, [FromBody] GameModel model)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(x => x.Id == leagueId);
             if (foundLeague == null)
@@ -91,7 +91,7 @@ namespace GuessItSoccer.API.Controllers
             Team homeTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.HomeTeam.Name);
             Team awayTeam = _readOnlyRepository.FirstOrDefault<Team>(team => team.Name == model.AwayTeam.Name);
 
-            foundGame = _mappingEngine.Map<UpdateGameModel, Game>(model, foundGame);
+            foundGame = _mappingEngine.Map<GameModel, Game>(model, foundGame);
 
             var up = _writeOnlyRepository.Update(foundGame);
 

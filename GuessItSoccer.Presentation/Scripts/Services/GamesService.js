@@ -27,5 +27,20 @@ angular.module('app.services')
                     success(response);
                 }).error(error);
         },
+        uploadGameToServer: function (leagueId, gameModel, success, error) {
+            $http({
+                url: ServerService.get() + '/leagues/'+leagueId+'/games/creategame',
+                dataType: 'json',
+                method: 'POST',
+                data: gameModel,
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': $cookieStore.get('access_token')
+                }
+            })
+                .success(function (response) {
+                    success(response);
+                }).error(error);
+        },
     };
 });
