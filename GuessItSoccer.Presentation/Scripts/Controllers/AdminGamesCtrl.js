@@ -11,6 +11,7 @@ angular.module('app.controllers')
             $scope.teams = [];
             $scope.isEditing = false;
             $scope.newGame = {};
+            $scope.format = "yyyy-MMMM-dd";
             $scope.gameForUpdate = {};
 
             $scope.loadTeams = function () {
