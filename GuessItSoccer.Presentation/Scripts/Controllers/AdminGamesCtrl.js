@@ -37,10 +37,10 @@ angular.module('app.controllers')
 
             $scope.updateGame = function() {
                 GamesService.updateGameInServer($scope.leagueID, $scope.gameForUpdate, function (response) {
-                    $scope.loadGames();
                     $scope.gameForUpdate = {};
                     console.log(response);
                     $scope.isEditing = false;
+                    $scope.loadGames();
                 }, function (error) {
                     console.log(error);
                 });
@@ -48,10 +48,10 @@ angular.module('app.controllers')
 
             $scope.addNewGame = function() {
                 GamesService.uploadGameToServer($scope.leagueID, $scope.newGame, function(response) {
-                    $scope.loadGames();
                     $scope.newGame = {};
                     $scope.newGame.MatchDate = Date.now();
                     console.log("Created game");
+                    $scope.loadGames();
                 }, function(error) {
                     console.log("Failed");
                 });

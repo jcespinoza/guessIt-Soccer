@@ -64,10 +64,12 @@ namespace GuessItSoccer.API.Controllers
                 AwayTeam = awayTeam,
                 MatchDate = model.MatchDate
             };
-
-            foundLeague.AddGame(foundGame);
-
-            _writeOnlyRepository.Create(foundLeague);
+            var gameList = foundLeague.Games.ToList();
+            gameList.Add(foundGame);
+            foundLeague.Games = gameList;
+            
+//            _writeOnlyRepository.Create(foundGame);
+            _writeOnlyRepository.Update(foundLeague);
 
             return true;
         }
