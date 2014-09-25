@@ -2,64 +2,46 @@
     PageData["title"] = "GuessIt Soccer | Leagues";
 }
 <body>
-    <h2>Leagues</h2>
+    <h2>Leagues I'm Suscribed To</h2>
+    
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>League Name</th>
                 <th>Country</th>
+                <th>League Name</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="league in availableLeagues" ng-hide="league.IsArchived">
-                <td>{{league.Id}}</td>
+            <tr ng-repeat="league in suscribedLeagues">
                 <td>{{league.Country}}</td>
-                <td><a href="/admin/league/{{league.Id}}/games">Games</a></td>
+                <td>{{league.Name}}</td>
+                <td><a href="/users/{{user}}/leagues/{{league.Id}}/games">Games</a></td>
                 <td>
-                    <button class="btn btn-default" ng-click="editLeague(league)">Edit</button>
+                    <button class="btn btn-default" ng-click="unsuscribeFromLeague(league)">Unsuscribe</button>
                 </td>
-                <td>
-                    <button ng-class="(!league.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setLeagueEnabled(league, league.IsArchived)">
-                        <span ng-show="league.IsArchived">Enable</span>
-                        <span ng-show="!league.IsArchived">Disable</span>
-                    </button>
-                </td>
-                <td><button ng-click="deleteLeague(league)" class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
     </table>
-    <div class="row" ng-hide="isEditing">
-        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="submitNewLeague()">
-            <h2 class="text-center">New League</h2>
-            <div class="form-box">
-                <div class="form-group">
-                    <input ng-model="newLeague.Name" type="text" class="form-control" placeholder="League Name" required />
-                </div>
-                <div class="form-group">
-                    <input ng-model="newLeague.Country" type="text" class="form-control" placeholder="Country Name" required />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(newLeague.Name && newLeague.Country)" disabled>Add League</button>
-                </div>
-            </div>
-        </form>
+    <h2>All Available Leagues</h2>
+    <div class="form-group">
+        <input type="text" ng-model="searchCriteria" placeholder="Search Leagues" />
     </div>
-    <div class="row" ng-show="isEditing">
-        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="updateLeague()">
-            <h2 class="text-center">Edit League</h2>
-            <div class="form-box">
-                <div class="form-group">
-                    <input ng-model="leagueForUpdate.Name" type="text" class="form-control" placeholder="League Name" required />
-                </div>
-                <div class="form-group">
-                    <input ng-model="leagueForUpdate.Country" type="text" class="form-control" placeholder="Country Name" required />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit">Save</button>
-                    <button class="btn btn-primary btn-block" type="button" ng-click="cancelEditLeague()">Cancel</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>League Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="league in availableLeagues | filter: searchCriteria" ng-hide="league.IsArchived">
+                <td>{{league.Country}}</td>
+                <td>{{league.Name}}</td>
+                <td><a href="/users/{{user}}/leagues/{{league.Id}}/games">Games</a></td>
+                <td>
+                    <button ng-click="suscribeToLeague(league)" class="btn btn-primary">Suscribe</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>

@@ -62,6 +62,37 @@ angular.module('app.services')
                         success(response);
                     }).error(error);
             },
+            suscribeToLeague: function(leagueId, success, error) {
+                $http({
+                        url: ServerService.get() + '/leagues/suscribe/' + leagueId,
+                        dataType: 'json',
+                        method: 'POST',
+                        data: '',
+                        headers: {
+                            "Content-Type": "application/json",
+                            'Authorization': $cookieStore.get('access_token')
+                        }
+                    })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            },
+            unsuscribeFromLeague: function(leagueId, success, error) {
+                $http({
+                    url: ServerService.get() + '/leagues/unsuscribe/' + leagueId,
+                    dataType: 'json',
+                    method: 'POST',
+                    data: '',
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': $cookieStore.get('access_token')
+                    }
+                })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            },
+
             archiveLeagueInServer: function(leagueId, success, error) {
                 $http
                     .post(

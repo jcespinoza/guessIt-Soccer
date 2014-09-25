@@ -5,6 +5,7 @@ angular.module('app.controllers')
         $scope.$root.title = 'GuessIt Soccer | Sign In';
         $scope.userFound = true;
         $scope.user = {};
+        $scope.isLogginIn = false;
         $scope.login = function () {
             console.log("About to do request");
             authService.login($scope.user, function (response) {
@@ -12,11 +13,13 @@ angular.module('app.controllers')
                 if (response.role.title === 'admin') {
                     $location.path('/admin/leagues');
                 } else {
-                    $location.path('/' + response.id + '/leagues');
+                    $location.path('/users/' + response.id + '/leagues');
                 }
                 $scope.isLoading = false;
+                $scope.isLogginIn = true;
             }, function (error) {
-                alert(error);
+                alert(error.Message);
+                console.log(error);
             });
         };
         $scope.newUser = {};
@@ -24,6 +27,8 @@ angular.module('app.controllers')
             console.log("About to sign up");
             authService.signup($scope.newUser, function (response) {
                 console.log(response);
+                $('#signupbox').hide();
+                $('#loginbox').show();
                 $location.path('/login');
             }, function (error) {
                 console.log(error);

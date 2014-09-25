@@ -21,19 +21,11 @@ angular.module('app.controllers')
                 console.log("Leagues were loaded");
                 console.log(availableLeagues);
             }, function (error) {
-                alert('error loading available leagues');
+                alert('Error loading available leagues');
                 console.log(error);
             });
         };
         $scope.loadLeagues();
-
-        $scope.getSuscribedUsers = function(league) {
-            LeaguesService.fetchSuscribedUsersFromServer(league.Id, function (suscribed) {
-                //Leagues could go here 
-            }, function(error) {
-                console.log(error);
-            });
-        }
         
         $scope.submitNewLeague = function() {
             LeaguesService.uploadNewLeague($scope.newLeague, function(response) {

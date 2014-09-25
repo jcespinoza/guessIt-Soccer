@@ -48,9 +48,14 @@ angular.module('app', ['ui.router','ui.bootstrap' , 'ngCookies','app.filters', '
                 controller: 'LeaguesCtrl'
             })
             .state('userleagues', {
-                url: '/{user}/leagues',
+                url: '/users/{user}/leagues',
                 templateUrl: '/views/NormalUser/leagues',
                 controller: 'UserLeaguesCtrl'
+            })
+            .state('userleaguesgames', {
+                url: '/users/{user}/leagues/{league}/games',
+                templateUrl: '/views/NormalUser/games',
+                controller: 'UserGamesCtrl'
             })
             .state('league', {
                 url: '/admin/league/{id}/teams',

@@ -13,13 +13,14 @@ angular.module('app.services')
     }
 
     return {
-        authorize: function (accessLevel, role) {
+        authorize: function(accessLevel, role) {
             if (role === undefined) {
                 role = currentUser.role;
             }
 
             return accessLevel.bitMask & role.bitMask;
         },
+        getCurrentUser: currentUser,
         isLoggedIn: function (user) {
             if (user === undefined) {
                 user = currentUser;

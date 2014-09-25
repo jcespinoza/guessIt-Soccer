@@ -51,7 +51,7 @@ namespace GuessItSoccer.API.Controllers
                 throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
 
             var account =
-                _readOnlyRepository.Query<AccountLeague>(x => x.User.Email == userTokenModel.email)
+                _readOnlyRepository.Query<AccountLeague>(x => x.User.Email == userTokenModel.email && !x.IsArchived)
                     .Select(y => y.League);
             var leaguesModel = _mappingEngine.Map<List<League>, List<LeagueModel>>(account.ToList());
             return leaguesModel;
