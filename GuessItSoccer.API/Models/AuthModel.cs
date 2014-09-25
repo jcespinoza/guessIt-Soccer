@@ -6,5 +6,6 @@ namespace GuessItSoccer.API.Models
         public string email { get; set; }
         public string access_token { get; set; }
         public RoleModel role { get; set; }
+        public long id { get; set; }
     }
 }

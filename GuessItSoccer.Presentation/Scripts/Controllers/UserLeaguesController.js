@@ -47,18 +47,18 @@ angular.module('app.controllers')
                 { id: nid, Name: $scope.newLeagueName, IsArchived: true }
             );
             $scope.newLeagueName = "";
-        };
+        }
 
         $scope.setLeagueEnabled = function (league, value) {
             league.IsArchived = value;
-        };
+        }
 
         $scope.deleteLeague = function (leagueName) {
             for (var i = 0; i < $scope.availableLeagues.length; i++) {
                 if ($scope.availableLeagues[i].Name === leagueName)
                     $scope.availableLeagues.splice(i, 1);
             }
-        };
+        }
 
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });

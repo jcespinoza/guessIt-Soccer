@@ -23,7 +23,8 @@ namespace GuessItSoccer.DataBaseDeployer
                 IsArchived = false,
                 Email = "admin@jcespinoza.com",
                 Name = "Juan Carlos Espinoza",
-                Password = encrypter.Encrypt("secretPassword")
+                Password = encrypter.Encrypt("secretPassword"),
+                Role = "admin"
             };
             _session.Save(account);
 
@@ -32,7 +33,8 @@ namespace GuessItSoccer.DataBaseDeployer
                 IsArchived = false,
                 Email = "jcespinozahz@live.com",
                 Name = "Juan Carlos Espinoza",
-                Password = encrypter.Encrypt("secretPassword")
+                Password = encrypter.Encrypt("secretPassword"),
+                Role = "user"
             };
             _session.Save(account2);
         }

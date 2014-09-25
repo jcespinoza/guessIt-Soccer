@@ -12,7 +12,7 @@ angular.module('app.controllers')
                 if (response.role.title === 'admin') {
                     $location.path('/admin/leagues');
                 } else {
-                    $location.path('/');
+                    $location.path('/' + response.id + '/leagues');
                 }
                 $scope.isLoading = false;
             }, function (error) {
@@ -29,11 +29,11 @@ angular.module('app.controllers')
                 console.log(error);
             });
             console.log("Request sent:" + $scope.newUser);
-        };
+        }
         $scope.goToPassRecovery = function () {
             $location.path('/password-recovery');
             return false;
-        };
+        }
         $scope.$on('$viewContentLoaded', function () {
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });

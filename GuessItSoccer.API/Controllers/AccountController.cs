@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Web;
 using System.Web.Http;
@@ -37,11 +38,12 @@ namespace GuessItSoccer.API.Controllers
                 throw new HttpException((int)HttpStatusCode.Unauthorized, "Incorrect Email or Password");
             var authModel = new AuthModel
             {
+                id = user.Id,
                 email = user.Email,
                 access_token = AuthRequestFactory.BuildEncryptedRequest(user.Email),
                 role = new RoleModel
                 {
-                    bitMask = 2, title = "admin"
+                    bitMask = 2, title = user.Role
                 }
             };
             return authModel;           
@@ -58,9 +60,12 @@ namespace GuessItSoccer.API.Controllers
             Account newUser = _mappingEngine.Map<AccountSignUpModel, Account>(model);
             newUser.Password = (new Sha256Encrypter()).Encrypt(model.Password);
 
+            newUser.Role = "user";
             Account createdUser = _writeOnlyRepository.Create(newUser);
 
-            //NotifyOnSignup(createdUser.Name, createdUser.Email);
+            var environment = (ConfigurationManager.AppSettings["Environment"] ?? "").ToLower();
+            if(environment == "remote")
+                NotifyOnSignup(createdUser.Name, createdUser.Email);
 
             AccountRegisteredModel createdUserModel = _mappingEngine.Map<Account, AccountRegisteredModel>(createdUser);
             return createdUserModel;
@@ -75,7 +80,10 @@ namespace GuessItSoccer.API.Controllers
             if (user == null) throw new HttpException((int)HttpStatusCode.NotFound, "User does not exist.");
 
             string pass = ResetPassword(user);
-            //NotifyOnResetPassword(user.Name, user.Email, pass);
+
+            var environment = (ConfigurationManager.AppSettings["Environment"] ?? "").ToLower();
+            if(environment == "remote")
+            NotifyOnResetPassword(user.Name, user.Email, pass);
 
             var confirmation = new ResetConfirmationModel()
             {

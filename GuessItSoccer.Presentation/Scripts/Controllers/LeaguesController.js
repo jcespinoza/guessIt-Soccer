@@ -8,6 +8,7 @@ angular.module('app.controllers')
         $scope.isEditing = false;
 
         //New variables for API
+        
         $scope.availableLeagues = [];
         $scope.suscribedLeagues = [];
         $scope.newLeague = {};
