@@ -8,14 +8,66 @@
             <tr ng-repeat="game in games">
                 
                 <td>
-                    <h4>{{game.HomeTeam.Name}} vs {{game.AwayTeam.Name}}</h4>
-                    <h5>{{game.MatchDate.toLocaleString()}}</h5>
-                    <button ng-click="editGame(game)" class="btn btn-default">Edit</button>
+                    <h3>{{game.HomeTeam.Name}} vs {{game.AwayTeam.Name}}</h3>
+                    <div ng-show="game.Completed">
+                        <h3>Result: {{game.Result.HomeTeamGoals}} - {{game.Result.AwayTeamGoals}}</h3>
+                        <h3 ng-show="game.Result.HomeTeamGoals === game.Result.AwayTeamGoals && (game.Result.HomeTeamPenalties >= 1 || game.Result.AwayTeamPenalties) >= 1">
+                            Penalties: {{game.Result.HomeTeamPenalties}} - {{game.Result.AwayTeamPenalties}}
+                        </h3>
+                    </div>
+                    
+                    <h5 ng-show="game.IsArchived">(Disabled)</h5>
+                    <h5>{{game.MatchDate.toLocaleString() | date}}</h5>
+                    <div class="form-group">
+                        <button ng-click="editGame(game)" class="btn btn-default">Edit</button>
+                        <button ng-class="!(game.IsArchived)?'btn-warning':'btn-success'" class="btn" ng-click="setGameEnabled(game, game.IsArchived)">
+                            <span ng-show="game.IsArchived">Enable</span>
+                            <span ng-show="!game.IsArchived">Disable</span>
+                        </button>
+                        <button ng-click="editResult(game)" class="btn btn-default">Edit Result</button>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
-    <div class="row" ng-hide="isEditing">
+    <div class="row" ng-show="isEditingResult">
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="assignResult()">
+            <div class="form-box">
+                <h2>Final Result</h2>
+                <div class="form-group">
+                    <label for="hometeamgoals">Home team goals:</label>
+                    <input name="hometeamgoals" type="number" ng-model="gameForUpdate.Result.HomeTeamGoals" />
+                </div>
+                <div class="form-group">
+                    <label for="awayteamgoals">Away team goals:</label>
+                    <input name="awayteamgoals" type="number" ng-model="gameForUpdate.Result.AwayTeamGoals" />
+                </div>
+                <div class="form-group">
+                    <label for="hometeampenalties">Home team penalties:</label>
+                    <input name="hometeampenalties" type="number" ng-model="gameForUpdate.Result.HomeTeamPenalties" />
+                </div>
+                <div class="form-group">
+                    <label for="awayteampenalties">Away team penalties:</label>
+                    <input name="awayteampenalties" type="number" ng-model="gameForUpdate.Result.AwayTeamPenalties" />
+                </div>
+                <div class="form-group">
+                    <label for="winnerteam">Winner Team:</label>
+                    <select name="winnerteam" ng-model="gameForUpdate.Result.Winner">
+                        <option>HomeTeam</option>
+                        <option>AwayTeam</option>
+                        <option>Draw</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-default btn-success" type="submit">Save Result</button>
+                    <button class="btn btn-default" ng-click="cancelEditResult()">Cancel</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+    <div class="row" ng-hide="isEditing || isEditingResult">
         <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="addNewGame()">
             <h2 class="text-center">New Game</h2>
             <div class="form-box">
@@ -37,7 +89,7 @@
             </div>
         </form>
     </div>
-    <div class="row" ng-show="isEditing">
+    <div id="editForm" class="row" ng-show="isEditing">
         <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="updateGame()">
             <h2 class="text-center">Edit Game</h2>
             <div class="form-box">

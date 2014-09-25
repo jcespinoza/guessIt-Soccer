@@ -2,7 +2,7 @@
 angular.module('app.controllers')
 // Path /league/#/games
     .controller('AdminGamesCtrl', [
-        '$scope', '$location', '$window', '$stateParams', 'TeamsService', 'GamesService', function ($scope, $location, $window, $stateParams, TeamsService, GamesService) {
+        '$scope', '$location', '$window', '$stateParams', 'TeamsService', 'GamesService', '$anchorScroll', function ($scope, $location, $window, $stateParams, TeamsService, GamesService, $anchorScroll) {
             $scope.$root.title = 'GuessIt Soccer | League Games';
             console.log($stateParams);
             $scope.leagueID = $stateParams.id;
@@ -14,6 +14,7 @@ angular.module('app.controllers')
             $scope.newGame.MatchDate = Date.now();
             $scope.format = "yyyy-MMMM-dd";
             $scope.gameForUpdate = {};
+            
 
             $scope.loadTeams = function () {
                 TeamsService.getTeamsForLeague($scope.leagueID, function (response) {
@@ -60,9 +61,51 @@ angular.module('app.controllers')
             $scope.editGame = function(game) {
                 $scope.gameForUpdate = game;
                 $scope.isEditing = true;
+                $location.hash('editForm');
+                $anchorScroll();
+                console.log(game);
             }
 
             $scope.cancelEditGame = function() {
                 $scope.isEditing = false;
+            }
+
+            $scope.setGameEnabled = function(game, value) {
+                if (value) {
+                    GamesService.restoreGameInServer($scope.leagueID, game.Id, function (response) {
+                        $scope.loadGames();
+                    }, function (error) {
+                        console.log(error);
+                    });
+                } else {
+                    $scope.deleteGame(game);
+                }
+            }
+
+            $scope.deleteGame = function(game) {
+                GamesService.archiveGameInServer($scope.leagueID, game.Id, function (response) {
+                    $scope.loadGames();
+                }, function (error) {
+                    console.log(error);
+                });
+            }
+
+            $scope.editResult = function (game) {
+                $scope.isEditingResult = true;
+                $scope.gameForUpdate = game;
+            }
+
+            $scope.cancelEditResult = function() {
+                $scope.isEditingResult = false;
+                $scope.gameForUpdate = {};
+            }
+
+            $scope.assignResult = function() {
+                GamesService.assignResultToGame($scope.leagueID, $scope.gameForUpdate, function(response) {
+                    $scope.loadGames();
+                    $scope.isEditingResult = false;
+                }, function(error) {
+                    console.log(error);
+                });
             }
 }]);

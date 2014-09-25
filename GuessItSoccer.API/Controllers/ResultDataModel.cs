@@ -6,7 +6,8 @@ namespace GuessItSoccer.API.Controllers
 {
     public class ResultDataModel
     {
-        public long GameId { get; set; }
+        public long Id { get; set; }
+        public bool IsArchived { get; set; }
         public int HomeTeamGoals { get; set; }
         public int AwayTeamGoals { get; set; }
         public int HomeTeamPenalties { get; set; }

@@ -42,5 +42,41 @@ angular.module('app.services')
                     success(response);
                 }).error(error);
         },
+        archiveGameInServer: function (leagueId, gameId, success, error) {
+            $http
+                .post(
+                    ServerService.get() + '/leagues/'+leagueId+'/games/deletegame/'+gameId, {
+                        headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
+                    })
+                .success(function (response) {
+                    success(response);
+                }).error(error);
+        },
+        restoreGameInServer: function (leagueId, gameId, success, error) {
+            $http
+                .post(
+                    ServerService.get() + '/leagues/' + leagueId + '/games/restoregame/' + gameId, {
+                        headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
+                    })
+                .success(function (response) {
+                    success(response);
+                }).error(error);
+        },
+        assignResultToGame: function (leagueId, gameModel, success, error) {
+            gameModel.complete = true;
+            $http({
+                url: ServerService.get() + '/leagues/'+leagueId+'/games/'+gameModel.Id+'/assignresult',
+                dataType: 'json',
+                method: 'POST',
+                data: gameModel.Result,
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': $cookieStore.get('access_token')
+                }
+            })
+            .success(function (response) {
+                success(response);
+            }).error(error);
+        }
     };
 });

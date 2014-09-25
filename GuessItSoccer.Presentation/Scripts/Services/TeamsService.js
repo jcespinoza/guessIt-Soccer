@@ -52,7 +52,7 @@ angular.module('app.services')
                     success(response);
                 }).error(error);
         },
-        restoreLeagueInServer: function (leagueId, teamId, success, error) {
+        restoreTeamInServer: function (leagueId, teamId, success, error) {
             $http
                 .post(
                     ServerService.get() + '/leagues/'+leagueId+'/teams/restoreteam/'+teamId, {
