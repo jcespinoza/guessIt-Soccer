@@ -7,5 +7,11 @@ angular.module('app.controllers')
         $scope.leagueId = $stateParams.league;
         console.log($scope.userId);
         console.log($scope.leagueId);
+
+        $scope.currentLeague = {};
+
+        $scope.requestLeagueWithId = function() {
+            
+        }
     }
 ]);

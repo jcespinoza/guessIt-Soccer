@@ -2,7 +2,7 @@ using GuessItSoccer.Domain.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GuessItSoccer.API.Controllers
+namespace GuessItSoccer.API.Models
 {
     public class ResultDataModel
     {

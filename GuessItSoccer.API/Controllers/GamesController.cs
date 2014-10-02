@@ -38,7 +38,7 @@ namespace GuessItSoccer.API.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("leagues/{leagueId}/games/get/gameId")]
+        [GET("leagues/{leagueId}/games/get/{gameId}")]
         public GameModel GetGame([FromUri]long leagueId, [FromUri]long gameId)
         {
             League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == leagueId);

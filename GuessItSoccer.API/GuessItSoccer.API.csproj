@@ -238,7 +238,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LeaguesController.cs" />
-    <Compile Include="Controllers\ResultDataModel.cs" />
     <Compile Include="Controllers\PredictionsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -263,6 +262,7 @@
     <Compile Include="Models\PredictionGameModel.cs" />
     <Compile Include="Models\ResetConfirmationModel.cs" />
     <Compile Include="Models\RestoredTeamModel.cs" />
+    <Compile Include="Models\ResultDataModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\StadiumModel.cs" />
     <Compile Include="Models\TeamCreatedModel.cs" />

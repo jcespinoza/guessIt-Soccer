@@ -12,6 +12,16 @@ angular.module('app.services')
                         success(response);
                     }).error(error);
             },
+            getLeagueById: function (leagueId, success, error) {
+                $http
+                    .get(
+                        ServerService.get() + '/leagues/get/'+leagueId, {
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            },
             getSuscribedLeagues: function (success, error) {
                 $http
                     .get(
