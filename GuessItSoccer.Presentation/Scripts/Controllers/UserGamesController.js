@@ -2,16 +2,21 @@
 angular.module('app.controllers')
 // Path: /leagues
 .controller('UserGamesCtrl', [
-    '$scope', '$location', '$stateParams', '$window', 'LeaguesService', 'GamesService', 'AuthService', function($scope, $location, $window, $stateParams, LeaguesService, GamesService, AuthService) {
+    '$scope', '$location', '$stateParams', '$window', 'LeaguesService', 'GamesService', 'AuthService', function ($scope, $location, $stateParams, $window, LeaguesService, GamesService, AuthService) {
+
+        //Needed variables
         $scope.userId = $stateParams.user;
         $scope.leagueId = $stateParams.league;
-        console.log($scope.userId);
-        console.log($scope.leagueId);
-
         $scope.currentLeague = {};
 
-        $scope.requestLeagueWithId = function() {
-            
+        $scope.requestLeagueWithId = function () {
+            console.log("Requesting League");
+            LeaguesService.getLeagueById($scope.leagueId, function(response) {
+                $scope.currentLeague = response;
+            }, function(error) {
+                console.log(error);
+            });
         }
+        $scope.requestLeagueWithId();
     }
 ]);
