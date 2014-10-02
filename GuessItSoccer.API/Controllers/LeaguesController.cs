@@ -43,6 +43,20 @@ namespace GuessItSoccer.API.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
+        [GET("leagues/get/{leagueId}")]
+        public LeagueModel GetLeague([FromUri]long leagueId)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == leagueId);
+            if(foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "League not found");
+
+            LeagueModel leagueModel = _mappingEngine.Map<League, LeagueModel>(foundLeague);
+
+            return leagueModel;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("GET", "HEAD")]
         [GET("leagues/suscribed")]
         public List<LeagueModel> GetSuscribedLeagues()
         {

@@ -38,6 +38,24 @@ namespace GuessItSoccer.API.Controllers
             return teamsInLeague;
         }
 
+        [HttpGet]
+        [AcceptVerbs("GET", "HEAD")]
+        [GET("leagues/{leagueId}/teams/get/teamId")]
+        public TeamModel GetTeam([FromUri]long leagueId, [FromUri]long teamId)
+        {
+            League foundLeague = _readOnlyRepository.FirstOrDefault<League>(le => le.Id == leagueId);
+            if (foundLeague == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "League not found");
+
+            Team foundTeam = _readOnlyRepository.FirstOrDefault<Team>(te => te.Id == teamId);
+            if (foundTeam == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "Team not found");
+
+            TeamModel teamModel = _mappingEngine.Map<Team, TeamModel>(foundTeam);
+
+            return teamModel;
+        }
+
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
         [POST("leagues/{leagueId}/teams/createteam")]

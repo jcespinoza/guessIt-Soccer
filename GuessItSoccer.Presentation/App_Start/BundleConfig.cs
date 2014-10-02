@@ -37,6 +37,7 @@ namespace App.GuessItSoccer.Presentation
                 "~/scripts/Controllers/PasswordRecoveryController.js",
                 "~/scripts/Controllers/SingleLeagueController.js",
                 "~/scripts/Controllers/UserLeaguesController.js",
+                "~/scripts/Controllers/UserGamesController.js",
                 "~/scripts/Controllers/AdminGamesCtrl.js",
                 "~/scripts/Services/AuthService.js",
                 "~/scripts/Services/LeaguesService.js",

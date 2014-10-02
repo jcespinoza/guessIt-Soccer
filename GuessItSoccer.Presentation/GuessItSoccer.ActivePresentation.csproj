@@ -146,6 +146,7 @@
     <Content Include="Scripts\Controllers\LoginController.js" />
     <Content Include="Scripts\Controllers\PasswordRecoveryController.js" />
     <Content Include="Scripts\Controllers\SingleLeagueController.js" />
+    <Content Include="Scripts\Controllers\UserGamesController.js" />
     <Content Include="Scripts\Controllers\UserLeaguesController.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\directives.spec.js">
@@ -516,7 +517,7 @@
     <Content Include="Views\password-recovery.cshtml" />
     <Content Include="Views\AdminUser\leagues.cshtml" />
     <Content Include="Views\AdminUser\league.cshtml" />
-    <Content Include="Views\NormalUser\league.cshtml" />
+    <Content Include="Views\NormalUser\games.cshtml" />
     <Content Include="Views\NormalUser\leagues.cshtml" />
     <Content Include="Views\AdminUser\games.cshtml" />
     <None Include="Web.Debug.config">
