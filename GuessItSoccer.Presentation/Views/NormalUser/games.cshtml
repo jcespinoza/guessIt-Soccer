@@ -7,14 +7,16 @@
     <table class="table table-striped table-hover">
         <tbody>
             <tr ng-repeat="game in games | orderBy:-Id ">
-                <td>
+                <td ng-hide="game.IsArchived">
                     <h3>{{game.HomeTeam.Name}} vs {{game.AwayTeam.Name}}</h3>
                     <div ng-show="game.Completed">
                         <h3>Result: {{game.Result.HomeTeamGoals}} - {{game.Result.AwayTeamGoals}}</h3>
                         <h3 ng-show="game.Result.HomeTeamGoals === game.Result.AwayTeamGoals && (game.Result.HomeTeamPenalties >= 1 || game.Result.AwayTeamPenalties) >= 1">
                             Penalties: {{game.Result.HomeTeamPenalties}} - {{game.Result.AwayTeamPenalties}}
                         </h3>
-
+                        <div class="form-group">
+                            <button ng-disabled="game.Completed">Predict Result</button>
+                        </div>
                     </div>
                 </td>
             </tr>
