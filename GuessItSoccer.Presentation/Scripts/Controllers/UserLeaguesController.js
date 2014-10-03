@@ -35,7 +35,7 @@ angular.module('app.controllers')
 
         $scope.amSuscribed = function(league) {
             for (var i = 0; i < $scope.suscribedLeagues.length; i++) {
-                if (suscribedLeagues[i].Id == league.Id && !league.IsArchived)
+                if ($scope.suscribedLeagues[i].Id == league.Id && !league.IsArchived)
                     return true;
             }
             return false;

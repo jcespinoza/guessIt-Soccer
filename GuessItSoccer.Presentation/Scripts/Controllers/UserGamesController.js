@@ -8,6 +8,7 @@ angular.module('app.controllers')
         $scope.userId = $stateParams.user;
         $scope.leagueId = $stateParams.league;
         $scope.currentLeague = {};
+        $scope.games = [];
 
         $scope.requestLeagueWithId = function () {
             console.log("Requesting League");
@@ -18,5 +19,15 @@ angular.module('app.controllers')
             });
         }
         $scope.requestLeagueWithId();
+
+        $scope.loadGames = function () {
+            GamesService.getGamesForLeague($scope.leagueId, function (response) {
+                $scope.games = response;
+                console.log(response);
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        $scope.loadGames();
     }
 ]);
