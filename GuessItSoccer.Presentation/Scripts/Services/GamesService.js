@@ -73,7 +73,6 @@ angular.module('app.services')
                 }).error(error);
         },
         assignResultToGame: function (leagueId, gameModel, success, error) {
-            gameModel.complete = true;
             $http({
                 url: ServerService.get() + '/leagues/'+leagueId+'/games/'+gameModel.Id+'/assignresult',
                 dataType: 'json',

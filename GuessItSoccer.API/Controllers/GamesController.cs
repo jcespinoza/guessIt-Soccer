@@ -174,6 +174,7 @@ namespace GuessItSoccer.API.Controllers
                 throw new HttpException((int)HttpStatusCode.NotFound, "A game with this Id was not found");
 
             foundGame.Result = _mappingEngine.Map<ResultDataModel, Result>(resultModel, foundGame.Result);
+            foundGame.Completed = true;
             _writeOnlyRepository.Update(foundGame);
             return true;
         }
