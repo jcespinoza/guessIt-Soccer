@@ -15,11 +15,17 @@
                             Penalties: {{game.Result.HomeTeamPenalties}} - {{game.Result.AwayTeamPenalties}}
                         </h3>
                         <div class="form-group">
-                            <button ng-disabled="game.Completed">Predict Result</button>
+                            <button ng-disabled="game.Completed" ng-click="editPrediction()">Predict Result</button>
                         </div>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+    <section id="newPredictionSection" class="row" ng-show="isAddingPrediction">
+        <h3>New Prediction</h3>
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="sendPrediction()">
+            
+        </form>
+    </section>
 </body>

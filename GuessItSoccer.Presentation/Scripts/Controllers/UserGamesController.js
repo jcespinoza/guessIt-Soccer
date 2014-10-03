@@ -9,6 +9,10 @@ angular.module('app.controllers')
         $scope.leagueId = $stateParams.league;
         $scope.currentLeague = {};
         $scope.games = [];
+        $scope.currentGameTarget = {};
+        $scope.newPrediction = {};
+        $scope.predictionForUpdate = {};
+        $scope.isAddingPrediction = false;
 
         $scope.requestLeagueWithId = function () {
             console.log("Requesting League");
@@ -29,5 +33,14 @@ angular.module('app.controllers')
             });
         }
         $scope.loadGames();
+
+        $scope.editPrediction = function(game) {
+            $scope.isAddingPrediction = true;
+            $scope.currentGameTarget = game;
+        }
+
+        $scope.sendPrediction = function() {
+            
+        }
     }
 ]);
