@@ -45,6 +45,7 @@ namespace App.GuessItSoccer.Presentation
                 "~/scripts/Services/ServerService.js",
                 "~/scripts/Services/TeamsService.js",
                 "~/scripts/Services/GamesService.js",
+                "~/scripts/Services/PredictionsService.js",
                 "~/scripts/app.js"));
         }
     }

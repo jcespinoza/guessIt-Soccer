@@ -86,6 +86,6 @@ angular.module('app.services')
             .success(function (response) {
                 success(response);
             }).error(error);
-        }
+        },
     };
 });

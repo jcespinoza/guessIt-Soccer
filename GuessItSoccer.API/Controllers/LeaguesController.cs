@@ -73,6 +73,24 @@ namespace GuessItSoccer.API.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
+        [GET("leagues/issuscribed/{leagueId}")]
+        public bool IsSuscribed([FromUri]long leagueId)
+        {
+            var userTokenModel = GetUserTokenModel();
+            if (userTokenModel == null)
+                throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
+
+            var user = _readOnlyRepository.FirstOrDefault<Account>(us => us.Email == userTokenModel.email);
+            if(user == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "Could not found a user with the given email");
+
+            AccountLeague accountLeague = _readOnlyRepository.FirstOrDefault<AccountLeague>(ac => ac.User == user && ac.League.Id == leagueId);
+            
+            return (accountLeague != null); //If it's not null then this user is suscribed to this league
+        }
+
+        [HttpGet]
+        [AcceptVerbs("GET", "HEAD")]
         [GET("leagues/{leagueId}/suscribedusers")]
         public List<UserModel> GetSuscribedUsers([FromUri] long leagueId )
         {

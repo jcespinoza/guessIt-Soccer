@@ -55,8 +55,28 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("users/{userId}/games/{gameId}/predictions/createprediction/")]
+        [AcceptVerbs("GET", "HEAD")]
+        [GET("users/{userId}/predictions/haspredictionforgame/{gameId}")]
+        public bool HasPredictionForGame([FromUri] long userId, [FromUri] long gameId)
+        {
+            var user = _readOnlyRepository.FirstOrDefault<Account>(usr => usr.Id == userId);
+            if (user == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "There's no user with that Id");
+
+            var game = _readOnlyRepository.FirstOrDefault<Game>(ga => ga.Id == gameId);
+            if (game == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "There's no game with that Id");
+
+            var userPredictionWithGameId =
+                _readOnlyRepository.FirstOrDefault<AccountGamePrediction>(
+                    ac => ac.User.Id == userId && ac.Game.Id == gameId);
+
+            return userPredictionWithGameId != null;
+        }
+
+        [HttpGet]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("users/{userId}/games/{gameId}/predictions/createprediction/")]
         public bool CreatePrediction([FromUri] long userId, [FromUri] long gameId, [FromBody] ResultDataModel model)
         {
             var user = _readOnlyRepository.FirstOrDefault<Account>(usr => usr.Id == userId);
@@ -94,13 +114,12 @@ namespace GuessItSoccer.API.Controllers
             _writeOnlyRepository.Update(user);
             _writeOnlyRepository.Create(newAccountGamePrediction);
 
-
             return true;
         }
 
         [HttpGet]
-        [AcceptVerbs("PUT", "HEAD")]
-        [PUT("users/{userId}/games/{gameId}/predictions/editprediction/")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("users/{userId}/games/{gameId}/predictions/editprediction/")]
         public bool UpdatePrediction([FromUri] long userId, [FromUri] long gameId, [FromBody] ResultDataModel model)
         {
             var user = _readOnlyRepository.FirstOrDefault<Account>(usr => usr.Id == userId);
@@ -127,8 +146,8 @@ namespace GuessItSoccer.API.Controllers
         }
 
         [HttpGet]
-        [AcceptVerbs("DELETE", "HEAD")]
-        [DELETE("users/{userId}/games/{gameId}/predictions/deleteprediction/{predictionId}")]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("users/{userId}/games/{gameId}/predictions/deleteprediction/{predictionId}")]
         public bool DeletePrediction([FromUri] long predictionId)
         {
             var userTokenModel = GetUserTokenModel();

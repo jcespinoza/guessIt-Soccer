@@ -2,7 +2,7 @@
 angular.module('app.controllers')
 // Path: /leagues
 .controller('UserGamesCtrl', [
-    '$scope', '$location', '$stateParams', '$window', 'LeaguesService', 'GamesService', 'AuthService', function ($scope, $location, $stateParams, $window, LeaguesService, GamesService, AuthService) {
+    '$scope', '$location', '$stateParams', '$window', 'LeaguesService', 'GamesService', 'PredictionsService', 'AuthService', function ($scope, $location, $stateParams, $window, LeaguesService, GamesService, PredictionsService, AuthService) {
 
         //Needed variables
         $scope.userId = $stateParams.user;
@@ -40,7 +40,17 @@ angular.module('app.controllers')
         }
 
         $scope.sendPrediction = function() {
-            
+            PredictionsService.uploadNewPrediction($scope.userId, $scope.currentGameTarget.Id, function(response) {
+                console.log("Successfully added prediction to game");
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+        $scope.hasPrediction = function(game) {
+            PredictionsService.hasPredictionForGame($scope.userId, game.Id, function(response) {
+                console.log("This user has "+(response?"a":"no")+" prediction for this game");
+            });
         }
     }
 ]);

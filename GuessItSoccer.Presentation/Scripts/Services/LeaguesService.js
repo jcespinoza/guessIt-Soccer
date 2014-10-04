@@ -32,6 +32,16 @@ angular.module('app.services')
                         success(response);
                     }).error(error);
             },
+            isUserSuscribedToLeague: function (leagueId, success, error) {
+                $http
+                    .get(
+                        ServerService.get() + '/leagues/issuscribed/'+leagueId, {
+                            headers: { "Content-Type": "application/json", 'Authorization': $cookieStore.get('access_token') }
+                        })
+                    .success(function (response) {
+                        success(response);
+                    }).error(error);
+            },
             fetchSuscribedUsersFromServer: function(leagueId, succes, error) {
                 $http
                     .get(
