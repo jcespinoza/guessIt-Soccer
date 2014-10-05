@@ -50,6 +50,8 @@ angular.module('app.controllers')
         $scope.hasPrediction = function(game) {
             PredictionsService.hasPredictionForGame($scope.userId, game.Id, function(response) {
                 console.log("This user has "+(response?"a":"no")+" prediction for this game");
+            },function(error) {
+                console.log(error);
             });
         }
     }

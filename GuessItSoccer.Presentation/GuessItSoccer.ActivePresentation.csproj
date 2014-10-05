@@ -165,6 +165,7 @@
     <Content Include="Scripts\Services\AuthService.js" />
     <Content Include="Scripts\Services\GamesService.js" />
     <Content Include="Scripts\Services\LeaguesService.js" />
+    <Content Include="Scripts\Services\PredictionsService.js" />
     <Content Include="Scripts\Services\ServerService.js" />
     <Content Include="Scripts\Services\TeamsService.js" />
     <Content Include="Scripts\vendor\angular-csp.css" />

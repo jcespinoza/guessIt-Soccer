@@ -60,7 +60,7 @@ angular.module('app.controllers')
 
         $scope.setTeamEnabled = function (team, value) {
             if (value) {
-                TeamsService.restoreLeagueInServer($scope.leagueID, team.Id, function (response) {
+                TeamsService.restoreTeamInServer($scope.leagueID, team.Id, function (response) {
                     $scope.loadTeams();
                 }, function (error) {
                     console.log(error);
